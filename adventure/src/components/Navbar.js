@@ -5,17 +5,18 @@ export default function NavBar() {
 	let token = localStorage.getItem('token');
 
 	return (
-		<div className="navbar-main">
-			<NavLink to="/" className="navbar-title">
+		<div className='navbar-main'>
+			<NavLink to='/' className='navbar-title'>
 				Adventure
 			</NavLink>
-			<div className="navbar-sign-in-up">
-				<NavLink to="/list">View Stories</NavLink>
-				{token && <NavLink to="/dashboard">Dashboard</NavLink>}
+			<NavLink to='/about'>The Team</NavLink>
+			<div className='navbar-sign-in-up'>
+				<NavLink to='/list'>View Stories</NavLink>
+				{token && <NavLink to='/dashboard'>Dashboard</NavLink>}
 				{!token && (
 					<>
-						<NavLink to="/signin">Sign In</NavLink>
-						<NavLink to="/signup">Sign Up</NavLink>
+						<NavLink to='/signin'>Sign In</NavLink>
+						<NavLink to='/signup'>Sign Up</NavLink>
 					</>
 				)}
 			</div>
