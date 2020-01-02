@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import logo from './logo.svg';
 import './App.css';
 
 import About from './components/About';
@@ -17,9 +16,9 @@ function App() {
 	return (
 		<div className='App'>
 			<Navbar />
+			<Route exact path='/' component={Landing} />
 			<Route path='/about' component={About} />
 			<Route path='/dashboard' component={Dashboard} />
-			<Route path='/landing' component={Landing} />
 			<Route path='/modifydecision' component={ModifyDecision} />
 			<Route path='/signin' component={SignIn} />
 			<Route path='/signup' component={SignUp} />
