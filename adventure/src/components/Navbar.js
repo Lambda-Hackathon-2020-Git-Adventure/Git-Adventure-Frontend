@@ -42,7 +42,7 @@ export default function NavBar() {
 			</NavLink>
 			<div className="navbar-main">
 				<StyledHeader>
-					<NavLink to="/about">About</NavLink>
+					{/* <NavLink to="/about">About</NavLink> */}
 					<NavLink to="/list">View Stories</NavLink>
 					{token && <NavLink to="/dashboard">Dashboard</NavLink>}
 					{!token && (
