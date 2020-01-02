@@ -1,20 +1,23 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 
 export default function NavBar() {
+	let token = localStorage.getItem('token');
+
 	return (
 		<div className="navbar-main">
-            <NavLink to ="/" className="navbar-title">Adventure</NavLink>
-			{/* <p className="navbar-title">Adventure</p> */}
+			<NavLink to="/" className="navbar-title">
+				Adventure
+			</NavLink>
 			<div className="navbar-sign-in-up">
-                <NavLink to="/">View Stories</NavLink>
-                <NavLink to="/">Sign In</NavLink>
-                <NavLink to="/">Sign Up</NavLink>
-                <NavLink to="/">Dashboard</NavLink>
-				{/* <p>View Stories</p>
-                <p>Sign in</p>
-				<p>Sign up</p>
-                <p>Dashboard</p> */}
+				<NavLink to="/list">View Stories</NavLink>
+				{token && <NavLink to="/dashboard">Dashboard</NavLink>}
+				{!token && (
+					<>
+						<NavLink to="/signin">Sign In</NavLink>
+						<NavLink to="/signup">Sign Up</NavLink>
+					</>
+				)}
 			</div>
 		</div>
 	);
