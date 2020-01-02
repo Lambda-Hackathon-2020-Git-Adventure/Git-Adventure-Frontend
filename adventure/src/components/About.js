@@ -19,10 +19,10 @@ export default function About() {
 }
 
 const StyledWrapper = styled.div`
-	width: 100%;
-	max-width: 1100px;
+	width: 96%;
+	max-width: 110rem;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	flex-wrap: wrap;
 	margin: 0 auto;
 `;

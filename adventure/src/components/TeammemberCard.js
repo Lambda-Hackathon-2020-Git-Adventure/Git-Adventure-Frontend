@@ -2,28 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function TeamMemberCard({ team_member }) {
-	console.log(team_member.img_url);
-
-	const imgStyle = {
-		width: '250px',
-		height: '352px',
-		border: '18px solid green',
-		borderTopLeftRadius: '90px',
-		borderTopRightRadius: '90px',
-		backgroundImage: `url('/photos/${team_member.img_url}')`,
-		backgroundSize: 'cover',
-	};
+	const image = `url('/photos/` + team_member.img_url + `')`;
 
 	return (
 		<StyledCard>
 			<StyledRole>{team_member.role.toUpperCase()}</StyledRole>
 			<StyledHeader>
 				<p>{team_member.bio.toUpperCase()}</p>
+				<hr />
 				<h3>{team_member.name.toUpperCase()}</h3>
+				<hr />
 			</StyledHeader>
-			{/* <StyledBorder> */}
-			<div style={imgStyle}></div>
-			{/* </StyledBorder> */}
+			<StyledImage image={image} />
 			<StyledLink href={team_member.link_url}>
 				{team_member.link_title.toUpperCase()}
 			</StyledLink>
@@ -32,13 +22,14 @@ export default function TeamMemberCard({ team_member }) {
 }
 
 const StyledCard = styled.div`
-	width: 330px;
-	height: 540px;
-	margin-bottom: 20px;
-	padding: 15px 0;
+	width: 33rem;
+	height: 54rem;
+	margin-bottom: 2rem;
+	padding: 1.5rem 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: space-between;
 	border: 1px solid silver;
 	background-color: white;
 `;
@@ -46,26 +37,41 @@ const StyledCard = styled.div`
 const StyledRole = styled.div`
 	background-color: red;
 	color: white;
-	width: 285px;
-	height: 24px;
-	border-radius: 12px;
+	width: 28.5rem;
+	height: 2.4rem;
+	border-radius: 1.2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-size: 1.8rem;
 `;
 
 const StyledHeader = styled.div`
+	width: 90%;
+
 	h3 {
 		color: red;
-		font-size: 30px;
+		font-size: 3.4rem;
+	}
+
+	p {
+		font-size: 1.8rem;
 	}
 `;
 
-const StyledBorder = styled.div`
-	width: 250px;
-	height: 352px;
-	border: 18px solid green;
-	border-top-left-radius: 90px;
-	border-top-right-radius: 90px;
+const StyledImage = styled.div`
+	width: 28.5rem;
+	height: 35.2rem;
+	border: 1.8rem solid green;
+	border-top-left-radius: 9rem;
+	border-top-right-radius: 9rem;
+
+	background-image: ${props => props.image};
+	background-size: cover;
 `;
 
 const StyledLink = styled.div`
-	margin-top: 12px;
+	margin-top: 1.2rem;
+	font-size: 1.8rem;
 `;

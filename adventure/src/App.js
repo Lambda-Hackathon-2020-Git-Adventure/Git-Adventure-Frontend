@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
+import { GlobalStyle } from './GlobalStyle';
 
 import About from './components/About';
 import Dashboard from './components/Dashboard';
@@ -15,6 +16,7 @@ import ViewDecision from './components/ViewDecision';
 function App() {
 	return (
 		<div className='App'>
+			<GlobalStyle />
 			<Navbar />
 			<Route exact path='/' component={Landing} />
 			<Route path='/about' component={About} />
