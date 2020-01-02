@@ -2,7 +2,7 @@ export const team_member_info = [
 	{
 		name: 'Julie Antonio',
 		role: 'Project Leader',
-		img_url: 'julie.jfif',
+		img_path: 'julie.jfif',
 		link_title: 'LINK_TEXT',
 		link_url: '_url_URL',
 		bio: 'BIO',
@@ -10,7 +10,7 @@ export const team_member_info = [
 	{
 		name: 'Jordan Doan',
 		role: 'Backend Developer',
-		img_url: 'jordan.png',
+		img_path: 'jordan.png',
 		link_title: 'LINK_TEXT',
 		link_url: 'LINK_URL',
 		bio: 'BIO',
@@ -18,7 +18,7 @@ export const team_member_info = [
 	{
 		name: 'Mark King',
 		role: 'Backend Developer',
-		img_url: 'mark.jfif',
+		img_path: 'mark.jfif',
 		link_title: 'LINK_TEXT',
 		link_url: 'LINK_URL',
 		bio: 'BIO',
@@ -26,7 +26,7 @@ export const team_member_info = [
 	{
 		name: 'Ryan Ziegenfus',
 		role: 'Backend Developer',
-		img_url: 'ryan.jfif',
+		img_path: 'ryan.jfif',
 		link_title: 'LINK_TEXT',
 		link_url: 'LINK_URL',
 		bio: 'BIO',
@@ -34,7 +34,7 @@ export const team_member_info = [
 	{
 		name: 'Faye Skeen',
 		role: 'Frontend Developer',
-		img_url: 'faye.jfif',
+		img_path: 'faye.jfif',
 		link_title: 'LINK_TEXT',
 		link_url: 'LINK_URL',
 		bio: 'BIO',
@@ -42,15 +42,15 @@ export const team_member_info = [
 	{
 		name: 'Jonathan Ho',
 		role: 'Frontend Developer',
-		img_url: 'jonathan.jfif',
-		link_title: 'LINK_TEXT',
-		link_url: 'LINK_URL',
+		img_path: 'jonathan.jfif',
+		link_title: 'Choose to link in!',
+		link_url: 'https://www.linkedin.com/in/jonathan-y-ho/',
 		bio: 'BIO',
 	},
 	{
 		name: 'Krishan Nattar',
 		role: 'Frontend Developer',
-		img_url: 'krishan.jfif',
+		img_path: 'krishan.jfif',
 		link_title: 'LINK_TEXT',
 		link_url: 'LINK_URL',
 		bio: 'BIO',
@@ -58,7 +58,7 @@ export const team_member_info = [
 	{
 		name: 'Nick Gonzalez',
 		role: 'Frontend Developer',
-		img_url: 'nick.jfif',
+		img_path: 'nick.jfif',
 		link_title: 'LINK_TEXT',
 		link_url: 'LINK_URL',
 		bio: 'BIO',
@@ -66,9 +66,9 @@ export const team_member_info = [
 	{
 		name: 'Jan Mei',
 		role: 'Stakeholder',
-		img_url: '',
-		link_title: 'LINK_TEXT',
-		link_url: 'LINK_URL',
+		img_path: 'janmei.jpg',
+		link_title: 'Choose to explore quality!',
+		link_url: 'https://explorequality.com',
 		bio: 'BIO',
 	},
 ];

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function TeamMemberCard({ team_member }) {
-	const image = `url('/photos/` + team_member.img_url + `')`;
+	const image = `url('/photos/` + team_member.img_path + `')`;
 
 	return (
 		<StyledCard>
@@ -16,7 +16,7 @@ export default function TeamMemberCard({ team_member }) {
 			<StyledImage image={image} />
 			{/* <StyledLeftBox /> */}
 			{/* <StyledRightBox /> */}
-			<StyledLink href={team_member.link_url}>
+			<StyledLink href={team_member.link_url} target='_blank'>
 				{team_member.link_title.toUpperCase()}
 			</StyledLink>
 		</StyledCard>
