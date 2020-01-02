@@ -40,12 +40,23 @@
 
 /* Navbar Styling */
 
+.navbar-two-rows{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* width: 100%; */
+  /* border: 1px solid red; */
+}
+
 .navbar-main{
   display:flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   border-bottom: 1px solid black;
   height: 50px;
+  /* border: 1px solid green; */
+  width: 100%;
 }
 
 .navbar-main a{
@@ -55,14 +66,20 @@
 
 .navbar-sign-in-up a{
   margin-right: 50px;
+  display:flex;
+  /* border: 1px solid red; */
 }
 
 .navbar-sign-in-up{
   display:flex;
+  /* border: 1px solid green; */
+  justify-content: center;
+  width: 100%;
 }
 
 .navbar-title{
-  margin-left: 50px;
+  margin-top: 20px;
+   text-decoration: none;
 }
 
 /* End Navbar Styling */
