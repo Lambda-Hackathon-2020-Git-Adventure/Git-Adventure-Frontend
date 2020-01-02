@@ -27,7 +27,6 @@ function App() {
       <Route path='/signup' component={SignUp} />
       <Route path='/storytree' component={StoryTree} />
       <Route path='/viewdecision' component={ViewDecision} />
-
     </div>
   );
 }
