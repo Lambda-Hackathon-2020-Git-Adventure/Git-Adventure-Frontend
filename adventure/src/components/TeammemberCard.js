@@ -14,6 +14,8 @@ export default function TeamMemberCard({ team_member }) {
 				<hr />
 			</StyledHeader>
 			<StyledImage image={image} />
+			{/* <StyledLeftBox /> */}
+			{/* <StyledRightBox /> */}
 			<StyledLink href={team_member.link_url}>
 				{team_member.link_title.toUpperCase()}
 			</StyledLink>
@@ -63,7 +65,7 @@ const StyledHeader = styled.div`
 const StyledImage = styled.div`
 	width: 28.5rem;
 	height: 35.2rem;
-	border: 1.8rem solid green;
+	border: 1.6rem solid green;
 	border-top-left-radius: 9rem;
 	border-top-right-radius: 9rem;
 
@@ -71,7 +73,8 @@ const StyledImage = styled.div`
 	background-size: cover;
 `;
 
-const StyledLink = styled.div`
+const StyledLink = styled.a`
 	margin-top: 1.2rem;
 	font-size: 1.8rem;
+	color: inherit;
 `;
