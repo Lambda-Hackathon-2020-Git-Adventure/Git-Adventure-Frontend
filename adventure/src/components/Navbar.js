@@ -15,6 +15,24 @@ export default function NavBar() {
 		font-size: 1.8rem;
 	`;
 
+	const StyledHeader = styled.div`
+		width: 90%;
+
+		h3 {
+			color: red;
+			font-size: 3.4rem;
+		}
+
+		a {
+			font-size: 1.8rem;
+		}
+
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		justify-content: space-evenly;
+	`;
+
 	let token = localStorage.getItem('token');
 
 	return (
@@ -23,8 +41,8 @@ export default function NavBar() {
 				<StyledRole>CHOOSE YOUR OWN ADVENTURE</StyledRole>
 			</NavLink>
 			<div className="navbar-main">
-				<div className="navbar-sign-in-up">
-					<NavLink to="/about">The Team</NavLink>
+				<StyledHeader>
+					<NavLink to="/about">About</NavLink>
 					<NavLink to="/list">View Stories</NavLink>
 					{token && <NavLink to="/dashboard">Dashboard</NavLink>}
 					{!token && (
@@ -33,7 +51,7 @@ export default function NavBar() {
 							<NavLink to="/signup">Sign Up</NavLink>
 						</>
 					)}
-				</div>
+				</StyledHeader>
 			</div>
 		</div>
 	);
