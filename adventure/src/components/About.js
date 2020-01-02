@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import TeamMemberCard from './TeamMemberCard';
+import TeamMemberCard from './TeammemberCard';
 
-import { team_member_info } from './TeamMemberInfo';
+import { team_member_info } from './TeammemberInfo';
 
 export default function About() {
 	return (
