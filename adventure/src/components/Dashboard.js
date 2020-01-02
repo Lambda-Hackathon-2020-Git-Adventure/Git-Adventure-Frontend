@@ -3,6 +3,11 @@ import styled from 'styled-components';
 
 //local imports
 import StoryCard from './StoryCard'
+import Img1 from '../images/headers/img1.jpg'
+import Img2 from '../images/headers/img2.jpg'
+import Img3 from '../images/headers/img3.jpg'
+import Img4 from '../images/headers/img4.jpg'
+import Img5 from '../images/headers/img5.jpg'
 
 const stories = [
   {
@@ -14,7 +19,6 @@ const stories = [
   }, {
     image: '',
     title: 'A Cookie to Remember',
-
     authors: ["Luisa", "Clarence"],
     description: 'Fruitcake chocolate sugar plum cookie. Marzipan bear claw gingerbread muffin cake. Chupa chups cheesecake tiramisu pie.',
     dateEdited: '10/31/19'
@@ -42,21 +46,23 @@ export default function Dashboard(props) {
 
   return (
     <React.Fragment>
-      <h2>Story shelf</h2>
+      <Header>
+        <h2>Story shelf</h2>
+      </Header>
       <DashContainer>
         <StoryColumn>
           <Subheading>Your stories</Subheading>
-          {stories.map(story => {
+          {stories.map((story, index) => {
             return (
-            <StoryCard story={story} />
-            )
+              <StoryCard key={index} story={story} />
+              )
             })}
         </StoryColumn>
         <StoryColumn>
           <Subheading>Shared with you</Subheading>
-          {stories.map(story => {
+          {stories.map((story, index) => {
           return (
-            <StoryCard story={story} />
+            <StoryCard key={index} story={story} />
             )
           })}
         </StoryColumn>
@@ -81,4 +87,18 @@ const StoryColumn = styled.section`
 const Subheading = styled.h2`
   width: 100%;
   font-size: 1.5rem;
+`;
+
+const randomImage = () => {
+  const imgArray = [Img1, Img2, Img3, Img4, Img5]
+
+      const randomNum = Math.floor(Math.random() * imgArray.length)
+      const pick = imgArray[randomNum]
+      return pick;
+}
+
+const Header = styled.header`
+  background-image: url('${() => randomImage()}');
+  background-size: cover;
+  height: 200px;
 `;
