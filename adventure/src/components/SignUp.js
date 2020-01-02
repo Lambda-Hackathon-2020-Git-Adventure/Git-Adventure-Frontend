@@ -32,29 +32,31 @@ export default function SignUp(props) {
     }
 
   return( 
-  <div>
-    <h1>SIGNUP PAGE</h1>
+    <div>
+      <h1>SIGNUP PAGE</h1>
       <form onSubmit={handleSubmit}>
 
-    <label forhmtl='userame'>Create a Username</label>
-    <br />
-      <input 
-        name='username'
-        value={user.username}
-        onChange={handleChange}
-        id='username'
+        <label forhmtl='userame'>Create a Username</label>
+        <br />
+        <input
+          name='username'
+          value={user.username}
+          onChange={handleChange}
+          id='username'
         />
         <br />
         <label forhtml='password'>Create a Password</label>
-        <br/>
-        <input 
+        <br />
+        <input
           name='password'
           value={user.password}
           onChange={handleChange}
           id='password'
-          />
+        />
+        <br />
+        <button type="submit"> SignUp </button>
       </form>
     </div>
-  
+
   )
 };
