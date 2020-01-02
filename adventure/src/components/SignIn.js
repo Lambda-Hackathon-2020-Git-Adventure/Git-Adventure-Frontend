@@ -53,7 +53,7 @@ import {axiosWithAuth} from './authentication/AxiosWithAuth';
             />
       </form>
       <br />
-      <button> SignIn </button>
+        <button type="submit"> SignUp </button>
     </div>
     );
 }
