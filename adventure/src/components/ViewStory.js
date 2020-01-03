@@ -9,7 +9,6 @@ const ViewStory = props => {
 	const [collabs, setCollab] = useState();
 	const [history, setHistory] = useState([]);
 	const [current, setCurrent] = useState();
-
 	const handleClick = e => {
 		e.preventDefault();
 		setHistory([story.start.id]);
@@ -37,13 +36,12 @@ const ViewStory = props => {
 		axiosWithAuth()
 			.get(`/stories/${props.match.params.id}`)
 			.then(res => {
-				console.log(res.data.story);
 				setStory(res.data.story);
 				let str = res.data.story.collaborators.reduce(
-					(acc, curr) => acc + curr.username + ',',
+					(acc, curr) => acc + curr.username + ', ',
 					'',
 				);
-				str = str.substring(0, str.length - 1);
+				str = str.substring(0, str.length - 2);
 				setCollab(str);
 			});
 	}, []);
@@ -62,15 +60,16 @@ const ViewStory = props => {
 				</h2>
 				{history.length == 0 && (
 					<div>
+						{ current ? <img src={current.specifiedNode.image}/> : <img src={story.image}/> }
 						<p>{story.description}</p>
 						{story && story.start && (
-							<button onClick={handleClick}>Get Started</button>
+							<h2 className='button' onClick={handleClick}>Read More!</h2>
 						)}
 					</div>
 				)}
 				{current && <p>{current.specifiedNode.text}</p>}
 				<hr />
-				{history.length > 1 && <button onClick={handleBack}>Go Back</button>}
+				{history.length > 1 && <h2 className='button' onClick={handleBack}>Go Back</h2>}
 			</div>
 			<StyledDecisions>
 				{current &&
@@ -104,13 +103,19 @@ const StyledPageWrapper = styled.div`
 		text-align: left;
 		font-size: 1.4rem;
 		margin-bottom: 2.4rem;
+	}
+
+	.button {
+		width: 100%;
+		text-align: center;
+		font-size: 1.4rem;
+		margin-bottom: 2.4rem;
 		cursor: pointer;
 
 		&:hover {
 			text-decoration: underline;
 		}
 	}
-
 	p {
 		font-size: 1.4rem;
 		text-align: left;
