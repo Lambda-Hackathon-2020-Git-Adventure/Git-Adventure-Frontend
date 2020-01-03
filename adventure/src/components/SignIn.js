@@ -44,7 +44,8 @@ const SignIn = props => {
 	};
 
 	const handleSubmit = e => {
-		e.preventDefault();
+    e.preventDefault();
+    console.log(user);
 		axiosWithAuth()
 			.post('endpoint needed for BE', user)
 			.then(res => {
@@ -81,10 +82,11 @@ const SignIn = props => {
 					id="password"
 					placeholder="Password"
 				/>
+        <br /> <br />
+			<StyledButton onClick={handleSubmit}>Sign In</StyledButton>
 			</StyledForm>
 			{/* </form> */}
 			<br />
-			<StyledButton>Sign In</StyledButton>
 			{/* <button type="submit">Sign In</button> */}
 		</div>
 	);
