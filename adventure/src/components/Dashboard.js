@@ -13,6 +13,7 @@ import left_arrow from '../images/left_arrow.png'
 import right_arrow from '../images/right_arrow.png'
 import curly_arrow from '../images/curly_arrow.png'
 import CreateStoryForm from './CreateStoryForm';
+import InviteForm from './InviteForm'
 import { axiosWithAuth } from './authentication/axiosWithAuth';
 
 const stories = [
@@ -54,27 +55,37 @@ const stories = [
   }]
 
 export default function Dashboard(props) {
-  const [modalViz, setModalViz] = useState(false)
+  const [storyModalViz, setStoryModalViz] = useState(false)
+  const [inviteModalViz, setInviteModalViz] = useState(false)
+  const [myStories, setMyStories] = useState([])
 
   const createStoryModal = () => {
-    setModalViz(!modalViz)
+    setStoryModalViz(!storyModalViz)
   }
   const closeModal = (e) => {
     // e.stopPropagation()
-    setModalViz(!modalViz)
+    if (storyModalViz) {
+      setStoryModalViz(!storyModalViz)
+    } else {
+      setInviteModalViz(!inviteModalViz)
+    }
+  }
+  // really inefficient modal code!!! oh well
+  const createInviteModal = () => {
+    setInviteModalViz(!inviteModalViz)
   }
 
-  // useEffect(()=>{
-  //   axiosWithAuth().get('https://cyahack.herokuapp.com/api/nodes/story/1')
-  //   .then(res=>{
-  //     console.log(res.data);
-  //   })
-  //   .catch(err=>{
-  //     console.log(err);
-  //   })
-  // },[])
-
-  // console.log(axios.get("https://cyahack.herokuapp.com/api/stories/1"))
+  useEffect(()=>{
+    axiosWithAuth().get('https://cyahack.herokuapp.com/api/stories/mine')
+    .then(res=>{
+      // console.log(res.data);
+      setMyStories(res.data);
+      console.log("LSKDFSLKDJF", myStories)
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+  },[])
 
   return (
     <DashBG>
@@ -93,21 +104,23 @@ export default function Dashboard(props) {
           <img src={right_arrow}></img>
         </div>
       </CreateContainer>
-      {modalViz && <CreateStoryForm closeModal={closeModal}/> }
+      {storyModalViz && <CreateStoryForm closeModal={closeModal}/> }
+      {inviteModalViz && <InviteForm closeModal={closeModal}/> }
       <DashContainer>
         <StoryColumn>
           <Subheading>Created by you</Subheading>
-          {stories.map((story, index) => {
+          {console.log("My stories state", myStories.createdStories)}
+          {myStories.createdStories && myStories.createdStories.map((story, index) => {
             return (
-              <StoryCard key={index} story={story} />
+              <StoryCard key={index} story={story} myStories={myStories} setMyStories={setMyStories} createInviteModal={createInviteModal} />
               )
             })}
         </StoryColumn>
         <StoryColumn>
           <Subheading>Shared with you</Subheading>
-          {stories.map((story, index) => {
+          {myStories.collaboratingOn && myStories.createdStories && myStories.collaboratingOn.map((story, index) => {
           return (
-            <StoryCard key={index} story={story} />
+            <StoryCard key={index} story={story} myStories={myStories} setMyStories={setMyStories} />
             )
           })}
         </StoryColumn>
@@ -124,6 +137,7 @@ const DashContainer = styled.main`
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+  align-items: flex-start;
   @media (max-width: 900px) {
       flex-flow: row wrap;
     }
@@ -147,8 +161,9 @@ const StoryColumn = styled.section`
   /* border: 1px solid blue; */
   display: flex;
   flex-flow: row wrap;
-  max-width: 90%;
+  max-width: 50%;
   justify-content: center;
+  align-items: flex-start;
 `;
 
 const Subheading = styled.h2`
