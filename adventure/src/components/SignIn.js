@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 import { axiosWithAuth } from './authentication/axiosWithAuth';
 
@@ -38,6 +39,7 @@ const StyledH1 = styled.p`
 `;
 
 const SignIn = props => {
+	console.log(props);
 	const [user, setUser] = useState({
 		username: '',
 		password: '',
@@ -52,12 +54,14 @@ const SignIn = props => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		axiosWithAuth()
-			.post('endpoint needed for BE', user)
+		console.log(user);
+		// axiosWithAuth()
+		axios
+			.post('https://cyahack.herokuapp.com/api/auth/login', user)
 			.then(res => {
+				console.log(res);
 				localStorage.setItem('token', res.data.payload);
 				props.history.push('/dashboard');
-				window.location.reload();
 			})
 			.catch(err => {
 				console.log(err);

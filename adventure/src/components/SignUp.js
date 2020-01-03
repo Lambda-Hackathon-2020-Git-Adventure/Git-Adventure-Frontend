@@ -42,11 +42,10 @@ export default function SignUp(props) {
 	const handleSubmit = e => {
 		e.preventDefault();
 		axios
-			.post('BE url for signup', user)
+			.post('https://cyahack.herokuapp.com/api/auth/signup', user)
 			.then(res => {
-				localStorage.setItem('token', res.data.payload);
+        console.log(res);
 				props.history.push('/signin');
-				window.location.reload();
 			})
 			.catch(err => {
 				console.log(err);
