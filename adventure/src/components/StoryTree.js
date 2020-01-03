@@ -5,6 +5,7 @@ import Modali, { useModali } from 'modali';
 import { axiosWithAuth } from './authentication/axiosWithAuth';
 import ModifyDecision from './ModifyDecision';
 import EditStoryDescription from './EditStoryDescription';
+import styled from 'styled-components';
 
 export default function StoryTree() {
 	const params = useParams();
@@ -44,7 +45,6 @@ export default function StoryTree() {
 		// toggleNodeModal();
 		toggleQuestionModal();
 	};
-
 
 	const noNodes = () => {
 		let someData = [];
@@ -117,15 +117,15 @@ export default function StoryTree() {
 			});
 	}, []);
 
-	const selectEdit = () =>{
+	const selectEdit = () => {
 		toggleQuestionModal();
 		toggleNodeModal();
-	}
+	};
 
-	const selectAdd = () =>{
+	const selectAdd = () => {
 		toggleQuestionModal();
 		toggleAddModal();
-	}
+	};
 
 	return (
 		<>
@@ -134,19 +134,19 @@ export default function StoryTree() {
 			</div>
 			{data && (
 				<Graph
-					className="graph-class"
-					id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
+					className='graph-class'
+					id='graph-id' // id is mandatory, if no id is defined rd3g will throw an error
 					data={data}
 					config={myConfig}
 					onClickNode={onClickNode}
 				/>
 			)}
 			<Modali.Modal {...questionModal}>
-				{!first && <button onClick={selectEdit}>Edit Node</button>}
-				<button onClick={selectAdd}>Add Node</button>
+				{!first && <NodeButton onClick={selectEdit}>Edit Node</NodeButton>}
+				<NodeButton onClick={selectAdd}>Add Node</NodeButton>
 			</Modali.Modal>
 			<Modali.Modal {...addModal}>
-			<ModifyDecision
+				<ModifyDecision
 					mode='create'
 					nodeId={editNode}
 					toggleNodeModal={toggleAddModal}
@@ -166,3 +166,20 @@ export default function StoryTree() {
 		</>
 	);
 }
+
+const NodeButton = styled.button`
+	height: 3.6rem;
+	width: 60%;
+	margin: 0 auto 2.4rem;
+	background-color: red;
+	color: white;
+	border-radius: 1.8rem;
+	border: none;
+	font-family: inherit;
+	font-height: 1.8rem;
+	cursor: pointer;
+
+	&:hover {
+		background-color: maroon;
+	}
+`;
