@@ -20,13 +20,13 @@ const Landing = () => {
        <img className='landing-page-image' src ={photo === 1 ? './photos/cyoa1.jpg' : photo === 2 ? './photos/cyoa2.jpg' : './photos/cyoa3.jpg'}/>
        <div className='landing-page-top-text'>
          <div>
-        <h2>Explore custom stories and share <br />
+        <h2>Create custom stories and share <br />
         them with friends</h2>
         <p>Create Your Own Adventure allows you to create your own interactive stories and make choices to explore your worlds. Collaborate with friends to create unique and compelling stories full of daring deeds and treacherous encounters. Build rich plots to explore. Become a hero in your own story.</p>
         {/* <Link to='/signup'><img classname='cta-button' src='./photos/button.png' /><span>Get Started</span></Link>  */}
         <div className='cta-button'>
         <Link to='/signup'>{ctabutton()}  </Link> 
-        <div className='cta-text'>Get<br/> Started</div>
+        <Link to='/signup'><div className='cta-text'>Get<br/> Started</div></Link> 
         </div>
       </div>
       </div>
