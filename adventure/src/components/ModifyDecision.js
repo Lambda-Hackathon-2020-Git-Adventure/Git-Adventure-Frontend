@@ -106,7 +106,7 @@ export default function ModifyDecision({
 					placeholder={
 						updatedDec && mode === 'edit'
 							? updatedDec.name
-							: 'Write the name of the decision here!'
+							: 'Set the scene here!'
 					}
 					value={updatedDec && updatedDec.name}
 					onChange={handleChange}
