@@ -37,6 +37,15 @@
   }
 }
 
+@keyframes App-text-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
 
 /* Navbar Styling */
 
@@ -102,9 +111,10 @@ justify-content: center;
 }
 
 .cta-text{
+  animation: App-text-spin infinite 20s linear;
   position: absolute;
-  top: 68%;
-  right: 29.75%;
+  top: 39.5%;
+  right: 41.5%;
   color: white;
   font-size: 2rem;
 }
