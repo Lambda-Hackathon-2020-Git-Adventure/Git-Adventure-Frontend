@@ -98,7 +98,7 @@ export default function Dashboard(props) {
 
 	useEffect(() => {
 		axiosWithAuth()
-			.get('https://cyahack.herokuapp.com/api/stories/mine')
+			.get('/stories/mine')
 			.then(res => {
 				console.log(res.data);
 				setMyStories(res.data);
