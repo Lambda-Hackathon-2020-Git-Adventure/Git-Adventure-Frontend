@@ -78,8 +78,6 @@ export default function Dashboard(props) {
 
 	const [modalId, setModalId] = useState();
 
-	console.log(modalId);
-
 	const createStoryModal = () => {
 		setStoryModalViz(!storyModalViz);
 	};
@@ -101,7 +99,6 @@ export default function Dashboard(props) {
 		axiosWithAuth()
 			.get('https://cyahack.herokuapp.com/api/stories/mine')
 			.then(res => {
-				console.log(res.data);
 				setMyStories(res.data);
 				// console.log('LSKDFSLKDJF', myStories);
 			})
@@ -142,11 +139,8 @@ export default function Dashboard(props) {
 			<DashContainer>
 				<StoryColumn>
 					<Subheading>Created by you</Subheading>
-					{/* {console.log('My stories state', myStories.createdStories)} */}
-					{(!myStories.createdStories.length && !myStories.collaboratingOn.length) && <p>LOADING...</p>}
 					{myStories.createdStories &&
 						myStories.createdStories.map((story, index) => {
-							// console.log(story);
 							return (
 								<StoryCard
 									key={index}
