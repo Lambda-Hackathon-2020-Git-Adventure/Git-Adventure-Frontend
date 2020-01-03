@@ -63,7 +63,8 @@ const StyledHeader = styled.div`
 `;
 
 const StyledImage = styled.div`
-	width: 28.5rem;
+	width: 96%;
+	max-width: 27.4rem;
 	height: 35.2rem;
 	border-top-left-radius: 9rem;
 	border-top-right-radius: 9rem;
