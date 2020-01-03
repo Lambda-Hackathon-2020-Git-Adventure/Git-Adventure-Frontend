@@ -3,7 +3,7 @@ import { axiosWithAuth } from './authentication/axiosWithAuth';
 import styled from 'styled-components';
 
 const EditStoryDescription = ({ nodeId }) => {
-	const [newStoryDesc, setNewStoryDesc] = useState({});
+	const [newStoryDesc, setNewStoryDesc] = useState({title: "", description:""});
 	const [story, setStory] = useState();
 	const [editing, setEditing] = useState(false);
 
@@ -16,10 +16,11 @@ const EditStoryDescription = ({ nodeId }) => {
 			});
 	}, []);
 
-	const onSubmit = () => {
+	const onSubmit = (e) => {
+		e.preventDefault();
 		axiosWithAuth()
 			.put(`https://cyahack.herokuapp.com/api/stories/${nodeId}`, newStoryDesc)
-			.then(res => console.log(res))
+			.then(res => {setStory(res.data.records); setEditing(false)})
 			.catch(err => console.log(err));
 	};
 
