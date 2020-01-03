@@ -3,16 +3,22 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function NavBar() {
+
+    const StyledBottomBorder = styled.div`
+    background-color: #f1bd19;
+    height: 0.6rem;
+    width: 100%;
+    `;
 	const StyledRole = styled.div`
 		background-color: red;
 		color: white;
-		width: 36.5rem;
-		height: 2.4rem;
-		border-radius: 1.2rem;
+		width: 50.5rem;
+		height: 3.6rem;
+		border-radius: 1.8rem;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		font-size: 1.8rem;
+		font-size: 2.8rem;
 	`;
 
 	const StyledHeader = styled.div`
@@ -35,13 +41,14 @@ export default function NavBar() {
 		a {
 			text-decoration: none;
         }
-        // background-image : url(bg2.jpg);
+        background-image : url('/photos/paper-texture-2.jpg');
+        border-bottom: 1.6rem solid #5b88a4;
 	`;
 
 	const StyledNavbarMain = styled.div`
 		display: flex;
 		align-items: center;
-		border-bottom: 1px solid black;
+		
 		height: 50px;
         width: 100%;
 		a {
@@ -68,6 +75,7 @@ export default function NavBar() {
 					)}
 				</StyledHeader>
 			</StyledNavbarMain>
+            <StyledBottomBorder></StyledBottomBorder>
 		</StyledNavRows>
 	);
 }
