@@ -74,7 +74,7 @@ export default function Dashboard(props) {
       </Blurb>
       <CreateContainer>
       <img src={curly_arrow}></img>
-        <NewStory onClick={createStoryModal}>Create new story (not yet styled)</NewStory>
+        <NewStory onClick={createStoryModal}>Create a new story</NewStory>
         <div>
           <img src={left_arrow}></img>
           <h2>...or work on one you've already started!</h2>
