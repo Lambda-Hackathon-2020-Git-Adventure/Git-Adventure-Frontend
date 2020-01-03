@@ -37,7 +37,7 @@ export const team_member_info = [
 		img_path: 'faye.jfif',
 		link_title: 'GitHub',
 		link_url: 'https://github.com/fskeen',
-		bio: 'Web21 | Web25 TL',
+		bio: 'International person of mystery; also, web dev.',
 	},
 	{
 		name: 'Jonathan Ho',
