@@ -7,21 +7,24 @@ import { axiosWithAuth } from './authentication/axiosWithAuth';
 import ModifyDecisionImage from './ModifyDecisionImage';
 import ModifyDecisionVideo from './ModifyDecisionVideo';
 
-export default function ModifyDecision({ mode, nodeId }) {
-	const [decision, setDecision] = useState({
-		name: '',
-		text: '',
-		image: '',
-		video: '',
-	});
+export default function ModifyDecision({ mode, nodeId, toggleNodeModal }) {
+
+	console.log(nodeId)
+	const [decision, setDecision] = useState();
+
+	const [updatedDec, setUpdatedDec] = useState({});
 
 	useEffect(() => {
-		setDecision({ ...decision });
+		setUpdatedDec({ ...setUpdatedDec});
 	}, []);
 
 	useEffect(() => {
 		if (mode === 'edit') {
-			// axios
+			axiosWithAuth().get(`https://cyahack.herokuapp.com/api/nodes/${nodeId}`)
+			.then(res=>{
+				console.log(res.data)
+				setUpdatedDec(res.data.specifiedNode)
+			})
 		}
 	}, []);
 
@@ -33,20 +36,27 @@ export default function ModifyDecision({ mode, nodeId }) {
 		let answer = window.confirm('Are you sure you want to delete this node?');
 		if (answer) {
 			deleteNode();
+			toggleNodeModal();
 		}
 	};
 
 	const handleChange = e => {
-		setDecision({ ...decision, [e.target.name]: e.target.value });
+		console.log('something')
+		setUpdatedDec({ ...updatedDec, [e.target.name]: e.target.value });
 	};
 
 	const handleSubmit = e => {
 		e.preventDefault();
 		console.log('QUAIL.');
 		if (mode === 'edit') {
-			// axios
+			console.log({node: updatedDec})
+			axiosWithAuth().put(`https://cyahack.herokuapp.com/api/nodes/${nodeId}`, {node: updatedDec})
+			.then(res => console.log(res), toggleNodeModal())
+			.catch(err => console.log(err))
 		} else if (mode === 'create') {
-			// axios
+			axiosWithAuth().post(`https://cyahack.herokuapp.com/api/nodes/${nodeId}`, {node: updatedDec})
+			.then(res => console.log(res))
+			.catch(err => console.log(err))
 		}
 	};
 
@@ -59,8 +69,8 @@ export default function ModifyDecision({ mode, nodeId }) {
 					id='decision-name'
 					name='name'
 					type='text'
-					placeholder='Write the name of the decision here!'
-					value={decision.name}
+					placeholder={updatedDec && mode === 'edit' ? updatedDec.name :'Write the name of the decision here!'}
+					value={updatedDec && updatedDec.name}
 					onChange={handleChange}
 				/>
 				<label htmlFor='decision-text'>Text</label>
@@ -68,16 +78,18 @@ export default function ModifyDecision({ mode, nodeId }) {
 					id='decision-text'
 					name='text'
 					// type='textarea'
-					placeholder='Write the text of the decision here!'
-					value={decision.text}
+					placeholder={updatedDec && mode === 'edit' ? updatedDec.text : 'Write the text of the decision here!'}
+					value={updatedDec && updatedDec.text}
 					onChange={handleChange}
 				/>
 				<ModifyDecisionImage />
 				<ModifyDecisionVideo />
+				<div className='button-container-modify'>
 				<button type='button' onClick={() => handleDelete()}>
 					Delete Node
 				</button>
 				<button type='submit'>Submit</button>
+				</div>
 			</StyledForm>
 		</StyledWrapper>
 	);
