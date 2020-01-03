@@ -62,7 +62,7 @@ const SignIn = props => {
 				props.history.push('/dashboard');
 			})
 			.catch(err => {
-				console.log(err);
+				console.log(err.data);
 			});
 	};
 
