@@ -22,7 +22,7 @@ export default function ModifyDecisionVideo() {
 					console.log(err);
 				});
 		}
-	});
+	}, [video]);
 
 	return (
 		<>
