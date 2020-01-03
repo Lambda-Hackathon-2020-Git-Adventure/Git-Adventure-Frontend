@@ -1,31 +1,13 @@
-// U CAN DELETE THIS EVENTUALLY
-
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { axiosWithAuth } from './authentication/axiosWithAuth';
 
-const Container = styled.div`
-  display: flex;
-  justify-content:center;
-`
-
-const Card = styled.div`
-  padding: 20px;
-  border: 1px solid black;
-`
-const Button = styled.div`
-  padding: 10px 0;
-  border: 2px solid blue;
-  width: 20%;
-  margin: 10px auto;
-`
-
 const ViewStory = (props) => {
+  const paper = `url('/photos/paper-texture-3.jpg')`;
   const [story, setStory] = useState();
   const [collabs, setCollab] = useState();
   const [history, setHistory] = useState([]);
-
   const [current, setCurrent] = useState();
 
   const handleClick = (e) => {
@@ -58,24 +40,88 @@ const ViewStory = (props) => {
         setCollab(str);
       })
   }, [])
+
   if (!story) return <div>Loading...</div>
-  console.log(story);
+
   return (
-    <Container>
-      <div>
-        <h2>{story.title}</h2>
-        <h3>{story.description}</h3>
-        <p>Created by {story.creator} with the help of {collabs}</p>
-        {history.length == 0 && <button onClick={handleClick}>Get Started</button>}
-        {current && <div>
-          <Card>{current.specifiedNode.text}</Card>
+    <StyledPageWrapper paper={paper}>
+        <div>
+          <h2>{story.title} <Byline> By {story.creator} and {collabs}</Byline></h2>
+          {history.length == 0 && <div><p>{story.description}</p><button onClick={handleClick}>Get Started</button></div>}
+          {current && <p>{current.specifiedNode.text}</p>}
+          <hr />
           {history.length > 1 && <button onClick={handleBack}>Go Back</button>}
-          {current.nodeChildren.map(child => <Button key={child.id} onClick={(e) => handleNext(e, child.id)}>{child.name}</Button>)}
         </div>
-        }
-      </div>
-    </Container>
+        <StyledDecisions>
+          {current && current.nodeChildren.map(child => <div key={child.id} onClick={(e) => handleNext(e, child.id)}>{child.name}</div>)}
+        </StyledDecisions>
+    </StyledPageWrapper>
   ) 
 }
+
+const StyledPageWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	width: 96%;
+	height: 80vh;
+	max-width: 65rem;
+	margin: 2rem auto;
+	padding: 4rem 4%;
+	border-radius: 0.2rem;
+	font-family: 'Souvenir', 'Libre Baskerville', serif;
+	background-image: ${props => props.paper};
+	background-size: cover;
+
+	h2 {
+		width: 100%;
+		text-align: left;
+		font-size: 1.4rem;
+		margin-bottom: 2.4rem;
+		cursor: pointer;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	p {
+		font-size: 1.4rem;
+		text-align: left;
+		max-width: 65ch;
+		line-height: 1.5;
+	}
+
+	hr {
+		margin-top: 2.4rem;
+		margin-bottom: 2.4rem;
+		border: 1px solid silver;
+		width: 100%;
+	}
+`;
+
+const Byline = styled.span`
+  font-size: 10px;
+  font-weight: 400;
+`
+const StyledDecisions = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	width: 100%;
+
+	font-size: 1.4rem;
+	font-style: italic;
+
+	div {
+		margin-top: 2.4rem;
+		cursor: pointer;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+`;
 
 export default ViewStory;

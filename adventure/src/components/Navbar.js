@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function NavBar() {
+export default function NavBar({ token, setToken }) {
 	// const test = {
 	// 	story: {
 	// 		id: 1,
@@ -77,8 +77,11 @@ export default function NavBar() {
 			color: black;
 		}
 	`;
-
-	let token = localStorage.getItem('token');
+	
+	const handleLogOut = () => {
+		localStorage.removeItem('token');
+		setToken('');
+	}
 
 	return (
 		<StyledNavRows>
@@ -88,6 +91,7 @@ export default function NavBar() {
 			<StyledNavbarMain>
 				<StyledHeader>
 					<NavLink to="/list">View Stories</NavLink>
+					{ token && <NavLink onClick={handleLogOut} to="/">Sign Out</NavLink>}
 					{token && <NavLink to="/dashboard">Dashboard</NavLink>}
 					{!token && (
 						<>

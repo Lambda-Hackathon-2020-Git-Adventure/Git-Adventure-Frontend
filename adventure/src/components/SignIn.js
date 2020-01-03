@@ -52,18 +52,17 @@ const SignIn = props => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		console.log(user);
 		// axiosWithAuth()
 		axios
 			.post('https://cyahack.herokuapp.com/api/auth/login', user)
-			.then(res => {
-				console.log(res);
-				localStorage.setItem('token', res.data.token);
-				props.history.push('/dashboard');
-			})
-			.catch(err => {
-				console.log(err.data);
-			});
+				.then(res => {
+					localStorage.setItem('token', res.data.token);
+					props.setToken(res.data.token)
+					props.history.push('/dashboard');
+				})
+				.catch(err => {
+					console.log(err);
+				});
 	};
 
 	return (
