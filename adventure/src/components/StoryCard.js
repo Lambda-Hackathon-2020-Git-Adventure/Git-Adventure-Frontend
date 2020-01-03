@@ -124,7 +124,7 @@ const ButtonBar = styled.nav`
 	display: flex;
 	/* width: 100%; */
 	flex-flow: column;
-	height: 100%;
+	/* height: 100%; */
 	justify-content: space-between;
 	margin-right: 1rem;
 `;
@@ -157,7 +157,7 @@ const Button = styled.button`
 	&:nth-of-type(1) {
 		border-radius: 0.25rem 0 0 0;
 	}
-	&:nth-of-type(4) {
+	&:nth-last-of-type(1) {
 		border-radius: 0 0 0 0.25rem;
 	}
 	img {
