@@ -28,5 +28,10 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: font77490;
+    background-color: whitesmoke;
+  }
+
+  p {
+    font-family: 'Libre Baskerville';
   }
 `;
