@@ -13,6 +13,7 @@ import SignUp from './components/SignUp';
 import StoryTree from './components/StoryTree';
 import ViewDecision from './components/ViewDecision';
 import StoriesList from './components/StoriesList';
+import ViewStory from './components/ViewStory';
 
 function App() {
 	return (
@@ -28,6 +29,7 @@ function App() {
 			<Route path='/signup' component={SignUp} />
 			<Route path='/storytree' component={StoryTree} />
 			<Route path='/viewdecision' component={ViewDecision} />
+			<Route path='/story/:id' component={ViewStory} />
 		</div>
 	);
 }
