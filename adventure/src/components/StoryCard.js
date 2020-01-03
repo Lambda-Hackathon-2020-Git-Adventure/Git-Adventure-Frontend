@@ -16,6 +16,11 @@ export default function StoryCard(props) {
 
 	console.log(props);
 	console.log(collaborators);
+	let str = collaborators && collaborators.reduce(
+		(acc, curr) => acc + curr.username + ', ',
+		'',
+	);
+	str = str && str.substring(0, str.length - 2);
 
 	const deleteStory = () => {
 		axiosWithAuth()
@@ -71,7 +76,7 @@ export default function StoryCard(props) {
 				{image && <img src='' alt=''></img>}
 				<Title>{title}</Title>
 				<Authors>By: {creator}</Authors>
-				<Authors>with: {collaborators && collaborators.join(', ')}</Authors>
+				<Authors>{collaborators && collaborators.length ? 'with:' : ''} {str}</Authors>
 				<Desc>{description}</Desc>
 				{/*dateEdited && <p>{dateEdited}</p>*/}
 			</StoryInfo>
