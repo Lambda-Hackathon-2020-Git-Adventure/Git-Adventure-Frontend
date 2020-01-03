@@ -21,7 +21,7 @@ export default function About() {
 				</a>
 				, <StyledSpan>1/13th</StyledSpan> of the team that will bring you{' '}
 				<a
-					href='https://communitycalendar.xyz'
+					href='https://www.communitycalendar.xyz'
 					target='_blank'
 					rel='noopener noreferrer'>
 					Community Calendar
