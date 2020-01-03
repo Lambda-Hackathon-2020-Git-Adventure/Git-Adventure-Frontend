@@ -15,7 +15,6 @@ import Img5 from '../images/headers/img5.jpg';
 import left_arrow from '../images/left_arrow.png';
 import right_arrow from '../images/right_arrow.png';
 import curly_arrow from '../images/curly_arrow.png';
-import {ctabutton} from './cta-button'
 
 import CreateStoryForm from './CreateStoryForm';
 import InviteForm from './InviteForm';
