@@ -119,7 +119,7 @@ export default function Dashboard(props) {
 			</Header>
 			<Blurb>
 				Here you'll find all the interactive stories that you've created or
-				collaborated on. To get started, create a new story.
+				collaborated on. To get started, create a new story or edit an existing story.
 			</Blurb>
 			<CreateContainer>
 				<img src={curly_arrow}></img>
@@ -197,7 +197,7 @@ const DashContainer = styled.main`
 	}
 `;
 
-const Blurb = styled.p`
+export const Blurb = styled.p`
 	/* max-width: 100%; */
 	width: 50%;
 	/* background-color: #7C6B68; */
@@ -208,7 +208,7 @@ const Blurb = styled.p`
   border-bottom: black 1px solid; */
 	text-align: left;
 	margin: 0 auto;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Souvenir', serif;
 `;
 
 const StoryColumn = styled.section`
