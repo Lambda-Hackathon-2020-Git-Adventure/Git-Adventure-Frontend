@@ -17,15 +17,13 @@ export default function NavBar() {
 
 	const StyledHeader = styled.div`
 		width: 90%;
-
-		a {
-			font-size: 1.8rem;
-		}
-
 		display: flex;
 		justify-content: center;
 		width: 100%;
 		justify-content: space-evenly;
+		a {
+			font-size: 1.8rem;
+		}
 	`;
 
 	const StyledNavRows = styled.div`
@@ -34,6 +32,9 @@ export default function NavBar() {
 		justify-content: center;
 		align-items: center;
 		margin-top: 20px;
+		a {
+			text-decoration: none;
+		}
 	`;
 
 	const StyledNavbarMain = styled.div`
@@ -42,9 +43,7 @@ export default function NavBar() {
 		border-bottom: 1px solid black;
 		height: 50px;
 		width: 100%;
-
 		a {
-			text-decoration: none;
 			color: black;
 		}
 	`;
