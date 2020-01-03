@@ -30,11 +30,12 @@ export default function NavBar() {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		align-items: center;
-		margin-top: 20px;
+        align-items: center;
+        padding-top: 20px;
 		a {
 			text-decoration: none;
-		}
+        }
+        // background-image : url(bg2.jpg);
 	`;
 
 	const StyledNavbarMain = styled.div`
@@ -42,7 +43,7 @@ export default function NavBar() {
 		align-items: center;
 		border-bottom: 1px solid black;
 		height: 50px;
-		width: 100%;
+        width: 100%;
 		a {
 			color: black;
 		}
