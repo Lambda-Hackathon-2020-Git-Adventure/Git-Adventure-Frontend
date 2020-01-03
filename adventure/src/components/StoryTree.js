@@ -18,17 +18,19 @@ export default function StoryTree() {
   const [editNode, setEditNode] = useState();
   const [mode, setMode] = useState('edit');
   const [storyId, setStoryId] = useState();
+  const [first, setFirst] = useState(false);
+
   // let mode = 'create';
 
 	const myConfig = {
 		directed: true,
 		nodeHighlightBehavior: true,
-		d3: {
-      alphaTarget: 0.05,
-      gravity: -200,
-      linkLength: 100,
-      linkStrength: 1,
-    },
+		// d3: {
+    //   alphaTarget: 0.05,
+    //   gravity: -200,
+    //   linkLength: 100,
+    //   linkStrength: 1,
+    // },
 		node: {
 			labelProperty: 'name',
 			color: 'lightgreen',
@@ -66,6 +68,8 @@ export default function StoryTree() {
 			.then(res => {
         console.log(res.data.story);
         setMode('create');
+        setFirst(true);
+        
         // mode = 'create';
 				// if (res.data.length < 1) {
 				// 	return;
@@ -113,7 +117,8 @@ export default function StoryTree() {
 				if (res.data.length < 1) {
           noNodes();
 					return;
-				}
+        }
+        setFirst(false);
 				//Sets the nodes
 				res.data.forEach(item => {
 					let color = 'blue';
@@ -162,7 +167,7 @@ export default function StoryTree() {
 				/>
 			)}
 			<Modali.Modal {...nodeModal}>
-				<ModifyDecision mode={mode} nodeId={editNode} />
+				<ModifyDecision mode={mode} nodeId={editNode} first={first} />
 			</Modali.Modal>
 		</>
 	);
