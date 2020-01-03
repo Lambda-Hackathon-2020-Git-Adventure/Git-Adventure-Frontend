@@ -142,8 +142,8 @@ export default function StoryTree() {
 				/>
 			)}
 			<Modali.Modal {...questionModal}>
-				{!first && <button onClick={selectEdit}>Edit Node</button>}
-				<button onClick={selectAdd}>Add Node</button>
+				{!first && <NodeButton onClick={selectEdit}>Edit Node</NodeButton>}
+				<NodeButton onClick={selectAdd}>Add Node</NodeButton>
 			</Modali.Modal>
 			<Modali.Modal {...addModal}>
 				<ModifyDecision
@@ -166,3 +166,20 @@ export default function StoryTree() {
 		</>
 	);
 }
+
+const NodeButton = styled.button`
+	height: 3.6rem;
+	width: 60%;
+	margin: 0 auto 2.4rem;
+	background-color: red;
+	color: white;
+	border-radius: 1.8rem;
+	border: none;
+	font-family: inherit;
+	font-height: 1.8rem;
+	cursor: pointer;
+
+	&:hover {
+		background-color: maroon;
+	}
+`;
