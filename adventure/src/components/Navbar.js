@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function NavBar() {
+export default function NavBar({ token, setToken }) {
 	// const test = {
 	// 	story: {
 	// 		id: 1,
@@ -77,11 +77,6 @@ export default function NavBar() {
 			color: black;
 		}
 	`;
-	const [token, setToken] = useState(localStorage.getItem('token'));
-
-	useEffect(() => {
-		setToken(localStorage.getItem('token'))
-	},[token])
 	
 	const handleLogOut = () => {
 		localStorage.removeItem('token');
