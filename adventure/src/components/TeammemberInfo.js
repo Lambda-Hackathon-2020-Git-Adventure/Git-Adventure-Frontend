@@ -53,7 +53,7 @@ export const team_member_info = [
 		img_path: 'krishan.jfif',
 		link_title: 'Do it',
 		link_url: 'http://krishannattar.com/',
-		bio: 'Choose me to live happily ever after. With little to no cannibalism.',
+		bio: `Mommy's good boy!!!`,
 	},
 	{
 		name: 'Nick Gonzalez',
