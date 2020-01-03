@@ -83,6 +83,7 @@ const StyledForm = styled.form`
 	flex-direction: column;
 	align-items: flex-start;
 	width: 96%;
+	max-width: 90rem;
 	margin: 2rem auto;
 	padding: 2rem 2%;
 	border: 1px solid silver;
