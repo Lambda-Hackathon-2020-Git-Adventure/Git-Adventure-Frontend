@@ -9,7 +9,7 @@ export default function TeamMemberCard({ team_member }) {
 		<StyledCard cover={cover}>
 			<StyledRole>{team_member.role.toUpperCase()}</StyledRole>
 			<StyledHeader>
-				<p>{team_member.bio.toUpperCase()}</p>
+				<p><span>{team_member.bio.toUpperCase()}</span></p>
 				<hr />
 				<h3>{team_member.name.toUpperCase()}</h3>
 				<hr />
@@ -26,7 +26,7 @@ export default function TeamMemberCard({ team_member }) {
 
 const StyledCard = styled.div`
 	width: 33rem;
-	height: 54rem;
+	height: 58rem;
 	margin-bottom: 2rem;
 	padding: 1.5rem 0;
 	display: flex;
@@ -54,11 +54,20 @@ const StyledHeader = styled.div`
 
 	h3 {
 		color: red;
-		font-size: 3.4rem;
+		width: 30rem;
+		font-size: 3rem;
+		
 	}
 
 	p {
-		font-size: 1.8rem;
+		min-height: 5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		span{
+			text-align: center;
+			font-size: 1.8rem;
+		}
 	}
 `;
 
