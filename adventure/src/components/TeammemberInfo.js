@@ -51,9 +51,9 @@ export const team_member_info = [
 		name: 'Krishan Nattar',
 		role: 'Frontend Developer',
 		img_path: 'krishan.jfif',
-		link_title: 'LINK_TEXT',
-		link_url: 'LINK_URL',
-		bio: 'BIO',
+		link_title: 'Do it',
+		link_url: 'http://krishannattar.com/',
+		bio: 'Choose me to live happily ever after. With little to no cannibalism.',
 	},
 	{
 		name: 'Nick Gonzalez',
