@@ -56,6 +56,7 @@ export default function StoryTree() {
 		axiosWithAuth()
 			.get(`https://cyahack.herokuapp.com/api/stories/${params.id}`)
 			.then(res => {
+				console.log(params.id);
 				setMode('create');
 				setFirst(true);
 				setStoryId(res.data.story.id);

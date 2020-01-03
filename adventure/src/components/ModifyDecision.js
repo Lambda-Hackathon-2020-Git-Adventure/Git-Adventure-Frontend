@@ -9,10 +9,6 @@ import ModifyDecisionVideo from './ModifyDecisionVideo';
 
 export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, story_id }) {
 	// console.log( mode, nodeId, toggleNodeModal, first, story_id);
-	console.log(mode);
-	console.log(nodeId);
-	console.log(first);
-	console.log(story_id)
 
 	const [decision, setDecision] = useState();
 
@@ -21,6 +17,7 @@ export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, s
 	useEffect(() => {
 		
 		if(first === true){
+			console.log('first here');
 			setUpdatedDec({ ...updatedDec, first: true});
 		} else {
 			setUpdatedDec({ ...updatedDec, first: false})
@@ -34,7 +31,8 @@ export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, s
 				console.log(res.data)
 				setUpdatedDec(res.data.specifiedNode)
 			})
-		} else if (mode === 'create'){
+		} else{
+		// } else if (mode === 'create'){
 			setUpdatedDec({...updatedDec, story_id: story_id})
 		}
 	}, []);
@@ -64,7 +62,12 @@ export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, s
 			axiosWithAuth().put(`https://cyahack.herokuapp.com/api/nodes/${nodeId}`, {node: updatedDec})
 			.then(res => console.log(res), toggleNodeModal())
 			.catch(err => console.log(err))
-		} else if (mode === 'create') {
+		} else if (first === true) {
+			console.log({node: {...updatedDec, first: true, video: "", image: ""}});
+			axiosWithAuth().post(`https://cyahack.herokuapp.com/api/nodes/`, {node: {...updatedDec, first: true, video: "", image: ""}})
+			.then(res => console.log(res))
+			.catch(err => console.log(err))
+		}else if (mode === 'create') {
 			axiosWithAuth().post(`https://cyahack.herokuapp.com/api/nodes/${nodeId}`, {node: updatedDec})
 			.then(res => console.log(res))
 			.catch(err => console.log(err))
@@ -74,7 +77,8 @@ export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, s
 	return (
 		<StyledWrapper>
 			<StyledForm onSubmit={handleSubmit}>
-				<h2>{mode === 'edit' ? 'Modify' : 'Create'} a decision</h2>
+				{!first && <h2>{mode === 'edit' ? 'Modify' : 'Create'} a decision</h2>}
+				{first && <h2>Begin Story</h2>}
 				<label htmlFor='decision-name'>Name</label>
 				<input
 					id='decision-name'
@@ -89,7 +93,7 @@ export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, s
 					id='decision-text'
 					name='text'
 					// type='textarea'
-					placeholder={updatedDec && mode === 'edit' ? updatedDec.text : 'Write the text of the decision here!'}
+					placeholder={updatedDec && mode === 'edit' ? updatedDec.text : !first ? 'Write the text of the decision here!': 'Start your story here'}
 					value={updatedDec && updatedDec.text}
 					onChange={handleChange}
 				/>
