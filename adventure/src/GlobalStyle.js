@@ -30,8 +30,4 @@ export const GlobalStyle = createGlobalStyle`
     font-family: font77490;
     background-color: whitesmoke;
   }
-
-  p {
-    font-family: 'Libre Baskerville';
-  }
 `;
