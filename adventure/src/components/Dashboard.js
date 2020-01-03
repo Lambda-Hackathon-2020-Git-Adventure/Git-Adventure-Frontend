@@ -77,6 +77,8 @@ export default function Dashboard(props) {
 
 	const [modalId, setModalId] = useState();
 
+	console.log(modalId);
+
 	const createStoryModal = () => {
 		setStoryModalViz(!storyModalViz);
 	};
@@ -96,8 +98,9 @@ export default function Dashboard(props) {
 
 	useEffect(() => {
 		axiosWithAuth()
-			.get('/stories/mine')
+			.get('https://cyahack.herokuapp.com/api/stories/mine')
 			.then(res => {
+				console.log(res.data);
 				setMyStories(res.data);
 				// console.log('LSKDFSLKDJF', myStories);
 			})
@@ -127,6 +130,7 @@ export default function Dashboard(props) {
 					<img src={right_arrow}></img>
 				</div>
 			</CreateContainer>
+
 			{storyModalViz && (
 				<CreateStoryForm
 					closeModal={closeModal}
@@ -135,11 +139,14 @@ export default function Dashboard(props) {
 				/>
 			)}
 			{inviteModalViz && <InviteForm closeModal={closeModal} id={modalId} />}
+
 			<DashContainer>
 				<StoryColumn>
 					<Subheading>Created by you</Subheading>
+					{/* {console.log('My stories state', myStories.createdStories)} */}
 					{myStories.createdStories &&
 						myStories.createdStories.map((story, index) => {
+							// console.log(story);
 							return (
 								<StoryCard
 									key={index}
@@ -173,11 +180,13 @@ export default function Dashboard(props) {
 		</DashBG>
 	);
 }
+
 const DashBG = styled.div`
 	background-color: whitesmoke;
 	height: 100%;
 	padding-bottom: 10rem;
 `;
+
 const DashContainer = styled.main`
 	display: flex;
 	flex-flow: row nowrap;
@@ -187,6 +196,7 @@ const DashContainer = styled.main`
 		flex-flow: row wrap;
 	}
 `;
+
 const Blurb = styled.p`
 	/* max-width: 100%; */
 	width: 50%;
@@ -195,12 +205,12 @@ const Blurb = styled.p`
 	font-size: 1.75rem;
 	padding: 1rem;
 	/* border-top: black 1px solid;
-  	border-bottom: black 1px solid; */
+  border-bottom: black 1px solid; */
 	text-align: left;
 	margin: 0 auto;
-	// font-family: 'Open Sans', sans-serif;
-	font-family: 'Libre Baskerville';
+	font-family: 'Open Sans', sans-serif;
 `;
+
 const StoryColumn = styled.section`
 	/* border: 1px solid blue; */
 	display: flex;
@@ -208,22 +218,22 @@ const StoryColumn = styled.section`
 	max-width: 50%;
 	justify-content: center;
 	align-items: flex-start;
-	@media (max-width: 900px) {
-		max-width: 90%;
-	}
 `;
+
 const Subheading = styled.h2`
 	width: 100%;
 	font-size: 1.5rem;
 	text-align: center;
 	padding: 1rem;
 `;
+
 const randomImage = () => {
 	const imgArray = [Img1, Img2, Img3, Img4, Img5];
 	const randomNum = Math.floor(Math.random() * imgArray.length);
 	const pick = imgArray[randomNum];
 	return pick;
 };
+
 const Header = styled.header`
   /* background-image: url(${Img3}); */
   /* background-color: #DED4D2; */
@@ -237,10 +247,12 @@ const Header = styled.header`
   justify-content: center;
   align-items: center;
   /* background-attachment: fixed; */
+
   h2 {
     margin-top: 4rem;
   }
 `;
+
 const NewStory = styled.button`
 	background-color: red;
 	height: 3rem;
@@ -260,6 +272,7 @@ const NewStory = styled.button`
 		border-color: black;
 	}
 `;
+
 const CreateContainer = styled.div`
 	display: flex;
 	flex-flow: column;

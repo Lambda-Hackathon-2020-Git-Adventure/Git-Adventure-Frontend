@@ -47,7 +47,7 @@ const ViewStory = props => {
 	}, []);
 
 	if (!story) return <StyledPageWrapper paper={paper}>Loading...</StyledPageWrapper>;
-	console.log(story);
+	
 	return (
 		<StyledPageWrapper paper={paper}>
 			<div>
@@ -55,7 +55,7 @@ const ViewStory = props => {
 					{story.title}{' '}
 					<Byline>
 						{' '}
-						By {story.creator} {collabs && 'and'} {collabs}
+						By {story.creator} {collabs && "with: "} {collabs}
 					</Byline>
 				</h2>
 				{history.length == 0 && (

@@ -14,8 +14,6 @@ export default function StoryCard(props) {
 	const { image, title, creator, description, id, collaborators } = props.story;
 	const { myStories, setMyStories, createInviteModal, collaborator } = props;
 
-	console.log(props);
-	console.log(collaborators);
 	let str =
 		collaborators &&
 		collaborators.reduce((acc, curr) => acc + curr.username + ', ', '');
