@@ -140,6 +140,9 @@ justify-content: center;
   outline: 0;
 }
 
+text{
+  font-size: 1.4rem;
+}
 .navbar-links-hovered:hover {
   color: #f43518;
 }
