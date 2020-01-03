@@ -23,6 +23,17 @@ export default function ModifyDecision({ mode, node_id }) {
 		}
 	}, []);
 
+	const deleteNode = () =>{
+		console.log('DELETED YO');
+	}
+
+	const handleDelete = () =>{
+		let answer = window.confirm('Are you sure you want to delete this node?');
+		if(answer){
+			deleteNode();
+		}
+	}
+
 	const handleChange = e => {
 		setDecision({ ...decision, [e.target.name]: e.target.value });
 	};
@@ -61,6 +72,7 @@ export default function ModifyDecision({ mode, node_id }) {
 				/>
 				<ModifyDecisionImage />
 				<ModifyDecisionVideo />
+				<button type = "button" onClick={()=>handleDelete()}>Delete Node</button>
 				<button type='submit'>Submit</button>
 			</StyledForm>
 		</StyledWrapper>

@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+// import axios from 'axios';
+import { Graph } from 'react-d3-graph';
+import Modali, { useModali } from 'modali';
 
 //local imports
 import StoryCard from './StoryCard';
+import ModifyDecision from './ModifyDecision';
 import Img1 from '../images/headers/img1.jpg';
 import Img2 from '../images/headers/img2.jpg';
 import Img3 from '../images/headers/img3.jpg';
@@ -11,9 +15,12 @@ import Img5 from '../images/headers/img5.jpg';
 import left_arrow from '../images/left_arrow.png';
 import right_arrow from '../images/right_arrow.png';
 import curly_arrow from '../images/curly_arrow.png';
+
 import CreateStoryForm from './CreateStoryForm';
 import InviteForm from './InviteForm'
 import { axiosWithAuth } from './authentication/axiosWithAuth';
+
+
 
 const stories = [
 	{
