@@ -6,16 +6,17 @@ export default function SignUp(props) {
 	const StyledButton = styled.button`
 		background-color: #5b88a4;
 		color: white;
-		width: 5.5rem;
+		width: 10rem;
 		height: 3.6rem;
 		border-radius: 2rem;
 		border: none;
 		align-items: center;
-		font-size: 1.2rem;
+		font-size: 1.8rem;
 		cursor: pointer;
 		:focus {
 			outline: 0;
 		}
+		font-family: inherit;
 	`;
 
 	const StyledH1 = styled.p`
@@ -24,6 +25,7 @@ export default function SignUp(props) {
 			1px 1px 0 #000;
 		font-size: 40px;
 		cursor: default;
+		margin-top: 2.4rem;
 	`;
 
 	const [user, setUser] = useState({
@@ -52,7 +54,7 @@ export default function SignUp(props) {
 	};
 
 	return (
-		<div>
+		<SignUpWrapper>
 			<StyledH1>SIGN UP!</StyledH1>
 			<form onSubmit={handleSubmit}>
 				<br />
@@ -80,6 +82,12 @@ export default function SignUp(props) {
 				<br />
 				<StyledButton onClick={handleSubmit}> Sign Up </StyledButton>
 			</form>
-		</div>
+		</SignUpWrapper>
 	);
 }
+
+const SignUpWrapper = styled.div`
+	input {
+		padding: 1rem;
+	}
+`;
