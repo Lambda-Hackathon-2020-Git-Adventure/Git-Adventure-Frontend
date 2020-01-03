@@ -5,6 +5,7 @@ import Modali, { useModali } from 'modali';
 import { axiosWithAuth } from './authentication/axiosWithAuth';
 import ModifyDecision from './ModifyDecision';
 import EditStoryDescription from './EditStoryDescription';
+import styled from 'styled-components';
 
 export default function StoryTree() {
 	const params = useParams();
@@ -44,7 +45,6 @@ export default function StoryTree() {
 		// toggleNodeModal();
 		toggleQuestionModal();
 	};
-
 
 	const noNodes = () => {
 		let someData = [];
@@ -117,15 +117,15 @@ export default function StoryTree() {
 			});
 	}, []);
 
-	const selectEdit = () =>{
+	const selectEdit = () => {
 		toggleQuestionModal();
 		toggleNodeModal();
-	}
+	};
 
-	const selectAdd = () =>{
+	const selectAdd = () => {
 		toggleQuestionModal();
 		toggleAddModal();
-	}
+	};
 
 	return (
 		<>
@@ -134,8 +134,8 @@ export default function StoryTree() {
 			</div>
 			{data && (
 				<Graph
-					className="graph-class"
-					id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
+					className='graph-class'
+					id='graph-id' // id is mandatory, if no id is defined rd3g will throw an error
 					data={data}
 					config={myConfig}
 					onClickNode={onClickNode}
@@ -146,7 +146,7 @@ export default function StoryTree() {
 				<button onClick={selectAdd}>Add Node</button>
 			</Modali.Modal>
 			<Modali.Modal {...addModal}>
-			<ModifyDecision
+				<ModifyDecision
 					mode='create'
 					nodeId={editNode}
 					toggleNodeModal={toggleAddModal}
