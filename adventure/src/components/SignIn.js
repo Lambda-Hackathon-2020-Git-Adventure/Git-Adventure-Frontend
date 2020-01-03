@@ -16,16 +16,17 @@ const StyledForm = styled.form`
 const StyledButton = styled.button`
 	background-color: #5b88a4;
 	color: white;
-	width: 5.5rem;
+	width: 10rem;
 	height: 3.6rem;
 	border-radius: 2rem;
 	border: none;
 	align-items: center;
-	font-size: 1.2rem;
+	font-size: 1.8rem;
 	cursor: pointer;
 	:focus {
 		outline: 0;
 	}
+	font-family: inherit;
 `;
 
 const StyledH1 = styled.p`
@@ -34,6 +35,7 @@ const StyledH1 = styled.p`
 		1px 1px 0 #000;
 	font-size: 40px;
 	cursor: default;
+	margin-top: 2.4rem;
 `;
 
 const SignIn = props => {
@@ -66,7 +68,7 @@ const SignIn = props => {
 	};
 
 	return (
-		<div>
+		<SignInWrapper>
 			<StyledH1>SIGN IN!</StyledH1>
 			<StyledForm onSubmit={handleSubmit}>
 				<br />
@@ -92,8 +94,14 @@ const SignIn = props => {
 				<StyledButton onClick={handleSubmit}>Sign In</StyledButton>
 			</StyledForm>
 			<br />
-		</div>
+		</SignInWrapper>
 	);
 };
 
 export default SignIn;
+
+const SignInWrapper = styled.div`
+	input {
+		padding: 1rem;
+	}
+`;

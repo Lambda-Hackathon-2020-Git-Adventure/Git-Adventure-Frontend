@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import About from './About';
-import { ctabutton } from './cta-button'
+import { ctabutton } from './cta-button';
+import styled from 'styled-components';
 
 const Landing = () => {
+	function photoSelect() {
+		return Math.floor(Math.random() * 3);
+	}
 
-  function photoSelect () { 
-    return Math.floor(Math.random() * 3);
-  }
+	const [photo, setPhoto] = useState(photoSelect());
 
-  const [photo, setPhoto] = useState(photoSelect());
-  
-
-
-  return (
-    <div className='landing-page-container'>
-       <h1>CREATE YOUR OWN ADVENTURE</h1>
+	return (
+		<div className='landing-page-container'>
+			<h1>
+				<Black>Welcome to</Black> CREATE YOUR OWN ADVENTURE<Black>...</Black>
+      </h1>
      <div className='landing-page-top'>
        <img className='landing-page-image' src ={photo === 1 ? './photos/cyoa1.jpg' : photo === 2 ? './photos/cyoa2.jpg' : './photos/cyoa3.jpg'}/>
        <div className='landing-page-top-text'>
@@ -38,3 +38,6 @@ const Landing = () => {
 }
 
 export default Landing
+const Black = styled.span`
+	color: black;
+`;
