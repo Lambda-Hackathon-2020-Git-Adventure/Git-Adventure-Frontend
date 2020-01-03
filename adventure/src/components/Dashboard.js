@@ -75,6 +75,10 @@ export default function Dashboard(props) {
 		collaboratingOn: [],
 	});
 
+	const [modalId, setModalId] = useState();
+
+	console.log(modalId);
+
 	const createStoryModal = () => {
 		setStoryModalViz(!storyModalViz);
 	};
@@ -87,7 +91,8 @@ export default function Dashboard(props) {
 		}
 	};
 	// really inefficient modal code!!! oh well
-	const createInviteModal = () => {
+	const createInviteModal = id => {
+		setModalId(id);
 		setInviteModalViz(!inviteModalViz);
 	};
 
@@ -97,7 +102,7 @@ export default function Dashboard(props) {
 			.then(res => {
 				console.log(res.data);
 				setMyStories(res.data);
-				console.log('LSKDFSLKDJF', myStories);
+				// console.log('LSKDFSLKDJF', myStories);
 			})
 			.catch(err => {
 				console.log(err);
@@ -133,15 +138,15 @@ export default function Dashboard(props) {
 					setMyStories={setMyStories}
 				/>
 			)}
-			{inviteModalViz && <InviteForm closeModal={closeModal} />}
+			{inviteModalViz && <InviteForm closeModal={closeModal} id={modalId} />}
 
 			<DashContainer>
 				<StoryColumn>
 					<Subheading>Created by you</Subheading>
-					{console.log('My stories state', myStories.createdStories)}
+					{/* {console.log('My stories state', myStories.createdStories)} */}
 					{myStories.createdStories &&
 						myStories.createdStories.map((story, index) => {
-							console.log(story);
+							// console.log(story);
 							return (
 								<StoryCard
 									key={index}
@@ -149,6 +154,8 @@ export default function Dashboard(props) {
 									myStories={myStories}
 									setMyStories={setMyStories}
 									createInviteModal={createInviteModal}
+									setModalId={setModalId}
+									collaborator={false}
 								/>
 							);
 						})}
@@ -164,6 +171,7 @@ export default function Dashboard(props) {
 									story={story}
 									myStories={myStories}
 									setMyStories={setMyStories}
+									collaborator={true}
 								/>
 							);
 						})}

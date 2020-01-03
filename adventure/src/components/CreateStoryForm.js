@@ -12,6 +12,8 @@ export default function CreateStoryForm(props) {
 		image: '',
 	});
 
+	console.log(props);
+
 	useEffect(() => {
 		if (picture) {
 			const formData = new FormData();
@@ -38,7 +40,9 @@ export default function CreateStoryForm(props) {
 		console.log(newStory);
 		axiosWithAuth()
 			.post(`/stories`, newStory)
-			.then(res => props.setMyStories([...props.myStories, res.data]))
+			.then(res =>
+				props.setMyStories([...props.myStories.createdStories, res.data]),
+			)
 			.catch(err => console.log(err));
 		setNewStory({
 			...newStory,

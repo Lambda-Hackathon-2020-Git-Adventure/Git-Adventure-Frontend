@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { Graph } from 'react-d3-graph';
 import Modali, { useModali } from 'modali';
 import { axiosWithAuth } from './authentication/axiosWithAuth';
 import ModifyDecision from './ModifyDecision';
 import EditStoryDescription from './EditStoryDescription';
 
-export default function StoryTree(props) {
-	console.log(props);
+export default function StoryTree() {
+	const params = useParams();
+
+	console.log(params.id);
+
+	// console.log(props);
 	const [modalViz, setModalViz] = useState(false);
 	const [data, setData] = useState();
 	const [nodeModal, toggleNodeModal] = useModali();
@@ -51,9 +56,7 @@ export default function StoryTree(props) {
 		let someData = [];
 		let someLinks = [];
 		axiosWithAuth()
-			.get(
-				`https://cyahack.herokuapp.com/api/nodes/story/${props.location.state.thisId}`,
-			)
+			.get(`https://cyahack.herokuapp.com/api/nodes/story/${params.id}`)
 			.then(res => {
 				console.log(res);
 				if (res.data.length < 1) {
@@ -95,7 +98,7 @@ export default function StoryTree(props) {
 	return (
 		<>
 			<div>
-				<EditStoryDescription nodeId={props.location.state.thisId} />
+				<EditStoryDescription nodeId={params.id} />
 			</div>
 			{data && (
 				<Graph

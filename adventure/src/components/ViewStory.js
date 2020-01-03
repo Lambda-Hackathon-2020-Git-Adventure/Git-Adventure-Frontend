@@ -3,61 +3,86 @@ import styled from 'styled-components';
 
 import { axiosWithAuth } from './authentication/axiosWithAuth';
 
-const ViewStory = (props) => {
-  const paper = `url('/photos/paper-texture-3.jpg')`;
-  const [story, setStory] = useState();
-  const [collabs, setCollab] = useState();
-  const [history, setHistory] = useState([]);
-  const [current, setCurrent] = useState();
+const ViewStory = props => {
+	const paper = `url('/photos/paper-texture-3.jpg')`;
+	const [story, setStory] = useState();
+	const [collabs, setCollab] = useState();
+	const [history, setHistory] = useState([]);
+	const [current, setCurrent] = useState();
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    setHistory([story.start.id])
-    axiosWithAuth().get(`/nodes/${story.start.id}`)
-      .then(res => setCurrent(res.data))
-  }
+	const handleClick = e => {
+		e.preventDefault();
+		setHistory([story.start.id]);
+		axiosWithAuth()
+			.get(`/nodes/${story.start.id}`)
+			.then(res => setCurrent(res.data));
+	};
 
-  const handleNext = (e, id) => {
-    e.preventDefault();
-    setHistory([...history, current])
-    axiosWithAuth().get(`/nodes/${id}`)
-      .then(res => setCurrent(res.data))
-  }
+	const handleNext = (e, id) => {
+		e.preventDefault();
+		setHistory([...history, current]);
+		axiosWithAuth()
+			.get(`/nodes/${id}`)
+			.then(res => setCurrent(res.data));
+	};
 
-  const handleBack = (e) => {
-    e.preventDefault();
-    setCurrent(history[history.length - 1])
-    const newHistory = history.slice(0, history.length - 1)
-    setHistory(newHistory)
-  }
-  
-  useEffect(() => {
-    axiosWithAuth().get(`/stories/${props.match.params.id}`)
-      .then(res => {
-        setStory(res.data.story)
-        let str = res.data.story.collaborators.reduce((acc, curr) => acc + curr.username + ',', '')
-        str = str.substring(0,str.length - 1)
-        setCollab(str);
-      })
-  }, [])
+	const handleBack = e => {
+		e.preventDefault();
+		setCurrent(history[history.length - 1]);
+		const newHistory = history.slice(0, history.length - 1);
+		setHistory(newHistory);
+	};
 
-  if (!story) return <div>Loading...</div>
+	useEffect(() => {
+		axiosWithAuth()
+			.get(`/stories/${props.match.params.id}`)
+			.then(res => {
+				console.log(res.data.story);
+				setStory(res.data.story);
+				let str = res.data.story.collaborators.reduce(
+					(acc, curr) => acc + curr.username + ',',
+					'',
+				);
+				str = str.substring(0, str.length - 1);
+				setCollab(str);
+			});
+	}, []);
 
-  return (
-    <StyledPageWrapper paper={paper}>
-        <div>
-          <h2>{story.title} <Byline> By {story.creator} and {collabs}</Byline></h2>
-          {history.length == 0 && <div><p>{story.description}</p><button onClick={handleClick}>Get Started</button></div>}
-          {current && <p>{current.specifiedNode.text}</p>}
-          <hr />
-          {history.length > 1 && <button onClick={handleBack}>Go Back</button>}
-        </div>
-        <StyledDecisions>
-          {current && current.nodeChildren.map(child => <div key={child.id} onClick={(e) => handleNext(e, child.id)}>{child.name}</div>)}
-        </StyledDecisions>
-    </StyledPageWrapper>
-  ) 
-}
+	if (!story) return <div>Loading...</div>;
+
+	return (
+		<StyledPageWrapper paper={paper}>
+			<div>
+				<h2>
+					{story.title}{' '}
+					<Byline>
+						{' '}
+						By {story.creator} {collabs && 'and'} {collabs}
+					</Byline>
+				</h2>
+				{history.length == 0 && (
+					<div>
+						<p>{story.description}</p>
+						{story && story.start && (
+							<button onClick={handleClick}>Get Started</button>
+						)}
+					</div>
+				)}
+				{current && <p>{current.specifiedNode.text}</p>}
+				<hr />
+				{history.length > 1 && <button onClick={handleBack}>Go Back</button>}
+			</div>
+			<StyledDecisions>
+				{current &&
+					current.nodeChildren.map(child => (
+						<div key={child.id} onClick={e => handleNext(e, child.id)}>
+							{child.name}
+						</div>
+					))}
+			</StyledDecisions>
+		</StyledPageWrapper>
+	);
+};
 
 const StyledPageWrapper = styled.div`
 	display: flex;
@@ -102,9 +127,9 @@ const StyledPageWrapper = styled.div`
 `;
 
 const Byline = styled.span`
-  font-size: 10px;
-  font-weight: 400;
-`
+	font-size: 10px;
+	font-weight: 400;
+`;
 const StyledDecisions = styled.div`
 	display: flex;
 	flex-direction: column;

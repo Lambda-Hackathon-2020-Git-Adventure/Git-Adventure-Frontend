@@ -12,7 +12,10 @@ import InviteForm from './InviteForm';
 
 export default function StoryCard(props) {
 	const { image, title, creator, description, id, collaborators } = props.story;
-	const { myStories, setMyStories, createInviteModal } = props;
+	const { myStories, setMyStories, createInviteModal, collaborator } = props;
+
+	console.log(collaborator);
+
 	const deleteStory = () => {
 		axiosWithAuth()
 			.delete(`https://cyahack.herokuapp.com/api/stories/${id}`)
@@ -31,6 +34,7 @@ export default function StoryCard(props) {
 			})
 			.catch(err => console.log(err));
 	};
+
 	return (
 		<Tile>
 			<ButtonBar>
@@ -55,10 +59,12 @@ export default function StoryCard(props) {
                     thisId: id
                 }}}><img src={EditIcon}/>Edit story</Link></Button> */}
 				{/* <Button share><Link to={`/storytree/${id}/invite`}><img src={InviteIcon}/>Share & invite</Link></Button> */}
-				<Button onClick={deleteStory}>
-					{' '}
-					<img src={DeleteIcon} /> Delete story
-				</Button>
+				{!collaborator && (
+					<Button onClick={deleteStory}>
+						{' '}
+						<img src={DeleteIcon} /> Delete story
+					</Button>
+				)}
 			</ButtonBar>
 			<StoryInfo>
 				{image && <img src='' alt=''></img>}
