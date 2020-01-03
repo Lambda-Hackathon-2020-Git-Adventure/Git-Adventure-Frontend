@@ -26,8 +26,8 @@ const Landing = () => {
         {/* <Link to='/signup'><img classname='cta-button' src='./photos/button.png' /><span>Get Started</span></Link>  */}
         <div className='cta-button'>
         <Link to='/signup'>{ctabutton()}  </Link> 
-        </div>
         <div className='cta-text'>Get<br/> Started</div>
+        </div>
       </div>
       </div>
      </div>
