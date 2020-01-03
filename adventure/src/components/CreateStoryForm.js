@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
-import axios from 'axios'
+import {axiosWithAuth} from './authentication/axiosWithAuth'
 
 export default function CreateStoryForm (props) {
     const {closeModal} = props;
@@ -13,7 +13,7 @@ export default function CreateStoryForm (props) {
 
     const createStory = (e) => {
         e.preventDefault()
-        axios
+        axiosWithAuth()
             .post(`https://cyahack.herokuapp.com/api/stories`, newStory)
             .then(res => console.log(res))
             .catch(err => console.log(err))
@@ -52,7 +52,6 @@ export default function CreateStoryForm (props) {
                     id="description" 
                     name="description"
                     onChange={handleChange}></textarea>
-
                 <button type="submit">Create story</button>
             </CreateForm>
         </ModalBG>
