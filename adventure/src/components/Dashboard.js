@@ -16,9 +16,9 @@ import left_arrow from '../images/left_arrow.png';
 import right_arrow from '../images/right_arrow.png';
 import curly_arrow from '../images/curly_arrow.png';
 
-// import { axiosWithAuth } from './authentication/axiosWithAuth';
-
 import CreateStoryForm from './CreateStoryForm';
+import InviteForm from './InviteForm';
+import { axiosWithAuth } from './authentication/axiosWithAuth';
 
 const stories = [
 	{
@@ -68,113 +68,47 @@ const stories = [
 ];
 
 export default function Dashboard(props) {
-	const [modalViz, setModalViz] = useState(false);
+	const [storyModalViz, setStoryModalViz] = useState(false);
+	const [inviteModalViz, setInviteModalViz] = useState(false);
+	const [myStories, setMyStories] = useState({
+		createdStories: [],
+		collaboratingOn: [],
+	});
 
 	const createStoryModal = () => {
-		setModalViz(!modalViz);
+		setStoryModalViz(!storyModalViz);
 	};
 	const closeModal = e => {
 		// e.stopPropagation()
-		setModalViz(!modalViz);
+		if (storyModalViz) {
+			setStoryModalViz(!storyModalViz);
+		} else {
+			setInviteModalViz(!inviteModalViz);
+		}
 	};
-	// const [modalViz, setModalViz] = useState(false);
-	// const [data, setData] = useState();
+	// really inefficient modal code!!! oh well
+	const createInviteModal = () => {
+		setInviteModalViz(!inviteModalViz);
+	};
 
-	// const [nodeModal, toggleNodeModal] = useModali();
-	// const [editNode, setEditNode] = useState();
-	// the graph configuration, you only need to pass down properties
-	// that you want to override, otherwise default ones will be used
-	// const myConfig = {
-	// 	directed: true,
-	// 	nodeHighlightBehavior: true,
-	// 	d3: {
-	// 		gravity: -200,
-	// 	},
-	// 	node: {
-	// 		labelProperty: 'name',
-	// 		color: 'lightgreen',
-	// 		size: 120,
-	// 		highlightStrokeColor: 'blue',
-	// 	},
-	// 	link: {
-	// 		highlightColor: 'lightblue',
-	// 	},
-	// };
-
-	// graph event callbacks
-	// const onClickGraph = function() {
-	// 	window.alert(`Clicked the graph background`);
-	// };
-
-	// const onClickNode = function(nodeId) {
-	// 	console.log(nodeId);
-	// 	setEditNode(nodeId);
-	// 	toggleNodeModal();
-	// };
-
-	// const createStoryModal = () => {
-	// 	setModalViz(!modalViz);
-	// };
-	// const closeModal = e => {
-	// 	// e.stopPropagation()
-	// 	setModalViz(!modalViz);
-	// };
-
-	// useEffect(() => {
-	// 	let someData = [];
-	// 	let someLinks = [];
-	// 	axiosWithAuth()
-	// 		.get('https://cyahack.herokuapp.com/api/nodes/story/1')
-	// 		.then(res => {
-	// 			//Sets the nodes
-	// 			res.data.forEach(item => {
-	// 				let color = 'blue';
-	// 				let symbol = 'circle';
-	// 				if (item.nodeParents.length < 1) {
-	// 					color = 'red';
-	// 					symbol = 'star';
-	// 				}
-	// 				someData.push({
-	// 					name: item.specifiedNode.name,
-	// 					id: item.specifiedNode.id,
-	// 					color: color,
-	// 					symbolType: symbol,
-	// 				});
-	// 				// someData.push({id: item.specifiedNode.id});
-	// 			});
-
-	// 			//sets the links sources to targets
-	// 			res.data.forEach(item => {
-	// 				item.nodeChildren.forEach(child => {
-	// 					someLinks.push({ source: item.specifiedNode.id, target: child.id });
-	// 				});
-	// 			});
-	// 			setData({
-	// 				nodes: someData,
-	// 				links: someLinks,
-	// 			});
-	// 		})
-	// 		.catch(err => {
-	// 			console.log(err);
-	// 		});
-	// }, []);
-
-	// console.log(axios.get("https://cyahack.herokuapp.com/api/stories/1"))
+	useEffect(() => {
+		axiosWithAuth()
+			.get('https://cyahack.herokuapp.com/api/stories/mine')
+			.then(res => {
+				console.log(res.data);
+				setMyStories(res.data);
+				console.log('LSKDFSLKDJF', myStories);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}, [
+		myStories.createdStories && myStories.createdStories.length,
+		myStories.collaboratingOn && myStories.collaboratingOn.length,
+	]);
 
 	return (
 		<DashBG>
-			{/* {data && (
-				<Graph
-					id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
-					data={data}
-					config={myConfig}
-					onClickNode={onClickNode}
-				/>
-			)}
-			<Modali.Modal {...nodeModal}>
-				<ModifyDecision mode="edit" nodeId={editNode} />
-			</Modali.Modal> */}
-
 			<Header>
 				<h2>Your Stories</h2>
 			</Header>
@@ -191,19 +125,48 @@ export default function Dashboard(props) {
 					<img src={right_arrow}></img>
 				</div>
 			</CreateContainer>
-			{modalViz && <CreateStoryForm closeModal={closeModal} />}
+
+			{storyModalViz && (
+				<CreateStoryForm
+					closeModal={closeModal}
+					myStories={myStories}
+					setMyStories={setMyStories}
+				/>
+			)}
+			{inviteModalViz && <InviteForm closeModal={closeModal} />}
+
 			<DashContainer>
 				<StoryColumn>
 					<Subheading>Created by you</Subheading>
-					{stories.map((story, index) => {
-						return <StoryCard key={index} story={story} />;
-					})}
+					{console.log('My stories state', myStories.createdStories)}
+					{myStories.createdStories &&
+						myStories.createdStories.map((story, index) => {
+							console.log(story);
+							return (
+								<StoryCard
+									key={index}
+									story={story}
+									myStories={myStories}
+									setMyStories={setMyStories}
+									createInviteModal={createInviteModal}
+								/>
+							);
+						})}
 				</StoryColumn>
 				<StoryColumn>
 					<Subheading>Shared with you</Subheading>
-					{stories.map((story, index) => {
-						return <StoryCard key={index} story={story} />;
-					})}
+					{myStories.collaboratingOn &&
+						myStories.createdStories &&
+						myStories.collaboratingOn.map((story, index) => {
+							return (
+								<StoryCard
+									key={index}
+									story={story}
+									myStories={myStories}
+									setMyStories={setMyStories}
+								/>
+							);
+						})}
 				</StoryColumn>
 			</DashContainer>
 		</DashBG>
@@ -212,12 +175,14 @@ export default function Dashboard(props) {
 
 const DashBG = styled.div`
 	background-color: whitesmoke;
+	height: 100%;
 `;
 
 const DashContainer = styled.main`
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: center;
+	align-items: flex-start;
 	@media (max-width: 900px) {
 		flex-flow: row wrap;
 	}
@@ -241,8 +206,9 @@ const StoryColumn = styled.section`
 	/* border: 1px solid blue; */
 	display: flex;
 	flex-flow: row wrap;
-	max-width: 90%;
+	max-width: 50%;
 	justify-content: center;
+	align-items: flex-start;
 `;
 
 const Subheading = styled.h2`
