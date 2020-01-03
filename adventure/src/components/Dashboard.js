@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 //local imports
@@ -8,6 +8,7 @@ import Img2 from '../images/headers/img2.jpg'
 import Img3 from '../images/headers/img3.jpg'
 import Img4 from '../images/headers/img4.jpg'
 import Img5 from '../images/headers/img5.jpg'
+import CreateStoryForm from './CreateStoryForm';
 
 const stories = [
   {
@@ -48,13 +49,27 @@ const stories = [
   }]
 
 export default function Dashboard(props) {
+  const [modalViz, setModalViz] = useState(false)
+
+  const createStoryModal = () => {
+    setModalViz(!modalViz)
+  }
+  const closeModal = (e) => {
+    e.stopPropagation()
+    setModalViz(!modalViz)
+  }
+
 
   return (
-    <React.Fragment>
+    <DashBG>
       <Header>
         <h2>Your Stories</h2>
       </Header>
-        <Blurb>Here you'll find all the interactive stories that you've created or collaborated on. To get started, add a story.</Blurb>
+      <Blurb>
+        Here you'll find all the interactive stories that you've created or collaborated on. To get started, create a new.
+      </Blurb>
+      <NewStory onClick={createStoryModal}>Create new story</NewStory>
+      {modalViz && <CreateStoryForm closeModal={closeModal}/> }
       <DashContainer>
         <StoryColumn>
           <Subheading>Created by you</Subheading>
@@ -73,15 +88,18 @@ export default function Dashboard(props) {
           })}
         </StoryColumn>
       </DashContainer>
-    </React.Fragment>
+    </DashBG>
   )
 }
+
+const DashBG = styled.div`
+  background-color: #DED4D2;
+`;
 
 const DashContainer = styled.main`
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
-  background-color: #DED4D2;
   @media (max-width: 900px) {
       flex-flow: row wrap;
     }
@@ -137,5 +155,22 @@ const Header = styled.header`
 
   h2 {
     margin-top: 8rem;
+  }
+`;
+
+const NewStory = styled.button`
+  background-color: transparent;
+  color: maroon;
+  font-size: 2rem;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 2px solid maroon;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px #B5646E3f;
+  margin: 1rem 0;
+  &:hover {
+    background-color: black;
+    color: white;
+    border-color: black;
   }
 `;
