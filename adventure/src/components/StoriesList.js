@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import ReaderStoryCard from './ReaderStoryCard';
 
 const StoriesList = props => {
 	const [list, setList] = useState();
 	useEffect(() => {
 		axios
-			.get('www.url.com')
+			.get('https://cyahack.herokuapp.com/api/stories/')
 			.then(res => {
 				console.log(res);
-				setList(res.data);
+				setList(res.data.stories);
 			})
 			.catch(err => {
 				console.log(err);
@@ -23,7 +24,9 @@ const StoriesList = props => {
 				list.map(story => {
 					return (
 						<>
-							<Link to={`/story/${story.id}`}>{story.title}</Link>
+							<Link to={`/story/${story.id}`}>
+								<ReaderStoryCard story={story} />
+							</Link>
 						</>
 					);
 				})}

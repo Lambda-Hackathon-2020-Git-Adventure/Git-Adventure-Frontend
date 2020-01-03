@@ -38,7 +38,7 @@ export default function CreateStoryForm(props) {
 		console.log(newStory);
 		axiosWithAuth()
 			.post(`/stories`, newStory)
-			.then(res => console.log(res))
+			.then(res => props.setMyStories([...props.myStories, res.data]))
 			.catch(err => console.log(err));
 		setNewStory({
 			...newStory,

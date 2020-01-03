@@ -1,44 +1,19 @@
-import React, {useEffect, useState} from 'react'
-import {axiosWithAuth} from './authentication/axiosWithAuth'
+import React from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 import ReadIcon from '../images/book-open-page-variant.png'
-import EditIcon from '../images/lead-pencil.png'
-import InviteIcon from '../images/account-plus.png'
-import DeleteIcon from '../images/delete-forever.png'
-import InviteForm from './InviteForm'
 
 //font
 
-export default function StoryCard (props) {
-    const {image, title, creator, description, id, collaborators} = props.story;  
-    const {myStories, setMyStories, createInviteModal} = props  
+export default function StoryCard ({story}) {
+    const {image, title, creator, description, id, collaborators} = story;    
+
     const deleteStory = () => {
-        axiosWithAuth().delete(`https://cyahack.herokuapp.com/api/stories/${id}`)
-            .then(res => {
-                console.log(res)
-                console.log(myStories)
-                if (myStories.createdStories.filter(story => story.id != id)) {
-                    setMyStories(myStories.createdStories.filter(story => story.id != id))
-                } else {
-                    setMyStories(myStories.collaboratingOn.filter(story => story.id != id))
-                }
-            })
-            .catch(err => console.log(err))
+        alert("Are you sure you want to delete the story?")
     }
      return (
         <Tile>
-            <ButtonBar>
                 <Button read><Link to={`/story/${id}`}><img src={ReadIcon}/>Play story</Link></Button>
-                <Button edit><Link to={`/storytree/${id}`}><img src={EditIcon}/>Edit story</Link></Button>
-                <Button share onClick={() => createInviteModal(id)}><img src={InviteIcon}/>Share & invite</Button>
-//                {/* Need to change how we grab the id. Refreshing the edit page will throw an error */}
-//                <Button edit><Link to={{pathname: `/storytree/${id}`, state: {
-//                    thisId: id
-//                }}}><img src={EditIcon}/>Edit story</Link></Button>
-//                <Button share><Link to={`/storytree/${id}/invite`}><img src={InviteIcon}/>Share & invite</Link></Button>
-                <Button onClick={deleteStory}> <img src={DeleteIcon}/> Delete story</Button>
-            </ButtonBar>
             <StoryInfo>
                 {image && <img src='' alt=''></img>}
                 <Title>{title}</Title>
@@ -65,7 +40,7 @@ const Tile = styled.section`
     background-blend-mode: luminosity;
     border-radius: .25rem;
     box-shadow: 2px 2px 5px #938782;
-    width: 90%;
+    max-width: 90%;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -141,8 +116,4 @@ const Button = styled.button`
 
 const StoryInfo = styled.div`
     padding: 1rem;
-    width: 100%;
 `;
-
-
-/// MODAL ----------------------------------------------------- ///
