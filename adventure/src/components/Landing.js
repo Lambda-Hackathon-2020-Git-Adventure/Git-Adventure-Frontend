@@ -25,8 +25,9 @@ const Landing = () => {
         <p>Create Your Own Adventure allows you to create your own interactive stories and make choices to explore your worlds. Collaborate with friends to create unique and compelling stories full of daring deeds and treacherous encounters. Build rich plots to explore. Become a hero in your own story.</p>
         {/* <Link to='/signup'><img classname='cta-button' src='./photos/button.png' /><span>Get Started</span></Link>  */}
         <div className='cta-button'>
-        <Link to='/signup'>{ctabutton()} <div className='cta-text'>Get<br/> Started</div> </Link>
+        <Link to='/signup'>{ctabutton()}  </Link> 
         </div>
+        <div className='cta-text'>Get<br/> Started</div>
       </div>
       </div>
      </div>
