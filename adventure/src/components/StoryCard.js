@@ -46,7 +46,7 @@ const Tile = styled.section`
     background-image: url('/photos/paper-texture-2.jpg');
     background-blend-mode: luminosity;
     border-radius: .25rem;
-    box-shadow: 2px 2px 5px tan;
+    box-shadow: 2px 2px 5px #938782;
     max-width: 90%;
     display: flex;
     flex-flow: row nowrap;
@@ -70,6 +70,7 @@ const Desc = styled.p`
     font-size: 1.4rem;
     padding-top: 1rem;
     text-align: left;
+    font-family: 'Open Sans', sans-serif;
 `;
 
 // BUTTONS
@@ -115,6 +116,7 @@ const Button = styled.button`
     a {
         color: white;
         text-decoration: none;
+        font-family: 'Open Sans', sans-serif;
     }
 
 `;
