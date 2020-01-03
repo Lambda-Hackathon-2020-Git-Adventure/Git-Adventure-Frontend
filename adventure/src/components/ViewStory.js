@@ -31,14 +31,14 @@ const ViewStory = (props) => {
   const handleClick = (e) => {
     e.preventDefault();
     setHistory([story.start.id])
-    axiosWithAuth().get(`/api/nodes/${story.start.id}`)
+    axiosWithAuth().get(`/nodes/${story.start.id}`)
       .then(res => setCurrent(res.data))
   }
 
   const handleNext = (e, id) => {
     e.preventDefault();
     setHistory([...history, current])
-    axiosWithAuth().get(`/api/nodes/${id}`)
+    axiosWithAuth().get(`/nodes/${id}`)
       .then(res => setCurrent(res.data))
   }
 
@@ -50,7 +50,7 @@ const ViewStory = (props) => {
   }
   
   useEffect(() => {
-    axiosWithAuth().get(`https://cyahack.herokuapp.com/api/stories/${props.match.params.id}`)
+    axiosWithAuth().get(`/stories/${props.match.params.id}`)
       .then(res => {
         setStory(res.data.story)
         let str = res.data.story.collaborators.reduce((acc, curr) => acc + curr.username + ',', '')
