@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-import { axiosWithAuth } from './authentication/axiosWithAuth';
-
 const StyledForm = styled.form`
 	input {
 		border: 5px solid #f43518;
@@ -25,7 +23,7 @@ const StyledButton = styled.button`
 	align-items: center;
 	font-size: 1.2rem;
 	cursor: pointer;
-	:focus{
+	:focus {
 		outline: 0;
 	}
 `;
@@ -64,7 +62,7 @@ const SignIn = props => {
 				props.history.push('/dashboard');
 			})
 			.catch(err => {
-				console.log(err);
+				console.log(err.data);
 			});
 	};
 
@@ -74,20 +72,22 @@ const SignIn = props => {
 			<StyledForm onSubmit={handleSubmit}>
 				<br />
 				<input
-					name="username"
+					name='username'
+					type='text'
 					value={user.username}
 					onChange={handleChange}
-					id="email"
-					placeholder="Username"
+					id='email'
+					placeholder='Username'
 				/>
 				<br />
 				<br />
 				<input
-					name="password"
+					name='password'
+					type='password'
 					value={user.password}
 					onChange={handleChange}
-					id="password"
-					placeholder="Password"
+					id='password'
+					placeholder='Password'
 				/>
 				<br /> <br />
 				<StyledButton onClick={handleSubmit}>Sign In</StyledButton>
