@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 // import axios from 'axios';
-import {Graph} from 'react-d3-graph';
-import Modali, { useModali } from 'modali'
+import { Graph } from 'react-d3-graph';
+import Modali, { useModali } from 'modali';
 
 //local imports
-import StoryCard from './StoryCard'
-import ModifyDecision from './ModifyDecision'
-import Img1 from '../images/headers/img1.jpg'
-import Img2 from '../images/headers/img2.jpg'
-import Img3 from '../images/headers/img3.jpg'
-import Img4 from '../images/headers/img4.jpg'
-import Img5 from '../images/headers/img5.jpg'
-import left_arrow from '../images/left_arrow.png'
-import right_arrow from '../images/right_arrow.png'
-import curly_arrow from '../images/curly_arrow.png'
+import StoryCard from './StoryCard';
+import ModifyDecision from './ModifyDecision';
+import Img1 from '../images/headers/img1.jpg';
+import Img2 from '../images/headers/img2.jpg';
+import Img3 from '../images/headers/img3.jpg';
+import Img4 from '../images/headers/img4.jpg';
+import Img5 from '../images/headers/img5.jpg';
+import left_arrow from '../images/left_arrow.png';
+import right_arrow from '../images/right_arrow.png';
+import curly_arrow from '../images/curly_arrow.png';
 
-import { axiosWithAuth } from './authentication/axiosWithAuth';
+// import { axiosWithAuth } from './authentication/axiosWithAuth';
 
 import CreateStoryForm from './CreateStoryForm';
+
+
 
 const stories = [
 	{
@@ -68,137 +70,147 @@ const stories = [
 ];
 
 export default function Dashboard(props) {
-  const [modalViz, setModalViz] = useState(false)
-  const [data, setData] = useState();
 
-  const [nodeModal, toggleNodeModal] = useModali();
-  const [editNode, setEditNode] = useState();
-  // the graph configuration, you only need to pass down properties
-// that you want to override, otherwise default ones will be used
-const myConfig = {
-  directed: true,
-  nodeHighlightBehavior: true,
-  d3: {
-    gravity: -200
-  },
-  node: {
-    labelProperty: "name",
-    color: "lightgreen",
-      size: 120,
-      highlightStrokeColor: "blue",
-  },
-  link: {
-      highlightColor: "lightblue",
-  },
-};
-
-// graph event callbacks
-const onClickGraph = function() {
-  window.alert(`Clicked the graph background`);
-};
-
-const onClickNode = function(nodeId) {
-  console.log(nodeId);
-  setEditNode(nodeId)
-  toggleNodeModal();
-};
-
+  const [modalViz, setModalViz] = useState(false);
 
   const createStoryModal = () => {
-    setModalViz(!modalViz)
-  }
-  const closeModal = (e) => {
+    setModalViz(!modalViz);
+  };
+  const closeModal = e => {
     // e.stopPropagation()
-    setModalViz(!modalViz)
-  }
+    setModalViz(!modalViz);
+  };
+	// const [modalViz, setModalViz] = useState(false);
+	// const [data, setData] = useState();
 
-  useEffect(()=>{
+	// const [nodeModal, toggleNodeModal] = useModali();
+	// const [editNode, setEditNode] = useState();
+	// the graph configuration, you only need to pass down properties
+	// that you want to override, otherwise default ones will be used
+	// const myConfig = {
+	// 	directed: true,
+	// 	nodeHighlightBehavior: true,
+	// 	d3: {
+	// 		gravity: -200,
+	// 	},
+	// 	node: {
+	// 		labelProperty: 'name',
+	// 		color: 'lightgreen',
+	// 		size: 120,
+	// 		highlightStrokeColor: 'blue',
+	// 	},
+	// 	link: {
+	// 		highlightColor: 'lightblue',
+	// 	},
+	// };
 
-    let someData = [];
-    let someLinks = []
-    axiosWithAuth().get('https://cyahack.herokuapp.com/api/nodes/story/1')
-    .then(res=>{
+	// graph event callbacks
+	// const onClickGraph = function() {
+	// 	window.alert(`Clicked the graph background`);
+	// };
 
-      //Sets the nodes
-      res.data.forEach(item=>{
-        let color = "blue";
-        let symbol = "circle";
-        if(item.nodeParents.length <1){
-          color="red";
-          symbol = "star";
-        }
-        console.log(item);
-        someData.push({name: item.specifiedNode.name, id: item.specifiedNode.id, color: color, symbolType: symbol});
-        // someData.push({id: item.specifiedNode.id});
-      })
+	// const onClickNode = function(nodeId) {
+	// 	console.log(nodeId);
+	// 	setEditNode(nodeId);
+	// 	toggleNodeModal();
+	// };
 
-      //sets the links sources to targets
-      res.data.forEach(item=>{
-        item.nodeChildren.forEach(child=>{
-          
-          someLinks.push({source: item.specifiedNode.id, target: child.id});
-        })
-      });
-      setData({
-        nodes: someData,
-        links: someLinks
-      });
-    })
-    .catch(err=>{
-      console.log(err);
-    })
-  },[])
+	// const createStoryModal = () => {
+	// 	setModalViz(!modalViz);
+	// };
+	// const closeModal = e => {
+	// 	// e.stopPropagation()
+	// 	setModalViz(!modalViz);
+	// };
 
-  // console.log(axios.get("https://cyahack.herokuapp.com/api/stories/1"))
+	// useEffect(() => {
+	// 	let someData = [];
+	// 	let someLinks = [];
+	// 	axiosWithAuth()
+	// 		.get('https://cyahack.herokuapp.com/api/nodes/story/1')
+	// 		.then(res => {
+	// 			//Sets the nodes
+	// 			res.data.forEach(item => {
+	// 				let color = 'blue';
+	// 				let symbol = 'circle';
+	// 				if (item.nodeParents.length < 1) {
+	// 					color = 'red';
+	// 					symbol = 'star';
+	// 				}
+	// 				someData.push({
+	// 					name: item.specifiedNode.name,
+	// 					id: item.specifiedNode.id,
+	// 					color: color,
+	// 					symbolType: symbol,
+	// 				});
+	// 				// someData.push({id: item.specifiedNode.id});
+	// 			});
 
-  return (
-    <DashBG>
-      {data && <Graph
-    id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
-    data={data}
-    config={myConfig}
-     onClickNode={onClickNode}
-/>}
-<Modali.Modal {...nodeModal}>
- <ModifyDecision mode='edit' nodeId={editNode}/>
-</Modali.Modal>
+	// 			//sets the links sources to targets
+	// 			res.data.forEach(item => {
+	// 				item.nodeChildren.forEach(child => {
+	// 					someLinks.push({ source: item.specifiedNode.id, target: child.id });
+	// 				});
+	// 			});
+	// 			setData({
+	// 				nodes: someData,
+	// 				links: someLinks,
+	// 			});
+	// 		})
+	// 		.catch(err => {
+	// 			console.log(err);
+	// 		});
+	// }, []);
 
-      <Header>
-        <h2>Your Stories</h2>
-      </Header>
-      <Blurb>
-        Here you'll find all the interactive stories that you've created or collaborated on. To get started, create a new story.
-      </Blurb>
-      <CreateContainer>
-      <img src={curly_arrow}></img>
-        <NewStory onClick={createStoryModal}>Create a new story</NewStory>
-        <div>
-          <img src={left_arrow}></img>
-          <h2>...or work on one you've already started!</h2>
-          <img src={right_arrow}></img>
-        </div>
-      </CreateContainer>
-      {modalViz && <CreateStoryForm closeModal={closeModal}/> }
-      <DashContainer>
-        <StoryColumn>
-          <Subheading>Created by you</Subheading>
-          {stories.map((story, index) => {
-            return (
-              <StoryCard key={index} story={story} />
-              )
-            })}
-        </StoryColumn>
-        <StoryColumn>
-          <Subheading>Shared with you</Subheading>
-          {stories.map((story, index) => {
-          return (
-            <StoryCard key={index} story={story} />
-            )
-          })}
-        </StoryColumn>
-      </DashContainer>
-    </DashBG>
-  )
+	// console.log(axios.get("https://cyahack.herokuapp.com/api/stories/1"))
+
+	return (
+		<DashBG>
+			{/* {data && (
+				<Graph
+					id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
+					data={data}
+					config={myConfig}
+					onClickNode={onClickNode}
+				/>
+			)}
+			<Modali.Modal {...nodeModal}>
+				<ModifyDecision mode="edit" nodeId={editNode} />
+			</Modali.Modal> */}
+
+			<Header>
+				<h2>Your Stories</h2>
+			</Header>
+			<Blurb>
+				Here you'll find all the interactive stories that you've created or
+				collaborated on. To get started, create a new story.
+			</Blurb>
+			<CreateContainer>
+				<img src={curly_arrow}></img>
+				<NewStory onClick={createStoryModal}>Create a new story</NewStory>
+				<div>
+					<img src={left_arrow}></img>
+					<h2>...or work on one you've already started!</h2>
+					<img src={right_arrow}></img>
+				</div>
+			</CreateContainer>
+			{modalViz && <CreateStoryForm closeModal={closeModal} />}
+			<DashContainer>
+				<StoryColumn>
+					<Subheading>Created by you</Subheading>
+					{stories.map((story, index) => {
+						return <StoryCard key={index} story={story} />;
+					})}
+				</StoryColumn>
+				<StoryColumn>
+					<Subheading>Shared with you</Subheading>
+					{stories.map((story, index) => {
+						return <StoryCard key={index} story={story} />;
+					})}
+				</StoryColumn>
+			</DashContainer>
+		</DashBG>
+	);
 }
 
 const DashBG = styled.div`
