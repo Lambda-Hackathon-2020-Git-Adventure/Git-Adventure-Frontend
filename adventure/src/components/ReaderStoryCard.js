@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import ReadIcon from '../images/book-open-page-variant.png';
@@ -7,13 +7,21 @@ import ReadIcon from '../images/book-open-page-variant.png';
 
 export default function StoryCard({ story }) {
 	const { image, title, creator, description, id, collaborators } = story;
-
+	const [str, setStr] = useState("");
 	// const deleteStory = () => {
 	// 	alert('Are you sure you want to delete the story?');
 	// };
-
-	console.log(collaborators);
-
+	useEffect(() => {
+		if (collaborators) {
+			let newStr = collaborators.reduce(
+				(acc, curr) => acc + curr.username + ', ',
+				'',
+			);	
+			newStr = newStr.substring(0, newStr.length - 2);
+			setStr(newStr);
+		}
+	}, [story, collaborators])
+	
 	return (
 		<Tile>
 			<Button read>
@@ -27,7 +35,8 @@ export default function StoryCard({ story }) {
 				<Title>{title}</Title>
 				<Authors>By: {creator}</Authors>
 				<Authors>
-					{collaborators && 'with:'} {collaborators && collaborators.join(', ')}
+					
+					{collaborators && collaborators.length ? 'with:' : ''} {str}
 				</Authors>
 				<Desc>{description}</Desc>
 				{/*dateEdited && <p>{dateEdited}</p>*/}

@@ -16,6 +16,11 @@ export default function StoryCard(props) {
 
 	console.log(props);
 	console.log(collaborators);
+	let str = collaborators && collaborators.reduce(
+		(acc, curr) => acc + curr.username + ', ',
+		'',
+	);
+	str = str && str.substring(0, str.length - 2);
 
 	const deleteStory = () => {
 		axiosWithAuth()
@@ -71,7 +76,7 @@ export default function StoryCard(props) {
 				{image && <img src='' alt=''></img>}
 				<Title>{title}</Title>
 				<Authors>By: {creator}</Authors>
-				<Authors>with: {collaborators && collaborators.join(', ')}</Authors>
+				<Authors>{collaborators && collaborators.length ? 'with:' : ''} {str}</Authors>
 				<Desc>{description}</Desc>
 				{/*dateEdited && <p>{dateEdited}</p>*/}
 			</StoryInfo>
@@ -124,7 +129,7 @@ const ButtonBar = styled.nav`
 	display: flex;
 	/* width: 100%; */
 	flex-flow: column;
-	height: 100%;
+	/* height: 100%; */
 	justify-content: space-between;
 	margin-right: 1rem;
 `;
@@ -157,14 +162,13 @@ const Button = styled.button`
 	&:nth-of-type(1) {
 		border-radius: 0.25rem 0 0 0;
 	}
-	&:nth-of-type(4) {
+	&:nth-last-of-type(1) {
 		border-radius: 0 0 0 0.25rem;
 	}
 	img {
 		width: 60%;
 		padding-bottom: 3px;
 	}
-
 	a {
 		color: white;
 		text-decoration: none;
