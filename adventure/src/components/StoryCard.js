@@ -14,7 +14,8 @@ export default function StoryCard(props) {
 	const { image, title, creator, description, id, collaborators } = props.story;
 	const { myStories, setMyStories, createInviteModal, collaborator } = props;
 
-	console.log(collaborator);
+	console.log(props);
+	console.log(collaborators);
 
 	const deleteStory = () => {
 		axiosWithAuth()
@@ -148,9 +149,11 @@ const Button = styled.button`
 	align-items: center;
 	padding: 0.5rem;
 	cursor: pointer;
+
 	&:hover {
 		background-color: black;
 	}
+
 	&:nth-of-type(1) {
 		border-radius: 0.25rem 0 0 0;
 	}
