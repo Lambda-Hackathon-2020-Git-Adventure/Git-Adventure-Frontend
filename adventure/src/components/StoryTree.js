@@ -142,7 +142,7 @@ export default function StoryTree() {
 				/>
 			)}
 			<Modali.Modal {...questionModal}>
-				<button onClick={selectEdit}>Edit Node</button>
+				{!first && <button onClick={selectEdit}>Edit Node</button>}
 				<button onClick={selectAdd}>Add Node</button>
 			</Modali.Modal>
 			<Modali.Modal {...addModal}>
@@ -150,7 +150,7 @@ export default function StoryTree() {
 					mode='create'
 					nodeId={editNode}
 					toggleNodeModal={toggleAddModal}
-					// first={first}
+					first={first}
 					story_id={story_id}
 				/>
 			</Modali.Modal>
