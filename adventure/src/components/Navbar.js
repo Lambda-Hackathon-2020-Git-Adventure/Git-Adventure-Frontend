@@ -18,11 +18,6 @@ export default function NavBar() {
 	const StyledHeader = styled.div`
 		width: 90%;
 
-		h3 {
-			color: red;
-			font-size: 3.4rem;
-		}
-
 		a {
 			font-size: 1.8rem;
 		}
@@ -33,16 +28,36 @@ export default function NavBar() {
 		justify-content: space-evenly;
 	`;
 
+	const StyledNavRows = styled.div`
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin-top: 20px;
+	`;
+
+	const StyledNavbarMain = styled.div`
+		display: flex;
+		align-items: center;
+		border-bottom: 1px solid black;
+		height: 50px;
+		width: 100%;
+
+		a {
+			text-decoration: none;
+			color: black;
+		}
+	`;
+
 	let token = localStorage.getItem('token');
 
 	return (
-		<div className="navbar-two-rows">
-			<NavLink to="/" className="navbar-title">
+		<StyledNavRows>
+			<NavLink to="/">
 				<StyledRole>CHOOSE YOUR OWN ADVENTURE</StyledRole>
 			</NavLink>
-			<div className="navbar-main">
+			<StyledNavbarMain>
 				<StyledHeader>
-					{/* <NavLink to="/about">About</NavLink> */}
 					<NavLink to="/list">View Stories</NavLink>
 					{token && <NavLink to="/dashboard">Dashboard</NavLink>}
 					{!token && (
@@ -52,7 +67,7 @@ export default function NavBar() {
 						</>
 					)}
 				</StyledHeader>
-			</div>
-		</div>
+			</StyledNavbarMain>
+		</StyledNavRows>
 	);
 }
