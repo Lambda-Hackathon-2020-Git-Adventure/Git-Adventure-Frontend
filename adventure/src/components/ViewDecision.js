@@ -1,34 +1,51 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
+
+import { axiosWithAuth } from './authentication/axiosWithAuth';
 
 export default function ViewDecision() {
 	const paper = `url('/photos/paper-texture-3.jpg')`;
+	const [data, setData] = useState({});
+	const [storyId, setStoryId] = useState();
+	const [story, setStory] = useState({});
 
-	const [decisions, setDecisions] = useState([]);
+	const id = 1;
 
 	useEffect(() => {
-		// axios.get()
-
-		setDecisions(['Blah', 'Blahbedyblah', 'Jan Meiii']);
+		axiosWithAuth()
+			.get(`/nodes/${id}`)
+			.then(res => {
+				console.log(res.data);
+				setData(res.data);
+				setStoryId(res.data.specifiedNode.story_id);
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	}, []);
+
+	useEffect(() => {
+		axiosWithAuth()
+			.get(`/stories/${storyId}`)
+			.then(res => {
+				console.log(res.data);
+				setStory(res.data);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}, [storyId]);
 
 	return (
 		<StyledPageWrapper paper={paper}>
 			<div>
-				<h2>STORY</h2>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-					veritatis perferendis tenetur pariatur accusamus esse eligendi
-					deleniti, nam dignissimos qui provident ratione beatae, aliquid optio
-					quas ea porro quis incidunt!
-				</p>
+				<h2>{story.story && story.story.title}</h2>
+				<p>{data.specifiedNode && data.specifiedNode.text}</p>
 				<hr />
 			</div>
 			<StyledDecisions>
-				{decisions.map(decision => (
-					<div>{decision}</div>
-				))}
+				{data.nodeChildren &&
+					data.nodeChildren.map(node => <div key={node.id}>{node.name}</div>)}
 			</StyledDecisions>
 		</StyledPageWrapper>
 	);

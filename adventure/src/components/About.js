@@ -13,7 +13,10 @@ export default function About() {
 			</StyledHeader>
 			<StyledP>
 				From <StyledSpan>7/11th</StyledSpan> of the team that's bringing you{' '}
-				<a href='https://explorequality.com' target='_blank'>
+				<a
+					href='https://explorequality.com'
+					target='_blank'
+					rel='noopener noreferrer'>
 					QualityHub+InterviewQ
 				</a>
 				, <StyledSpan>1/13th</StyledSpan> of the team that will bring you
