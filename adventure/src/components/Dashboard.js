@@ -15,6 +15,7 @@ import Img5 from '../images/headers/img5.jpg';
 import left_arrow from '../images/left_arrow.png';
 import right_arrow from '../images/right_arrow.png';
 import curly_arrow from '../images/curly_arrow.png';
+import {ctabutton} from './cta-button'
 
 import CreateStoryForm from './CreateStoryForm';
 import InviteForm from './InviteForm';
@@ -142,6 +143,7 @@ export default function Dashboard(props) {
 				<StoryColumn>
 					<Subheading>Created by you</Subheading>
 					{/* {console.log('My stories state', myStories.createdStories)} */}
+					{(!myStories.createdStories.length && !myStories.collaboratingOn.length) && <p>LOADING...</p>}
 					{myStories.createdStories &&
 						myStories.createdStories.map((story, index) => {
 							// console.log(story);
@@ -200,7 +202,7 @@ const Blurb = styled.p`
 	font-size: 1.75rem;
 	padding: 1rem;
 	/* border-top: black 1px solid;
-  border-bottom: black 1px solid; */
+  	border-bottom: black 1px solid; */
 	text-align: left;
 	margin: 0 auto;
 	font-family: 'Open Sans', sans-serif;
@@ -212,6 +214,9 @@ const StoryColumn = styled.section`
 	max-width: 50%;
 	justify-content: center;
 	align-items: flex-start;
+	@media (max-width: 900px) {
+		max-width: 90%;
+	}
 `;
 const Subheading = styled.h2`
 	width: 100%;
