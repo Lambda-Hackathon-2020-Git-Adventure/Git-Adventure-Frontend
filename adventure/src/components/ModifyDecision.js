@@ -7,7 +7,7 @@ import { axiosWithAuth } from './authentication/axiosWithAuth';
 import ModifyDecisionImage from './ModifyDecisionImage';
 import ModifyDecisionVideo from './ModifyDecisionVideo';
 
-export default function ModifyDecision({ mode, nodeId, toggleNodeModal }) {
+export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, story_id }) {
 
 	console.log(nodeId)
 	const [decision, setDecision] = useState();
@@ -15,7 +15,12 @@ export default function ModifyDecision({ mode, nodeId, toggleNodeModal }) {
 	const [updatedDec, setUpdatedDec] = useState({});
 
 	useEffect(() => {
-		setUpdatedDec({ ...setUpdatedDec});
+		
+		if(first === true){
+			setUpdatedDec({ ...updatedDec, first: true});
+		} else {
+			setUpdatedDec({ ...updatedDec, first: false})
+		}
 	}, []);
 
 	useEffect(() => {
@@ -25,6 +30,8 @@ export default function ModifyDecision({ mode, nodeId, toggleNodeModal }) {
 				console.log(res.data)
 				setUpdatedDec(res.data.specifiedNode)
 			})
+		} else if (mode === 'create'){
+			setUpdatedDec({...updatedDec, story_id: story_id})
 		}
 	}, []);
 
