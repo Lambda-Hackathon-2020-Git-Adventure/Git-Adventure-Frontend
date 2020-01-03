@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import {Graph} from 'react-d3-graph';
 
 //local imports
 import StoryCard from './StoryCard'
@@ -64,15 +65,15 @@ export default function Dashboard(props) {
     setModalViz(!modalViz)
   }
 
-  // useEffect(()=>{
-  //   axiosWithAuth().get('https://cyahack.herokuapp.com/api/nodes/story/1')
-  //   .then(res=>{
-  //     console.log(res.data);
-  //   })
-  //   .catch(err=>{
-  //     console.log(err);
-  //   })
-  // },[])
+  useEffect(()=>{
+    axiosWithAuth().get('https://cyahack.herokuapp.com/api/nodes/story/1')
+    .then(res=>{
+      console.log(res.data);
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+  },[])
 
   // console.log(axios.get("https://cyahack.herokuapp.com/api/stories/1"))
 
