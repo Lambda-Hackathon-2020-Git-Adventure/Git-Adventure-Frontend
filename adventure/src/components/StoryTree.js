@@ -17,7 +17,7 @@ export default function StoryTree() {
 	const [nodeModal, toggleNodeModal] = useModali();
   const [editNode, setEditNode] = useState();
   const [mode, setMode] = useState('edit');
-  const [storyId, setStoryId] = useState();
+  const [story_id, setStoryId] = useState();
   const [first, setFirst] = useState(false);
 
   // let mode = 'create';
@@ -68,7 +68,8 @@ export default function StoryTree() {
 			.then(res => {
         console.log(res.data.story);
         setMode('create');
-        setFirst(true);
+		setFirst(true);
+		setStoryId(res.data.story.id);
         
         // mode = 'create';
 				// if (res.data.length < 1) {
@@ -117,7 +118,9 @@ export default function StoryTree() {
 				if (res.data.length < 1) {
           noNodes();
 					return;
-        }
+		}
+		// console.log(res);
+		setStoryId(res.data[0].specifiedNode.story_id);
         setFirst(false);
 				//Sets the nodes
 				res.data.forEach(item => {
@@ -167,7 +170,7 @@ export default function StoryTree() {
 				/>
 			)}
 			<Modali.Modal {...nodeModal}>
-				<ModifyDecision mode={mode} nodeId={editNode} first={first} />
+				<ModifyDecision mode={mode} nodeId={editNode} toggleNodeModal={toggleNodeModal} first={first} story_id={story_id} />
 			</Modali.Modal>
 		</>
 	);

@@ -120,6 +120,12 @@ justify-content: center;
 }
 
 
+.button-container-modify{
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+}
 
 .landing-page-hr{
   width: 85%;
