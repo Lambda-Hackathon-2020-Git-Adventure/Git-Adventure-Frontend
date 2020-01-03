@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   @import url('https://www.fontify.me/wf/7ae0c162d7a54b07d9af0bfbdba6482e');
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
   * {
     margin: 0;
@@ -17,5 +18,4 @@ export const GlobalStyle = createGlobalStyle`
   body {
     font-family: font77490;
   }
-
 `;
