@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
-import { axiosWithAuth } from './authentication/axiosWithAuth';
+// import axios from 'axios';
+import { Graph } from 'react-d3-graph';
+import Modali, { useModali } from 'modali';
 
 //local imports
 import StoryCard from './StoryCard';
+import ModifyDecision from './ModifyDecision';
 import Img1 from '../images/headers/img1.jpg';
 import Img2 from '../images/headers/img2.jpg';
 import Img3 from '../images/headers/img3.jpg';
@@ -13,7 +15,12 @@ import Img5 from '../images/headers/img5.jpg';
 import left_arrow from '../images/left_arrow.png';
 import right_arrow from '../images/right_arrow.png';
 import curly_arrow from '../images/curly_arrow.png';
+
+// import { axiosWithAuth } from './authentication/axiosWithAuth';
+
 import CreateStoryForm from './CreateStoryForm';
+
+
 
 const stories = [
 	{
@@ -63,31 +70,114 @@ const stories = [
 ];
 
 export default function Dashboard(props) {
-	const [modalViz, setModalViz] = useState(false);
 
-	const createStoryModal = () => {
-		setModalViz(!modalViz);
-	};
-	const closeModal = e => {
-		// e.stopPropagation()
-		setModalViz(!modalViz);
-	};
+  const [modalViz, setModalViz] = useState(false);
 
-	useEffect(() => {
-		axiosWithAuth()
-			.get('/nodes/story/1')
-			.then(res => {
-				console.log(res.data);
-			})
-			.catch(err => {
-				console.log(err);
-			});
-	}, []);
+  const createStoryModal = () => {
+    setModalViz(!modalViz);
+  };
+  const closeModal = e => {
+    // e.stopPropagation()
+    setModalViz(!modalViz);
+  };
+	// const [modalViz, setModalViz] = useState(false);
+	// const [data, setData] = useState();
+
+	// const [nodeModal, toggleNodeModal] = useModali();
+	// const [editNode, setEditNode] = useState();
+	// the graph configuration, you only need to pass down properties
+	// that you want to override, otherwise default ones will be used
+	// const myConfig = {
+	// 	directed: true,
+	// 	nodeHighlightBehavior: true,
+	// 	d3: {
+	// 		gravity: -200,
+	// 	},
+	// 	node: {
+	// 		labelProperty: 'name',
+	// 		color: 'lightgreen',
+	// 		size: 120,
+	// 		highlightStrokeColor: 'blue',
+	// 	},
+	// 	link: {
+	// 		highlightColor: 'lightblue',
+	// 	},
+	// };
+
+	// graph event callbacks
+	// const onClickGraph = function() {
+	// 	window.alert(`Clicked the graph background`);
+	// };
+
+	// const onClickNode = function(nodeId) {
+	// 	console.log(nodeId);
+	// 	setEditNode(nodeId);
+	// 	toggleNodeModal();
+	// };
+
+	// const createStoryModal = () => {
+	// 	setModalViz(!modalViz);
+	// };
+	// const closeModal = e => {
+	// 	// e.stopPropagation()
+	// 	setModalViz(!modalViz);
+	// };
+
+	// useEffect(() => {
+	// 	let someData = [];
+	// 	let someLinks = [];
+	// 	axiosWithAuth()
+	// 		.get('https://cyahack.herokuapp.com/api/nodes/story/1')
+	// 		.then(res => {
+	// 			//Sets the nodes
+	// 			res.data.forEach(item => {
+	// 				let color = 'blue';
+	// 				let symbol = 'circle';
+	// 				if (item.nodeParents.length < 1) {
+	// 					color = 'red';
+	// 					symbol = 'star';
+	// 				}
+	// 				someData.push({
+	// 					name: item.specifiedNode.name,
+	// 					id: item.specifiedNode.id,
+	// 					color: color,
+	// 					symbolType: symbol,
+	// 				});
+	// 				// someData.push({id: item.specifiedNode.id});
+	// 			});
+
+	// 			//sets the links sources to targets
+	// 			res.data.forEach(item => {
+	// 				item.nodeChildren.forEach(child => {
+	// 					someLinks.push({ source: item.specifiedNode.id, target: child.id });
+	// 				});
+	// 			});
+	// 			setData({
+	// 				nodes: someData,
+	// 				links: someLinks,
+	// 			});
+	// 		})
+	// 		.catch(err => {
+	// 			console.log(err);
+	// 		});
+	// }, []);
 
 	// console.log(axios.get("https://cyahack.herokuapp.com/api/stories/1"))
 
 	return (
 		<DashBG>
+			{/* {data && (
+				<Graph
+					id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
+					data={data}
+					config={myConfig}
+					onClickNode={onClickNode}
+				/>
+			)}
+			<Modali.Modal {...nodeModal}>
+				<ModifyDecision mode="edit" nodeId={editNode} />
+			</Modali.Modal> */}
+
 			<Header>
 				<h2>Your Stories</h2>
 			</Header>

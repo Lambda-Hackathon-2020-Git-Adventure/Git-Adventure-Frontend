@@ -1,14 +1,17 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 import ReadIcon from '../images/book-open-page-variant.png'
 import EditIcon from '../images/lead-pencil.png'
 import InviteIcon from '../images/account-plus.png'
 import DeleteIcon from '../images/delete-forever.png'
+import { axiosWithAuth } from './authentication/axiosWithAuth';
 
 //font
 
 export default function StoryCard ({story}) {
+    
+    
     const {image, title, authors, description, dateEdited, id} = story;    
 
     const deleteStory = () => {
@@ -18,7 +21,10 @@ export default function StoryCard ({story}) {
         <Tile>
             <ButtonBar>
                 <Button read><Link to={`/story/${id}`}><img src={ReadIcon}/>Play story</Link></Button>
-                <Button edit><Link to={`/storytree/${id}`}><img src={EditIcon}/>Edit story</Link></Button>
+                {/* Need to change how we grab the id. Refreshing the edit page will throw an error */}
+                <Button edit><Link to={{pathname: `/storytree/${id}`, state: {
+                    thisId: id
+                }}}><img src={EditIcon}/>Edit story</Link></Button>
                 <Button share><Link to={`/storytree/${id}/invite`}><img src={InviteIcon}/>Share & invite</Link></Button>
                 <Button onClick={deleteStory}> <img src={DeleteIcon}/> Delete story</Button>
             </ButtonBar>
