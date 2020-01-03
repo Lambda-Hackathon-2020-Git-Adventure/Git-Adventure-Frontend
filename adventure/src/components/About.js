@@ -12,10 +12,12 @@ export default function About() {
 				Meet the team behind <StyledSpan>Create Your Own Adventure!</StyledSpan>
 			</StyledHeader>
 			<StyledP>
-				From <StyledSpan>6/10th</StyledSpan> of the team that brought you
-				QualityHub + InterviewQ, <StyledSpan>1/13th</StyledSpan> of the team
-				that will bring you Community Calendar, and{' '}
-				<StyledSpan>Faye</StyledSpan>...
+				From <StyledSpan>7/11th</StyledSpan> of the team that's bringing you{' '}
+				<a href='https://explorequality.com' target='_blank'>
+					QualityHub+InterviewQ
+				</a>
+				, <StyledSpan>1/13th</StyledSpan> of the team that will bring you
+				Community Calendar, and <StyledSpan>Faye</StyledSpan>...
 			</StyledP>
 			<StyledWrapper>
 				{team_member_info.map(team_member => (
@@ -41,6 +43,10 @@ const StyledP = styled.p`
 	width: 96%;
 	margin: 3rem auto;
 	font-size: 1.8rem;
+
+	a {
+		color: #5b88a4;
+	}
 `;
 
 const StyledWrapper = styled.div`

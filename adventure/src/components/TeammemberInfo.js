@@ -64,7 +64,7 @@ export const team_member_info = [
 		bio: 'BIO',
 	},
 	{
-		name: 'Jan Mei',
+		name: 'Jan Meiiii!',
 		role: 'Stakeholder',
 		img_path: 'janmei.jpg',
 		link_title: 'Explore quality!',
