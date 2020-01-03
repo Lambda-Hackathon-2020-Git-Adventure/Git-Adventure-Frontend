@@ -88,6 +88,7 @@ const Blurb = styled.p`
   padding: 1rem;
   border-top: black 1px solid;
   border-bottom: black 1px solid;
+  text-align: center;
 `;
 
 const StoryColumn = styled.section`

@@ -19,12 +19,9 @@ export default function StoryCard ({story}) {
             <StoryInfo>
                 {image && <img src='' alt=''></img>}
                 <Title>{title}</Title>
-                <AuthorDiv>
-                    <h4>By:</h4>
-                    {authors && authors.map((author, index) => <Authors key={index}>{author}</Authors>)}
-                </AuthorDiv>
+                    <Authors>By: {authors && authors.join(", ")}</Authors>
                 <Desc>{description}</Desc>
-                {dateEdited && <p>{dateEdited}</p>}
+                {/*dateEdited && <p>{dateEdited}</p>*/}
             </StoryInfo>
             
         </Tile>
@@ -37,6 +34,7 @@ const Tile = styled.section`
     /* border: 1px hotpink solid; */
     /* padding: 1rem; */
     margin: 1rem;
+    padding-right: 1rem;
     max-height: 250px;
     background-color: rgba(255,255,255,.5);
     border-radius: .25rem;
@@ -53,18 +51,16 @@ const Tile = styled.section`
 // TEXT STYLES
 const Title = styled.h3`
     font-size: 2rem;
+    padding-top: 1rem;
 `;
 
 const Authors = styled.h4`
-    font-size: 1rem;
-    
+    font-size: 1.2rem;
+    padding-top: 1rem;  
 `;
-const AuthorDiv = styled.div`
-    display: flex;
-`;
-
 const Desc = styled.p`
-    font-size: 1rem;
+    font-size: 1.4rem;
+    padding-top: 1rem;
 `;
 
 // BUTTONS
@@ -75,6 +71,7 @@ const ButtonBar = styled.nav`
     flex-flow: column;
     height: 100%;
     justify-content: space-between;
+    margin-right: 1rem;
 `;
 
 const Button = styled.button`
@@ -88,7 +85,7 @@ const Button = styled.button`
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    padding: .25rem;
+    padding: .5rem;
     cursor: pointer;
 
     &:hover {
