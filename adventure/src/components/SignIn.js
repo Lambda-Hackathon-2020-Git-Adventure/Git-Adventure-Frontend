@@ -56,7 +56,6 @@ const SignIn = props => {
 		axios
 			.post('https://cyahack.herokuapp.com/api/auth/login', user)
 				.then(res => {
-					console.log(res);
 					localStorage.setItem('token', res.data.token);
 					props.history.push('/dashboard');
 				})

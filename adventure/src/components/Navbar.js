@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -77,8 +77,16 @@ export default function NavBar() {
 			color: black;
 		}
 	`;
+	const [token, setToken] = useState(localStorage.getItem('token'));
 
-	let token = localStorage.getItem('token');
+	useEffect(() => {
+		setToken(localStorage.getItem('token'))
+	},[token])
+	
+	const handleLogOut = () => {
+		localStorage.removeItem('token');
+		setToken('');
+	}
 
 	return (
 		<StyledNavRows>
@@ -88,6 +96,7 @@ export default function NavBar() {
 			<StyledNavbarMain>
 				<StyledHeader>
 					<NavLink to="/list">View Stories</NavLink>
+					{ token && <NavLink onClick={handleLogOut} to="/">Sign Out</NavLink>}
 					{token && <NavLink to="/dashboard">Dashboard</NavLink>}
 					{!token && (
 						<>
