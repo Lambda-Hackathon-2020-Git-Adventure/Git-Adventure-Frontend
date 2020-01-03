@@ -169,6 +169,9 @@ export default function StoryTree() {
 			<div>
 				<EditStoryDescription nodeId={params.id} />
 			</div>
+			<div>
+				<p className='edit-instructions'>Click on a node below to edit, delete, or add decision paths</p>
+			</div>
 			{data && (
 				<Graph
 					className='graph-class'
