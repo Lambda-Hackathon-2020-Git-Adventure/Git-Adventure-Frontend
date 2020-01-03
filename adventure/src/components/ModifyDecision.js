@@ -5,11 +5,6 @@ import styled from 'styled-components';
 import { axiosWithAuth } from './authentication/axiosWithAuth';
 
 import ModifyDecisionImage from './ModifyDecisionImage';
-<<<<<<< HEAD
-import ModifyDecisionVideo from './ModifyDecisionVideo';
-
-export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, story_id }) {
-=======
 // import ModifyDecisionVideo from './ModifyDecisionVideo';
 
 export default function ModifyDecision({
@@ -19,7 +14,6 @@ export default function ModifyDecision({
 	first,
 	story_id,
 }) {
->>>>>>> 3f2b0dbcd4a9972926f003a53c1cb02093ba84a0
 	const [decision, setDecision] = useState();
 
 	const [updatedDec, setUpdatedDec] = useState({});
@@ -70,7 +64,6 @@ export default function ModifyDecision({
 	const handleSubmit = e => {
 		e.preventDefault();
 		if (mode === 'edit') {
-<<<<<<< HEAD
 			axiosWithAuth().put(`https://cyahack.herokuapp.com/api/nodes/${nodeId}`, {node: updatedDec})
 			.then(res => {
 				toggleNodeModal();
@@ -92,34 +85,6 @@ export default function ModifyDecision({
 				window.location.reload();
 			})
 			.catch(err => console.log(err))
-=======
-			axiosWithAuth()
-				.put(`https://cyahack.herokuapp.com/api/nodes/${nodeId}`, {
-					node: updatedDec,
-				})
-				.then(res => console.log(res), toggleNodeModal())
-				.catch(err => console.log(err));
-		} else if (first === true) {
-			axiosWithAuth()
-				.post(`https://cyahack.herokuapp.com/api/nodes/`, {
-					node: { ...updatedDec, first: true, video: '', image: '' },
-				})
-				.then(res => {
-					toggleNodeModal();
-				})
-				.catch(err => console.log(err));
-		} else if (mode === 'create') {
-			axiosWithAuth()
-				.post(
-					`https://cyahack.herokuapp.com/api/nodes/${nodeId}/createandconnect
-			`,
-					{ node: updatedDec },
-				)
-				.then(res => {
-					toggleNodeModal();
-				})
-				.catch(err => console.log(err));
->>>>>>> 3f2b0dbcd4a9972926f003a53c1cb02093ba84a0
 		}
 	};
 
@@ -133,15 +98,7 @@ export default function ModifyDecision({
 					id='decision-name'
 					name='name'
 					type='text'
-<<<<<<< HEAD
 					placeholder={updatedDec && mode === 'edit' ? updatedDec.name : first ? 'Write the title of your first chapter' :'Write the name of the decision here!'}
-=======
-					placeholder={
-						updatedDec && mode === 'edit'
-							? updatedDec.name
-							: 'Write the name of the decision here!'
-					}
->>>>>>> 3f2b0dbcd4a9972926f003a53c1cb02093ba84a0
 					value={updatedDec && updatedDec.name}
 					onChange={handleChange}
 				/>
