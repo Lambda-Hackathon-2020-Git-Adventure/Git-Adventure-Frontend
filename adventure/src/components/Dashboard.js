@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
+// import axios from 'axios';
 import {Graph} from 'react-d3-graph';
+import Modali, { useModali } from 'modali'
 
 //local imports
 import StoryCard from './StoryCard'
+import EditModal from './EditModal'
+import ModifyDecision from './ModifyDecision'
 import Img1 from '../images/headers/img1.jpg'
 import Img2 from '../images/headers/img2.jpg'
 import Img3 from '../images/headers/img3.jpg'
@@ -56,6 +59,75 @@ const stories = [
 
 export default function Dashboard(props) {
   const [modalViz, setModalViz] = useState(false)
+  const [data, setData] = useState();
+
+  const [nodeModal, toggleNodeModal] = useModali();
+  const [editNode, setEditNode] = useState();
+  // the graph configuration, you only need to pass down properties
+// that you want to override, otherwise default ones will be used
+const myConfig = {
+  directed: true,
+  nodeHighlightBehavior: true,
+  d3: {
+    gravity: -200
+  },
+  node: {
+    labelProperty: "name",
+    color: "lightgreen",
+      size: 120,
+      highlightStrokeColor: "blue",
+  },
+  link: {
+      highlightColor: "lightblue",
+  },
+};
+
+// graph event callbacks
+const onClickGraph = function() {
+  window.alert(`Clicked the graph background`);
+};
+
+const onClickNode = function(nodeId) {
+  console.log(nodeId);
+  setEditNode(nodeId)
+  toggleNodeModal();
+};
+
+const onDoubleClickNode = function(nodeId) {
+  window.alert(`Double clicked node ${nodeId}`);
+};
+
+const onRightClickNode = function(event, nodeId) {
+  window.alert(`Right clicked node ${nodeId}`);
+};
+
+const onMouseOverNode = function(nodeId) {
+  window.alert(`Mouse over node ${nodeId}`);
+};
+
+const onMouseOutNode = function(nodeId) {
+  window.alert(`Mouse out node ${nodeId}`);
+};
+
+const onClickLink = function(source, target) {
+  window.alert(`Clicked link between ${source} and ${target}`);
+};
+
+const onRightClickLink = function(event, source, target) {
+  window.alert(`Right clicked link between ${source} and ${target}`);
+};
+
+const onMouseOverLink = function(source, target) {
+  window.alert(`Mouse over in link between ${source} and ${target}`);
+};
+
+const onMouseOutLink = function(source, target) {
+  window.alert(`Mouse out link between ${source} and ${target}`);
+};
+
+const onNodePositionChange = function(nodeId, x, y) {
+  window.alert(`Node ${nodeId} is moved to new position. New position is x= ${x} y= ${y}`);
+};
 
   const createStoryModal = () => {
     setModalViz(!modalViz)
@@ -66,9 +138,36 @@ export default function Dashboard(props) {
   }
 
   useEffect(()=>{
+
+    let someData = [];
+    let someLinks = []
     axiosWithAuth().get('https://cyahack.herokuapp.com/api/nodes/story/1')
     .then(res=>{
-      console.log(res.data);
+
+      //Sets the nodes
+      res.data.forEach(item=>{
+        let color = "blue";
+        let symbol = "circle";
+        if(item.nodeParents.length <1){
+          color="red";
+          symbol = "star";
+        }
+        console.log(item);
+        someData.push({name: item.specifiedNode.name, id: item.specifiedNode.id, color: color, symbolType: symbol});
+        // someData.push({id: item.specifiedNode.id});
+      })
+
+      //sets the links sources to targets
+      res.data.forEach(item=>{
+        item.nodeChildren.forEach(child=>{
+          
+          someLinks.push({source: item.specifiedNode.id, target: child.id});
+        })
+      });
+      setData({
+        nodes: someData,
+        links: someLinks
+      });
     })
     .catch(err=>{
       console.log(err);
@@ -79,6 +178,25 @@ export default function Dashboard(props) {
 
   return (
     <DashBG>
+      {data && <Graph
+    id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
+    data={data}
+    config={myConfig}
+     onClickNode={onClickNode}
+    // onRightClickNode={onRightClickNode}
+    // onClickGraph={onClickGraph}
+    // onClickLink={onClickLink}
+    // onRightClickLink={onRightClickLink}
+    // onMouseOverNode={onMouseOverNode}
+    // onMouseOutNode={onMouseOutNode}
+    // onMouseOverLink={onMouseOverLink}
+    // onMouseOutLink={onMouseOutLink}
+    // onNodePositionChange={onNodePositionChange}
+/>}
+<Modali.Modal {...nodeModal}>
+ <ModifyDecision mode='edit' nodeId={editNode}/>
+</Modali.Modal>
+
       <Header>
         <h2>Your Stories</h2>
       </Header>
