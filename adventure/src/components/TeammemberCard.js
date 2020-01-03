@@ -33,7 +33,7 @@ const StyledCard = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	border: 1px solid silver;
-	background-color: white;
+	background-color: #fffaf0;
 `;
 
 const StyledRole = styled.div`
