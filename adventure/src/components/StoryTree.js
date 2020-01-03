@@ -9,20 +9,21 @@ import EditStoryDescription from './EditStoryDescription';
 export default function StoryTree() {
 	const params = useParams();
 
-	console.log(params.id);
-
-	// console.log(props);
 	const [modalViz, setModalViz] = useState(false);
 	const [data, setData] = useState();
 	const [nodeModal, toggleNodeModal] = useModali();
+	const [questionModal, toggleQuestionModal] = useModali();
+	const [addModal, toggleAddModal] = useModali();
 	const [editNode, setEditNode] = useState();
+	const [mode, setMode] = useState('edit');
+	const [story_id, setStoryId] = useState();
+	const [first, setFirst] = useState(false);
+
+	// let mode = 'create';
 
 	const myConfig = {
 		directed: true,
 		nodeHighlightBehavior: true,
-		d3: {
-			gravity: -200,
-		},
 		node: {
 			labelProperty: 'name',
 			color: 'lightgreen',
@@ -39,17 +40,36 @@ export default function StoryTree() {
 	};
 
 	const onClickNode = function(nodeId) {
-		console.log(nodeId);
 		setEditNode(nodeId);
-		toggleNodeModal();
+		// toggleNodeModal();
+		toggleQuestionModal();
 	};
 
-	const createStoryModal = () => {
-		setModalViz(!modalViz);
-	};
-	const closeModal = e => {
-		// e.stopPropagation()
-		setModalViz(!modalViz);
+
+	const noNodes = () => {
+		let someData = [];
+		let someLinks = [];
+		axiosWithAuth()
+			.get(`https://cyahack.herokuapp.com/api/stories/${params.id}`)
+			.then(res => {
+				console.log(params.id);
+				setMode('create');
+				setFirst(true);
+				setStoryId(res.data.story.id);
+				someData.push({
+					name: res.data.story.title,
+					id: res.data.story.id,
+					color: 'red',
+					symbolType: 'cross',
+				});
+				setData({
+					nodes: someData,
+					links: someLinks,
+				});
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	};
 
 	useEffect(() => {
@@ -58,10 +78,12 @@ export default function StoryTree() {
 		axiosWithAuth()
 			.get(`https://cyahack.herokuapp.com/api/nodes/story/${params.id}`)
 			.then(res => {
-				console.log(res);
 				if (res.data.length < 1) {
+					noNodes();
 					return;
 				}
+				setStoryId(res.data[0].specifiedNode.story_id);
+				setFirst(false);
 				//Sets the nodes
 				res.data.forEach(item => {
 					let color = 'blue';
@@ -95,6 +117,16 @@ export default function StoryTree() {
 			});
 	}, []);
 
+	const selectEdit = () =>{
+		toggleQuestionModal();
+		toggleNodeModal();
+	}
+
+	const selectAdd = () =>{
+		toggleQuestionModal();
+		toggleAddModal();
+	}
+
 	return (
 		<>
 			<div>
@@ -102,14 +134,34 @@ export default function StoryTree() {
 			</div>
 			{data && (
 				<Graph
-					id='graph-id' // id is mandatory, if no id is defined rd3g will throw an error
+					className="graph-class"
+					id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
 					data={data}
 					config={myConfig}
 					onClickNode={onClickNode}
 				/>
 			)}
+			<Modali.Modal {...questionModal}>
+				{!first && <button onClick={selectEdit}>Edit Node</button>}
+				<button onClick={selectAdd}>Add Node</button>
+			</Modali.Modal>
+			<Modali.Modal {...addModal}>
+			<ModifyDecision
+					mode='create'
+					nodeId={editNode}
+					toggleNodeModal={toggleAddModal}
+					first={first}
+					story_id={story_id}
+				/>
+			</Modali.Modal>
 			<Modali.Modal {...nodeModal}>
-				<ModifyDecision mode='edit' nodeId={editNode} toggleNodeModal={toggleNodeModal}/>
+				<ModifyDecision
+					mode={mode}
+					nodeId={editNode}
+					toggleNodeModal={toggleNodeModal}
+					first={first}
+					story_id={story_id}
+				/>
 			</Modali.Modal>
 		</>
 	);
