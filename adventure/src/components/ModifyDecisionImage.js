@@ -16,13 +16,13 @@ export default function ModifyDecisionImage() {
 					formData,
 				)
 				.then(res => {
-					console.log(res);
+					console.log(res.data.secure_url);
 				})
 				.catch(err => {
 					console.log(err);
 				});
 		}
-	});
+	}, [picture]);
 
 	return (
 		<>
