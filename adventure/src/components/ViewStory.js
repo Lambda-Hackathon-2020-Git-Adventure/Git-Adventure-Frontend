@@ -46,8 +46,8 @@ const ViewStory = props => {
 			});
 	}, []);
 
-	if (!story) return <div>Loading...</div>;
-
+	if (!story) return <StyledPageWrapper paper={paper}>Loading...</StyledPageWrapper>;
+	console.log(story);
 	return (
 		<StyledPageWrapper paper={paper}>
 			<div>
