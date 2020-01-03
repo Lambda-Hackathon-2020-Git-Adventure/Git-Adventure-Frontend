@@ -1,17 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import { axiosWithAuth } from './authentication/axiosWithAuth';
 
 export default function CreateStoryForm(props) {
 	const { closeModal } = props;
+	const [picture, setPicture] = useState(null);
 	const [newStory, setNewStory] = useState({
 		title: '',
 		description: '',
 		image: '',
 	});
 
+	useEffect(() => {
+		if (picture) {
+			const formData = new FormData();
+			formData.append('file', picture);
+			formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
+
+			axios
+				.post(
+					`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
+					formData,
+				)
+				.then(res => {
+					console.log(res.data.secure_url);
+					setNewStory({ ...newStory, image: res.data.secure_url });
+				})
+				.catch(err => {
+					console.log(err);
+				});
+		}
+	}, [picture]);
+
 	const createStory = e => {
 		e.preventDefault();
+		console.log(newStory);
 		axiosWithAuth()
 			.post(`/stories`, newStory)
 			.then(res => console.log(res))
@@ -24,12 +48,13 @@ export default function CreateStoryForm(props) {
 		});
 		closeModal();
 	};
+
 	const handleChange = e => {
 		setNewStory({
 			...newStory,
 			[e.target.name]: e.target.value,
 		});
-		console.log(newStory);
+		// console.log(newStory);
 	};
 
 	return (
@@ -49,6 +74,13 @@ export default function CreateStoryForm(props) {
 					id='description'
 					name='description'
 					onChange={handleChange}></textarea>
+				<label>Image (optional)</label>
+				<input
+					className='image-input'
+					type='file'
+					id='image-input-story-id'
+					onChange={e => setPicture(e.target.files[0])}
+				/>
 				<button type='submit'>Create story</button>
 			</CreateForm>
 		</ModalBG>
