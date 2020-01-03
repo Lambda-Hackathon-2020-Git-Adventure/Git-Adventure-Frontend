@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 import ReadIcon from '../images/book-open-page-variant.png'
 import EditIcon from '../images/lead-pencil.png'
 import InviteIcon from '../images/account-plus.png'
@@ -8,13 +9,18 @@ import DeleteIcon from '../images/delete-forever.png'
 //font
 
 export default function StoryCard ({story}) {
-    const {image, title, authors, description, dateEdited} = story;    return (
+    const {image, title, authors, description, dateEdited, id} = story;    
+
+    const deleteStory = () => {
+        alert("Are you sure you want to delete the story?")
+    }
+     return (
         <Tile>
             <ButtonBar>
                 <Button read><img src={ReadIcon}/>Play story</Button>
-                <Button edit><img src={EditIcon}/>Edit story</Button>
-                <Button share><img src={InviteIcon}/>Share & invite</Button>
-                <Button > <img src={DeleteIcon}/> Delete story</Button>
+                <Button edit><Link to={`/storytree/${id}`}><img src={EditIcon}/>Edit story</Link></Button>
+                <Button share><Link to={`/storytree/${id}/invite`}><img src={InviteIcon}/>Share & invite</Link></Button>
+                <Button onClick={deleteStory}> <img src={DeleteIcon}/> Delete story</Button>
             </ButtonBar>
             <StoryInfo>
                 {image && <img src='' alt=''></img>}
@@ -101,6 +107,11 @@ const Button = styled.button`
     img {
         width: 60%;
         padding-bottom: 3px;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
     }
 
 `;

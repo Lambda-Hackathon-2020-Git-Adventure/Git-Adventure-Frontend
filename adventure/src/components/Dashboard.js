@@ -11,30 +11,35 @@ import Img5 from '../images/headers/img5.jpg'
 
 const stories = [
   {
+    id: 1,
     image: '',
     title: 'A Cookie to Remember',
     authors: ["Fozzie Bear", "Rizzo the Rat"],
     description: `It's lonely in paradise. Life couldn't be better after Cookie Monster wins the the cookie lottery. Eating cookies was all Cookie Monster ever wanted...wasn't it? Everything changes when a gruff orange hockey monster named Gritty barrels into his cookie shop. Can these two misunderstood monsters find love?`,
     dateEdited: '10/31/19'
   }, {
+    id: 2,
     image: '',
     title: 'A Cookie to Remember',
     authors: ["Luisa", "Clarence"],
     description: 'Fruitcake chocolate sugar plum cookie. Marzipan bear claw gingerbread muffin cake. Chupa chups cheesecake tiramisu pie.',
     dateEdited: '10/31/19'
   }, {
+    id: 3,
     image: '',
     title: 'The Telltale Heart',
     authors: ["Myrtle", "Dorothy"],
     description: 'Pastry jujubes macaroon caramels cake pudding donut soufflé cake. Fruitcake tootsie roll gingerbread wafer topping soufflé liquorice donut.',
     dateEdited: '10/31/19'
   }, {
+    id: 4,
     image: '',
     title: 'A Tale of Two Cities',
     authors: ["Luisa", "Clarence"],
     description: 'Fruitcake chocolate sugar plum cookie. Marzipan bear claw gingerbread muffin cake. Chupa chups cheesecake tiramisu pie.',
     dateEdited: '10/31/19'
   }, {
+    id: 5,
     image: '',
     title: 'Choice of Robots',
     authors: ["Myrtle", "Dorothy"],
