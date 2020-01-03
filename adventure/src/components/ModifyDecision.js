@@ -5,19 +5,16 @@ import styled from 'styled-components';
 import ModifyDecisionImage from './ModifyDecisionImage';
 import ModifyDecisionVideo from './ModifyDecisionVideo';
 
-export default function ModifyDecision({ mode, story_id }) {
+export default function ModifyDecision({ mode, node_id }) {
 	const [decision, setDecision] = useState({
 		name: '',
 		text: '',
-		story_id: '',
-		author: '',
 		image: '',
 		video: '',
 	});
 
 	useEffect(() => {
-		setDecision({ ...decision, author: localStorage.getItem('subject') });
-		setDecision({ ...decision, story_id });
+		setDecision({ ...decision });
 	}, []);
 
 	useEffect(() => {
