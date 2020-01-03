@@ -35,14 +35,20 @@ export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, s
 	}, []);
 
 	const deleteNode = () => {
-		console.log('DELETED YO');
+		axiosWithAuth().delete(`https://cyahack.herokuapp.com/api/nodes/${nodeId}`)
+		.then(res => {
+			console.log(res)
+			toggleNodeModal();
+			window.location.reload();
+		})
+		.catch(err => console.log(err))
 	};
 
 	const handleDelete = () => {
 		let answer = window.confirm('Are you sure you want to delete this node?');
 		if (answer) {
 			deleteNode();
-			toggleNodeModal();
+			
 		}
 	};
 
