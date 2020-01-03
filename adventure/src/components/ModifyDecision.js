@@ -8,7 +8,6 @@ import ModifyDecisionImage from './ModifyDecisionImage';
 import ModifyDecisionVideo from './ModifyDecisionVideo';
 
 export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, story_id }) {
-	// console.log( mode, nodeId, toggleNodeModal, first, story_id);
 
 	const [decision, setDecision] = useState();
 
@@ -17,7 +16,6 @@ export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, s
 	useEffect(() => {
 		
 		if(first === true){
-			console.log('first here');
 			setUpdatedDec({ ...updatedDec, first: true});
 		} else {
 			setUpdatedDec({ ...updatedDec, first: false})
@@ -28,7 +26,6 @@ export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, s
 		if (mode === 'edit') {
 			axiosWithAuth().get(`https://cyahack.herokuapp.com/api/nodes/${nodeId}`)
 			.then(res=>{
-				console.log(res.data)
 				setUpdatedDec(res.data.specifiedNode)
 			})
 		} else{
@@ -50,20 +47,16 @@ export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, s
 	};
 
 	const handleChange = e => {
-		console.log('something')
 		setUpdatedDec({ ...updatedDec, [e.target.name]: e.target.value });
 	};
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		console.log('QUAIL.');
 		if (mode === 'edit') {
-			console.log({node: updatedDec})
 			axiosWithAuth().put(`https://cyahack.herokuapp.com/api/nodes/${nodeId}`, {node: updatedDec})
 			.then(res => console.log(res), toggleNodeModal())
 			.catch(err => console.log(err))
 		} else if (first === true) {
-			console.log({node: {...updatedDec, first: true, video: "", image: ""}});
 			axiosWithAuth().post(`https://cyahack.herokuapp.com/api/nodes/`, {node: {...updatedDec, first: true, video: "", image: ""}})
 			.then(res => {
 				toggleNodeModal();
