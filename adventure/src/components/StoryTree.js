@@ -15,7 +15,9 @@ export default function StoryTree() {
 	const [modalViz, setModalViz] = useState(false);
 	const [data, setData] = useState();
 	const [nodeModal, toggleNodeModal] = useModali();
-	const [editNode, setEditNode] = useState();
+  const [editNode, setEditNode] = useState();
+  const [mode, setMode] = useState('edit');
+  // let mode = 'create';
 
 	const myConfig = {
 		directed: true,
@@ -50,7 +52,52 @@ export default function StoryTree() {
 	const closeModal = e => {
 		// e.stopPropagation()
 		setModalViz(!modalViz);
-	};
+  };
+  
+  const noNodes = () =>{
+    let someData = [];
+		let someLinks = [];
+		axiosWithAuth()
+			.get(`https://cyahack.herokuapp.com/api/stories/${params.id}`)
+			.then(res => {
+        console.log(res.data.story);
+        setMode('create');
+        // mode = 'create';
+				// if (res.data.length < 1) {
+				// 	return;
+				// }
+				//Sets the nodes
+				// res.data.forEach(item => {
+				// 	let color = 'blue';
+				// 	let symbol = 'circle';
+				// 	if (item.nodeParents.length < 1) {
+				// 		color = 'red';
+				// 		symbol = 'star';
+				// 	}
+					someData.push({
+						name: res.data.story.title,
+						id: res.data.story.id,
+						color: "red",
+						symbolType: "cross",
+					});
+					// someData.push({id: item.specifiedNode.id});
+				// });
+
+				//sets the links sources to targets
+				// res.data.forEach(item => {
+				// 	item.nodeChildren.forEach(child => {
+						// someLinks.push({ source: item.specifiedNode.id, target: child.id });
+				// 	});
+				// });
+				setData({
+					nodes: someData,
+					links: someLinks,
+				});
+			})
+			.catch(err => {
+				console.log(err);
+			});
+  }
 
 	useEffect(() => {
 		let someData = [];
@@ -60,6 +107,7 @@ export default function StoryTree() {
 			.then(res => {
 				console.log(res);
 				if (res.data.length < 1) {
+          noNodes();
 					return;
 				}
 				//Sets the nodes
@@ -109,7 +157,7 @@ export default function StoryTree() {
 				/>
 			)}
 			<Modali.Modal {...nodeModal}>
-				<ModifyDecision mode='edit' nodeId={editNode} />
+				<ModifyDecision mode={mode} nodeId={editNode} />
 			</Modali.Modal>
 		</>
 	);
