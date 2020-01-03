@@ -118,15 +118,16 @@ const DashContainer = styled.main`
 `;
 
 const Blurb = styled.p`
-  max-width: 100%;
-  width: 100%;
+  /* max-width: 100%; */
+  width: 50%;
   /* background-color: #7C6B68; */
   /* color: white; */
   font-size: 1.75rem;
   padding: 1rem;
   /* border-top: black 1px solid;
   border-bottom: black 1px solid; */
-  text-align: center;
+  text-align: left;
+  margin: 0 auto;
   font-family: 'Open Sans', sans-serif;
 `;
 
@@ -153,21 +154,21 @@ const randomImage = () => {
 }
 
 const Header = styled.header`
-  background-image: url(${Img3});
-  background-color: #DED4D2;
-  background-blend-mode: multiply;
-  background-size: cover;
-  height: 200px;
+  /* background-image: url(${Img3}); */
+  /* background-color: #DED4D2; */
+  /* background-blend-mode: multiply; */
+  /* background-size: cover; */
+  /* height: 200px; */
   font-size: 4rem;
-  color: white;
-  text-shadow: 2px 2px black;
+  /* color: red; */
+  /* text-shadow: 2px 2px black; */
   display: flex;
   justify-content: center;
   align-items: center;
   /* background-attachment: fixed; */
 
   h2 {
-    margin-top: 8rem;
+    margin-top: 4rem;
   }
 `;
 
