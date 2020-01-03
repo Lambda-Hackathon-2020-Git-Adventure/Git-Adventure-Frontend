@@ -17,14 +17,18 @@ export default function StoryTree() {
 	const [nodeModal, toggleNodeModal] = useModali();
   const [editNode, setEditNode] = useState();
   const [mode, setMode] = useState('edit');
+  const [storyId, setStoryId] = useState();
   // let mode = 'create';
 
 	const myConfig = {
 		directed: true,
 		nodeHighlightBehavior: true,
 		d3: {
-			gravity: -200,
-		},
+      alphaTarget: 0.05,
+      gravity: -200,
+      linkLength: 100,
+      linkStrength: 1,
+    },
 		node: {
 			labelProperty: 'name',
 			color: 'lightgreen',
@@ -46,13 +50,13 @@ export default function StoryTree() {
 		toggleNodeModal();
 	};
 
-	const createStoryModal = () => {
-		setModalViz(!modalViz);
-	};
-	const closeModal = e => {
-		// e.stopPropagation()
-		setModalViz(!modalViz);
-  };
+	// const createStoryModal = () => {
+	// 	setModalViz(!modalViz);
+	// };
+	// const closeModal = e => {
+	// 	// e.stopPropagation()
+	// 	setModalViz(!modalViz);
+  // };
   
   const noNodes = () =>{
     let someData = [];
@@ -150,6 +154,7 @@ export default function StoryTree() {
 			</div>
 			{data && (
 				<Graph
+        className = "graph-class"
 					id='graph-id' // id is mandatory, if no id is defined rd3g will throw an error
 					data={data}
 					config={myConfig}
