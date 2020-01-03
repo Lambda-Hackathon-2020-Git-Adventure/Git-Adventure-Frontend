@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
@@ -13,6 +13,7 @@ import left_arrow from '../images/left_arrow.png'
 import right_arrow from '../images/right_arrow.png'
 import curly_arrow from '../images/curly_arrow.png'
 import CreateStoryForm from './CreateStoryForm';
+import { axiosWithAuth } from './authentication/axiosWithAuth';
 
 const stories = [
   {
@@ -63,7 +64,18 @@ export default function Dashboard(props) {
     setModalViz(!modalViz)
   }
 
-  console.log(axios.get("https://cyahack.herokuapp.com/api/stories/1"))
+  // useEffect(()=>{
+  //   axiosWithAuth().get('https://cyahack.herokuapp.com/api/nodes/story/1')
+  //   .then(res=>{
+  //     console.log(res.data);
+  //   })
+  //   .catch(err=>{
+  //     console.log(err);
+  //   })
+  // },[])
+
+  // console.log(axios.get("https://cyahack.herokuapp.com/api/stories/1"))
+
   return (
     <DashBG>
       <Header>
