@@ -14,7 +14,7 @@ export default function NavBar() {
 		color: white;
 		width: 50.5rem;
 		height: 3.6rem;
-		border-radius: 1.8rem;
+		border-radius: 2.0rem;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -61,7 +61,7 @@ export default function NavBar() {
 	return (
 		<StyledNavRows>
 			<NavLink to="/">
-				<StyledRole>CREATE YOUR OWN ADVENTURE</StyledRole>
+				<StyledRole>CREATE YOUR OWN ADVENTURE!</StyledRole>
 			</NavLink>
 			<StyledNavbarMain>
 				<StyledHeader>
