@@ -53,7 +53,7 @@ export default function NavBar() {
 	return (
 		<StyledNavRows>
 			<NavLink to="/">
-				<StyledRole>CHOOSE YOUR OWN ADVENTURE</StyledRole>
+				<StyledRole>CREATE YOUR OWN ADVENTURE</StyledRole>
 			</NavLink>
 			<StyledNavbarMain>
 				<StyledHeader>
