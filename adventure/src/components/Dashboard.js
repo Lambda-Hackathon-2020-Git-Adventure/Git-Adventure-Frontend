@@ -17,10 +17,8 @@ import right_arrow from '../images/right_arrow.png';
 import curly_arrow from '../images/curly_arrow.png';
 
 import CreateStoryForm from './CreateStoryForm';
-import InviteForm from './InviteForm'
+import InviteForm from './InviteForm';
 import { axiosWithAuth } from './authentication/axiosWithAuth';
-
-
 
 const stories = [
 	{
@@ -70,96 +68,132 @@ const stories = [
 ];
 
 export default function Dashboard(props) {
-  const [storyModalViz, setStoryModalViz] = useState(false)
-  const [inviteModalViz, setInviteModalViz] = useState(false)
-  const [myStories, setMyStories] = useState({createdStories: [], collaboratingOn: []})
+	const [storyModalViz, setStoryModalViz] = useState(false);
+	const [inviteModalViz, setInviteModalViz] = useState(false);
+	const [myStories, setMyStories] = useState({
+		createdStories: [],
+		collaboratingOn: [],
+	});
 
-  const createStoryModal = () => {
-    setStoryModalViz(!storyModalViz)
-  }
-  const closeModal = (e) => {
-    // e.stopPropagation()
-    if (storyModalViz) {
-      setStoryModalViz(!storyModalViz)
-    } else {
-      setInviteModalViz(!inviteModalViz)
-    }
-  }
-  // really inefficient modal code!!! oh well
-  const createInviteModal = () => {
-    setInviteModalViz(!inviteModalViz)
-  }
+	const [modalId, setModalId] = useState();
 
-  useEffect(()=>{
-    axiosWithAuth().get('https://cyahack.herokuapp.com/api/stories/mine')
-    .then(res=>{
-      console.log(res.data);
-      setMyStories(res.data);
-      console.log("LSKDFSLKDJF", myStories)
-    })
-    .catch(err=>{
-      console.log(err);
-    })
-  },[myStories.createdStories && myStories.createdStories.length, myStories.collaboratingOn && myStories.collaboratingOn.length])
+	console.log(modalId);
 
-  return (
-    <DashBG>
-      <Header>
-        <h2>Your Stories</h2>
-      </Header>
-      <Blurb>
-        Here you'll find all the interactive stories that you've created or collaborated on. To get started, create a new story.
-      </Blurb>
-      <CreateContainer>
-      <img src={curly_arrow}></img>
-        <NewStory onClick={createStoryModal}>Create a new story</NewStory>
-        <div>
-          <img src={left_arrow}></img>
-          <h2>...or work on one you've already started!</h2>
-          <img src={right_arrow}></img>
-        </div>
-      </CreateContainer>
+	const createStoryModal = () => {
+		setStoryModalViz(!storyModalViz);
+	};
+	const closeModal = e => {
+		// e.stopPropagation()
+		if (storyModalViz) {
+			setStoryModalViz(!storyModalViz);
+		} else {
+			setInviteModalViz(!inviteModalViz);
+		}
+	};
+	// really inefficient modal code!!! oh well
+	const createInviteModal = id => {
+		setModalId(id);
+		setInviteModalViz(!inviteModalViz);
+	};
 
-      {storyModalViz && <CreateStoryForm closeModal={closeModal} myStories={myStories} setMyStories={setMyStories}/> }
-      {inviteModalViz && <InviteForm closeModal={closeModal}/> }
+	useEffect(() => {
+		axiosWithAuth()
+			.get('https://cyahack.herokuapp.com/api/stories/mine')
+			.then(res => {
+				console.log(res.data);
+				setMyStories(res.data);
+				// console.log('LSKDFSLKDJF', myStories);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}, [
+		myStories.createdStories && myStories.createdStories.length,
+		myStories.collaboratingOn && myStories.collaboratingOn.length,
+	]);
 
-      <DashContainer>
-        <StoryColumn>
-          <Subheading>Created by you</Subheading>
-          {console.log("My stories state", myStories.createdStories)}
-          {myStories.createdStories && myStories.createdStories.map((story, index) => {
-            console.log(story)
-            return (
-              <StoryCard key={index} story={story} myStories={myStories} setMyStories={setMyStories} createInviteModal={createInviteModal} />
-              )
-            })}
-        </StoryColumn>
-        <StoryColumn>
-          <Subheading>Shared with you</Subheading>
-          {myStories.collaboratingOn && myStories.createdStories && myStories.collaboratingOn.map((story, index) => {
-          return (
-            <StoryCard key={index} story={story} myStories={myStories} setMyStories={setMyStories} />
-            )
-          })}
-        </StoryColumn>
-      </DashContainer>
-    </DashBG>
-  )
+	return (
+		<DashBG>
+			<Header>
+				<h2>Your Stories</h2>
+			</Header>
+			<Blurb>
+				Here you'll find all the interactive stories that you've created or
+				collaborated on. To get started, create a new story.
+			</Blurb>
+			<CreateContainer>
+				<img src={curly_arrow}></img>
+				<NewStory onClick={createStoryModal}>Create a new story</NewStory>
+				<div>
+					<img src={left_arrow}></img>
+					<h2>...or work on one you've already started!</h2>
+					<img src={right_arrow}></img>
+				</div>
+			</CreateContainer>
+
+			{storyModalViz && (
+				<CreateStoryForm
+					closeModal={closeModal}
+					myStories={myStories}
+					setMyStories={setMyStories}
+				/>
+			)}
+			{inviteModalViz && <InviteForm closeModal={closeModal} id={modalId} />}
+
+			<DashContainer>
+				<StoryColumn>
+					<Subheading>Created by you</Subheading>
+					{/* {console.log('My stories state', myStories.createdStories)} */}
+					{myStories.createdStories &&
+						myStories.createdStories.map((story, index) => {
+							// console.log(story);
+							return (
+								<StoryCard
+									key={index}
+									story={story}
+									myStories={myStories}
+									setMyStories={setMyStories}
+									createInviteModal={createInviteModal}
+									setModalId={setModalId}
+									collaborator={false}
+								/>
+							);
+						})}
+				</StoryColumn>
+				<StoryColumn>
+					<Subheading>Shared with you</Subheading>
+					{myStories.collaboratingOn &&
+						myStories.createdStories &&
+						myStories.collaboratingOn.map((story, index) => {
+							return (
+								<StoryCard
+									key={index}
+									story={story}
+									myStories={myStories}
+									setMyStories={setMyStories}
+									collaborator={true}
+								/>
+							);
+						})}
+				</StoryColumn>
+			</DashContainer>
+		</DashBG>
+	);
 }
 
 const DashBG = styled.div`
-  background-color: whitesmoke;
-  height: 100%;
+	background-color: whitesmoke;
+	height: 100%;
 `;
 
 const DashContainer = styled.main`
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: flex-start;
-  @media (max-width: 900px) {
-      flex-flow: row wrap;
-    }
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: flex-start;
+	@media (max-width: 900px) {
+		flex-flow: row wrap;
+	}
 `;
 
 const Blurb = styled.p`
@@ -177,12 +211,12 @@ const Blurb = styled.p`
 `;
 
 const StoryColumn = styled.section`
-  /* border: 1px solid blue; */
-  display: flex;
-  flex-flow: row wrap;
-  max-width: 50%;
-  justify-content: center;
-  align-items: flex-start;
+	/* border: 1px solid blue; */
+	display: flex;
+	flex-flow: row wrap;
+	max-width: 50%;
+	justify-content: center;
+	align-items: flex-start;
 `;
 
 const Subheading = styled.h2`

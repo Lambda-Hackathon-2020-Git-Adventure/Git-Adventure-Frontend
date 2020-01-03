@@ -16,19 +16,22 @@ import StoriesList from './components/StoriesList';
 import ViewStory from './components/ViewStory';
 
 function App() {
-	const [token, setToken] = useState(localStorage.getItem('token'))
+	const [token, setToken] = useState(localStorage.getItem('token'));
 	return (
 		<div className='App'>
 			<GlobalStyle />
-			<Navbar token={token} setToken={setToken}/>
+			<Navbar token={token} setToken={setToken} />
 			<Route exact path='/' component={Landing} />
 			<Route path='/about' component={About} />
 			<Route path='/dashboard' component={Dashboard} />
 			<Route path='/list' component={StoriesList} />
 			<Route path='/modifydecision' component={ModifyDecision} />
-			<Route path='/signin' render={(props) => <SignIn {...props} setToken={setToken}/>} />
+			<Route
+				path='/signin'
+				render={props => <SignIn {...props} setToken={setToken} />}
+			/>
 			<Route path='/signup' component={SignUp} />
-			<Route path='/storytree' component={StoryTree} />
+			<Route path='/storytree/:id' component={StoryTree} />
 			<Route path='/node/:id' component={ViewDecision} />
 			<Route path='/story/:id' component={ViewStory} />
 		</div>

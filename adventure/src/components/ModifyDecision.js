@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import styled from 'styled-components';
+
+import { axiosWithAuth } from './authentication/axiosWithAuth';
 
 import ModifyDecisionImage from './ModifyDecisionImage';
 import ModifyDecisionVideo from './ModifyDecisionVideo';
 
-export default function ModifyDecision({ mode, node_id }) {
+export default function ModifyDecision({ mode, nodeId }) {
 	const [decision, setDecision] = useState({
 		name: '',
 		text: '',
@@ -23,16 +25,16 @@ export default function ModifyDecision({ mode, node_id }) {
 		}
 	}, []);
 
-	const deleteNode = () =>{
+	const deleteNode = () => {
 		console.log('DELETED YO');
-	}
+	};
 
-	const handleDelete = () =>{
+	const handleDelete = () => {
 		let answer = window.confirm('Are you sure you want to delete this node?');
-		if(answer){
+		if (answer) {
 			deleteNode();
 		}
-	}
+	};
 
 	const handleChange = e => {
 		setDecision({ ...decision, [e.target.name]: e.target.value });
@@ -50,8 +52,8 @@ export default function ModifyDecision({ mode, node_id }) {
 
 	return (
 		<StyledWrapper>
-			<h2>{mode === 'edit' ? 'Modify' : 'Create'} a decision</h2>
 			<StyledForm onSubmit={handleSubmit}>
+				<h2>{mode === 'edit' ? 'Modify' : 'Create'} a decision</h2>
 				<label htmlFor='decision-name'>Name</label>
 				<input
 					id='decision-name'
@@ -72,7 +74,9 @@ export default function ModifyDecision({ mode, node_id }) {
 				/>
 				<ModifyDecisionImage />
 				<ModifyDecisionVideo />
-				<button type = "button" onClick={()=>handleDelete()}>Delete Node</button>
+				<button type='button' onClick={() => handleDelete()}>
+					Delete Node
+				</button>
 				<button type='submit'>Submit</button>
 			</StyledForm>
 		</StyledWrapper>
@@ -97,6 +101,11 @@ const StyledForm = styled.form`
 	padding: 2rem 2%;
 	border: 1px solid silver;
 	border-radius: 0.5rem;
+
+	h2 {
+		align-self: center;
+		margin-bottom: 2.4rem;
+	}
 
 	label {
 		font-size: 1.8rem;
