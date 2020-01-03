@@ -64,32 +64,27 @@ export default function ModifyDecision({
 	const handleSubmit = e => {
 		e.preventDefault();
 		if (mode === 'edit') {
-			axiosWithAuth()
-				.put(`https://cyahack.herokuapp.com/api/nodes/${nodeId}`, {
-					node: updatedDec,
-				})
-				.then(res => console.log(res), toggleNodeModal())
-				.catch(err => console.log(err));
+			axiosWithAuth().put(`https://cyahack.herokuapp.com/api/nodes/${nodeId}`, {node: updatedDec})
+			.then(res => {
+				toggleNodeModal();
+				window.location.reload();
+			})
+			.catch(err => console.log(err))
 		} else if (first === true) {
-			axiosWithAuth()
-				.post(`https://cyahack.herokuapp.com/api/nodes/`, {
-					node: { ...updatedDec, first: true, video: '', image: '' },
-				})
-				.then(res => {
-					toggleNodeModal();
-				})
-				.catch(err => console.log(err));
-		} else if (mode === 'create') {
-			axiosWithAuth()
-				.post(
-					`https://cyahack.herokuapp.com/api/nodes/${nodeId}/createandconnect
-			`,
-					{ node: updatedDec },
-				)
-				.then(res => {
-					toggleNodeModal();
-				})
-				.catch(err => console.log(err));
+			axiosWithAuth().post(`https://cyahack.herokuapp.com/api/nodes/`, {node: {...updatedDec, first: true, video: "", image: ""}})
+			.then(res => {
+				toggleNodeModal();
+				window.location.reload();
+			})
+			.catch(err => console.log(err))
+		}else if (mode === 'create') {
+			axiosWithAuth().post(`https://cyahack.herokuapp.com/api/nodes/${nodeId}/createandconnect
+			`, {node: updatedDec})
+			.then(res => {
+				toggleNodeModal();
+				window.location.reload();
+			})
+			.catch(err => console.log(err))
 		}
 	};
 
@@ -103,11 +98,7 @@ export default function ModifyDecision({
 					id='decision-name'
 					name='name'
 					type='text'
-					placeholder={
-						updatedDec && mode === 'edit'
-							? updatedDec.name
-							: 'Set the scene here!'
-					}
+					placeholder={updatedDec && mode === 'edit' ? updatedDec.name : first ? 'Write the title of your first chapter' :'Write the name of the decision here!'}
 					value={updatedDec && updatedDec.name}
 					onChange={handleChange}
 				/>
