@@ -28,5 +28,6 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: font77490;
+    background-color: whitesmoke;
   }
 `;

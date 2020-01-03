@@ -5,43 +5,61 @@ import styled from 'styled-components';
 import { axiosWithAuth } from './authentication/axiosWithAuth';
 
 import ModifyDecisionImage from './ModifyDecisionImage';
+<<<<<<< HEAD
 import ModifyDecisionVideo from './ModifyDecisionVideo';
 
 export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, story_id }) {
+=======
+// import ModifyDecisionVideo from './ModifyDecisionVideo';
+
+export default function ModifyDecision({
+	mode,
+	nodeId,
+	toggleNodeModal,
+	first,
+	story_id,
+}) {
+>>>>>>> 3f2b0dbcd4a9972926f003a53c1cb02093ba84a0
 	const [decision, setDecision] = useState();
 
 	const [updatedDec, setUpdatedDec] = useState({});
 
 	useEffect(() => {
-		
-		if(first === true){
-			setUpdatedDec({ ...updatedDec, first: true});
+		if (first === true) {
+			setUpdatedDec({ ...updatedDec, first: true });
 		} else {
-			setUpdatedDec({ ...updatedDec, first: false})
+			setUpdatedDec({ ...updatedDec, first: false });
 		}
 	}, []);
 
 	useEffect(() => {
 		if (mode === 'edit') {
-			axiosWithAuth().get(`https://cyahack.herokuapp.com/api/nodes/${nodeId}`)
-			.then(res=>{
-				setUpdatedDec(res.data.specifiedNode)
-			})
-		} else{
-		// } else if (mode === 'create'){
-			setUpdatedDec({...updatedDec, story_id: story_id})
+			axiosWithAuth()
+				.get(`https://cyahack.herokuapp.com/api/nodes/${nodeId}`)
+				.then(res => {
+					setUpdatedDec(res.data.specifiedNode);
+				});
+		} else {
+			// } else if (mode === 'create'){
+			setUpdatedDec({ ...updatedDec, story_id: story_id });
 		}
 	}, []);
 
 	const deleteNode = () => {
-		console.log('DELETED YO');
+		axiosWithAuth().delete(`https://cyahack.herokuapp.com/api/nodes/${nodeId}`)
+		.then(res => {
+			console.log(res)
+			toggleNodeModal();
+			window.location.reload();
+		})
+		.catch(err => console.log(err))
 	};
 
 	const handleDelete = () => {
 		let answer = window.confirm('Are you sure you want to delete this node?');
 		if (answer) {
 			deleteNode();
-			toggleNodeModal();
+			
 		}
 	};
 
@@ -52,6 +70,7 @@ export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, s
 	const handleSubmit = e => {
 		e.preventDefault();
 		if (mode === 'edit') {
+<<<<<<< HEAD
 			axiosWithAuth().put(`https://cyahack.herokuapp.com/api/nodes/${nodeId}`, {node: updatedDec})
 			.then(res => {
 				toggleNodeModal();
@@ -73,6 +92,34 @@ export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, s
 				window.location.reload();
 			})
 			.catch(err => console.log(err))
+=======
+			axiosWithAuth()
+				.put(`https://cyahack.herokuapp.com/api/nodes/${nodeId}`, {
+					node: updatedDec,
+				})
+				.then(res => console.log(res), toggleNodeModal())
+				.catch(err => console.log(err));
+		} else if (first === true) {
+			axiosWithAuth()
+				.post(`https://cyahack.herokuapp.com/api/nodes/`, {
+					node: { ...updatedDec, first: true, video: '', image: '' },
+				})
+				.then(res => {
+					toggleNodeModal();
+				})
+				.catch(err => console.log(err));
+		} else if (mode === 'create') {
+			axiosWithAuth()
+				.post(
+					`https://cyahack.herokuapp.com/api/nodes/${nodeId}/createandconnect
+			`,
+					{ node: updatedDec },
+				)
+				.then(res => {
+					toggleNodeModal();
+				})
+				.catch(err => console.log(err));
+>>>>>>> 3f2b0dbcd4a9972926f003a53c1cb02093ba84a0
 		}
 	};
 
@@ -86,7 +133,15 @@ export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, s
 					id='decision-name'
 					name='name'
 					type='text'
+<<<<<<< HEAD
 					placeholder={updatedDec && mode === 'edit' ? updatedDec.name : first ? 'Write the title of your first chapter' :'Write the name of the decision here!'}
+=======
+					placeholder={
+						updatedDec && mode === 'edit'
+							? updatedDec.name
+							: 'Write the name of the decision here!'
+					}
+>>>>>>> 3f2b0dbcd4a9972926f003a53c1cb02093ba84a0
 					value={updatedDec && updatedDec.name}
 					onChange={handleChange}
 				/>
@@ -95,17 +150,23 @@ export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, s
 					id='decision-text'
 					name='text'
 					// type='textarea'
-					placeholder={updatedDec && mode === 'edit' ? updatedDec.text : !first ? 'Write the text of the decision here!': 'Start your story here'}
+					placeholder={
+						updatedDec && mode === 'edit'
+							? updatedDec.text
+							: !first
+							? 'Write the text of the decision here!'
+							: 'Start your story here'
+					}
 					value={updatedDec && updatedDec.text}
 					onChange={handleChange}
 				/>
 				<ModifyDecisionImage />
-				<ModifyDecisionVideo />
+				{/* <ModifyDecisionVideo /> */}
 				<div className='button-container-modify'>
-				<button type='button' onClick={() => handleDelete()}>
-					Delete Node
-				</button>
-				<button type='submit'>Submit</button>
+					<button type='button' onClick={() => handleDelete()}>
+						Delete Node
+					</button>
+					<button type='submit'>Submit</button>
 				</div>
 			</StyledForm>
 		</StyledWrapper>
