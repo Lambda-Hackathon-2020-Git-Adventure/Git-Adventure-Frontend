@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-
 import axios from 'axios';
 import styled from 'styled-components';
-export default function SignUp(props) {
 
+export default function SignUp(props) {
 	const StyledButton = styled.button`
 		background-color: #5b88a4;
 		color: white;
@@ -13,18 +12,18 @@ export default function SignUp(props) {
 		border: none;
 		align-items: center;
 		font-size: 1.2rem;
-    cursor: pointer;
-    :focus{
-      outline: 0;
-    }
+		cursor: pointer;
+		:focus {
+			outline: 0;
+		}
 	`;
 
 	const StyledH1 = styled.p`
 		color: #e63313;
 		text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
 			1px 1px 0 #000;
-    font-size: 40px;
-    cursor: default;
+		font-size: 40px;
+		cursor: default;
 	`;
 
 	const [user, setUser] = useState({
@@ -44,7 +43,7 @@ export default function SignUp(props) {
 		axios
 			.post('https://cyahack.herokuapp.com/api/auth/signup', user)
 			.then(res => {
-        console.log(res);
+				console.log(res);
 				props.history.push('/signin');
 			})
 			.catch(err => {
@@ -55,30 +54,32 @@ export default function SignUp(props) {
 	return (
 		<div>
 			<StyledH1>SIGN UP!</StyledH1>
-        <form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit}>
 				<br />
 				<input
-					name="username"
+					name='username'
+					type='text'
 					value={user.username}
 					onChange={handleChange}
-					id="email"
-          placeholder="Username"
-          className="sign-up-input"
+					id='email'
+					placeholder='Username'
+					className='sign-up-input'
 				/>
 				<br />
 				<br />
 				<input
-					name="password"
+					name='password'
+					type='password'
 					value={user.password}
 					onChange={handleChange}
-					id="password"
-          placeholder="Password"
-          className="sign-up-input"
+					id='password'
+					placeholder='Password'
+					className='sign-up-input'
 				/>
 				<br />
 				<br />
 				<StyledButton onClick={handleSubmit}> Sign Up </StyledButton>
-        </form>
+			</form>
 		</div>
 	);
 }
