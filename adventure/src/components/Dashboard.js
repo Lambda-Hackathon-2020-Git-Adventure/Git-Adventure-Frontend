@@ -181,6 +181,7 @@ export default function Dashboard(props) {
 const DashBG = styled.div`
 	background-color: whitesmoke;
 	height: 100%;
+	padding-bottom: 10rem;
 `;
 const DashContainer = styled.main`
 	display: flex;

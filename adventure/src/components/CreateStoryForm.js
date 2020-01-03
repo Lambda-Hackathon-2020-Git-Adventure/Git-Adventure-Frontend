@@ -124,6 +124,10 @@ const CreateForm = styled.form`
 	textarea {
 		padding: 1.5rem;
 	}
+	label{
+		font-size: 1.4rem;
+		margin: 1rem 0;
+	}
 `;
 
 const CloseBtn = styled.button`
