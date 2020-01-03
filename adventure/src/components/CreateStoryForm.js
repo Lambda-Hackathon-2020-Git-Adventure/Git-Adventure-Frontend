@@ -14,7 +14,7 @@ export default function CreateStoryForm (props) {
     const createStory = (e) => {
         e.preventDefault()
         axios
-            .post(`https://77560026.ngrok.io/api/stories`, newStory)
+            .post(`https://cyahack.herokuapp.com/api/stories`, newStory)
             .then(res => console.log(res))
             .catch(err => console.log(err))
         setNewStory({
@@ -23,6 +23,7 @@ export default function CreateStoryForm (props) {
             description: "",
             image: ""
         })
+        closeModal()
     }
     const handleChange = (e) => {
         setNewStory({
