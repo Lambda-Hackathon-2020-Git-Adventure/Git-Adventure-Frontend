@@ -12,6 +12,7 @@ export default function StoryTree() {
 	const [modalViz, setModalViz] = useState(false);
 	const [data, setData] = useState();
 	const [nodeModal, toggleNodeModal] = useModali();
+	const [questionModal, toggleQuestionModal] = useModali();
 	const [editNode, setEditNode] = useState();
 	const [mode, setMode] = useState('edit');
 	const [story_id, setStoryId] = useState();
@@ -39,16 +40,10 @@ export default function StoryTree() {
 
 	const onClickNode = function(nodeId) {
 		setEditNode(nodeId);
-		toggleNodeModal();
+		// toggleNodeModal();
+		toggleQuestionModal();
 	};
 
-	// const createStoryModal = () => {
-	// 	setModalViz(!modalViz);
-	// };
-	// const closeModal = e => {
-	// 	// e.stopPropagation()
-	// 	setModalViz(!modalViz);
-	// };
 
 	const noNodes = () => {
 		let someData = [];
@@ -60,34 +55,12 @@ export default function StoryTree() {
 				setMode('create');
 				setFirst(true);
 				setStoryId(res.data.story.id);
-
-				// mode = 'create';
-				// if (res.data.length < 1) {
-				// 	return;
-				// }
-				//Sets the nodes
-				// res.data.forEach(item => {
-				// 	let color = 'blue';
-				// 	let symbol = 'circle';
-				// 	if (item.nodeParents.length < 1) {
-				// 		color = 'red';
-				// 		symbol = 'star';
-				// 	}
 				someData.push({
 					name: res.data.story.title,
 					id: res.data.story.id,
 					color: 'red',
 					symbolType: 'cross',
 				});
-				// someData.push({id: item.specifiedNode.id});
-				// });
-
-				//sets the links sources to targets
-				// res.data.forEach(item => {
-				// 	item.nodeChildren.forEach(child => {
-				// someLinks.push({ source: item.specifiedNode.id, target: child.id });
-				// 	});
-				// });
 				setData({
 					nodes: someData,
 					links: someLinks,
@@ -143,6 +116,11 @@ export default function StoryTree() {
 			});
 	}, []);
 
+	const selectEdit = () =>{
+		toggleQuestionModal();
+		toggleNodeModal();
+	}
+
 	return (
 		<>
 			<div>
@@ -157,6 +135,10 @@ export default function StoryTree() {
 					onClickNode={onClickNode}
 				/>
 			)}
+			<Modali.Modal {...questionModal}>
+				<button onClick={selectEdit}>Edit Node</button>
+				{/* <button onClick={toggleAddModal}>Attach Decision</button> */}
+			</Modali.Modal>
 			<Modali.Modal {...nodeModal}>
 				<ModifyDecision
 					mode={mode}
