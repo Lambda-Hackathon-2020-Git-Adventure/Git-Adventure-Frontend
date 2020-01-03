@@ -67,8 +67,8 @@ export const team_member_info = [
 		name: 'Jan Mei',
 		role: 'Stakeholder',
 		img_path: 'janmei.jpg',
-		link_title: 'Choose to explore quality!',
+		link_title: 'Explore quality!',
 		link_url: 'https://explorequality.com',
-		bio: 'BIO',
+		bio: 'Just a simple quail living my best quail life',
 	},
 ];
