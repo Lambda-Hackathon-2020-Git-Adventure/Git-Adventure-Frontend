@@ -2,10 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function TeamMemberCard({ team_member }) {
+	const cover = `url('/photos/paper-texture-2.jpg')`;
 	const image = `url('/photos/` + team_member.img_path + `')`;
 
 	return (
-		<StyledCard>
+		<StyledCard cover={cover}>
 			<StyledRole>{team_member.role.toUpperCase()}</StyledRole>
 			<StyledHeader>
 				<p>{team_member.bio.toUpperCase()}</p>
@@ -32,8 +33,7 @@ const StyledCard = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-	border: 1px solid silver;
-	background-color: white;
+	background-image: ${props => props.cover};
 `;
 
 const StyledRole = styled.div`
@@ -63,11 +63,13 @@ const StyledHeader = styled.div`
 `;
 
 const StyledImage = styled.div`
-	width: 28.5rem;
+	width: 96%;
+	max-width: 27.4rem;
 	height: 35.2rem;
-	border: 1.6rem solid green;
 	border-top-left-radius: 9rem;
 	border-top-right-radius: 9rem;
+	border: 1.6rem solid #5b88a4;
+	box-shadow: 0 0 0 0.6rem #f1bd19;
 
 	background-image: ${props => props.image};
 	background-size: cover;
