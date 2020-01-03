@@ -60,7 +60,7 @@ const ViewStory = props => {
 				</h2>
 				{history.length == 0 && (
 					<div>
-						{ current ? <img src={current.specifiedNode.image}/> : <img src={story.image}/> }
+						{ current ? <Image src={current.specifiedNode.image}/> : <Image src={story.image}/> }
 						<p>{story.description}</p>
 						{story && story.start && (
 							<h2 className='button' onClick={handleClick}>Read More!</h2>
@@ -111,7 +111,7 @@ const StyledPageWrapper = styled.div`
 		font-size: 1.4rem;
 		margin-bottom: 2.4rem;
 		cursor: pointer;
-
+		margin-top: 4%;
 		&:hover {
 			text-decoration: underline;
 		}
@@ -131,6 +131,9 @@ const StyledPageWrapper = styled.div`
 	}
 `;
 
+const Image = styled.img`
+	width: 55%;
+`
 const Byline = styled.span`
 	font-size: 10px;
 	font-weight: 400;

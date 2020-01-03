@@ -12,7 +12,11 @@ export default function StoryCard({ story }) {
 	// 	alert('Are you sure you want to delete the story?');
 	// };
 
-	console.log(collaborators);
+	let str = collaborators && collaborators.reduce(
+		(acc, curr) => acc + curr.username + ', ',
+		'',
+	);
+	str = str && str.substring(0, str.length - 2);
 
 	return (
 		<Tile>
@@ -27,7 +31,8 @@ export default function StoryCard({ story }) {
 				<Title>{title}</Title>
 				<Authors>By: {creator}</Authors>
 				<Authors>
-					{collaborators && 'with:'} {collaborators && collaborators.join(', ')}
+					
+					{collaborators && collaborators.length ? 'with:' : ''} {str}
 				</Authors>
 				<Desc>{description}</Desc>
 				{/*dateEdited && <p>{dateEdited}</p>*/}
