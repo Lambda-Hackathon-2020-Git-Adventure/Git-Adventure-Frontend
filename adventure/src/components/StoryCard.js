@@ -21,6 +21,7 @@ export default function StoryCard ({story}) {
         <Tile>
             <ButtonBar>
                 <Button read><Link to={`/story/${id}`}><img src={ReadIcon}/>Play story</Link></Button>
+                {/* Need to change how we grab the id. Refreshing the edit page will throw an error */}
                 <Button edit><Link to={{pathname: `/storytree/${id}`, state: {
                     thisId: id
                 }}}><img src={EditIcon}/>Edit story</Link></Button>
