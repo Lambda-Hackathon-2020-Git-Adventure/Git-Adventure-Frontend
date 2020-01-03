@@ -123,3 +123,12 @@ justify-content: center;
   border-bottom: .8rem solid #5B88A4;
 }
 /* End Navbar Styling */
+.sign-up-input{
+  border: 5px solid #f43518;
+	font-weight: 600;
+	padding-left: 2px;
+}
+
+.sign-up-input:focus{
+  outline: 0;
+}
