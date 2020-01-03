@@ -8,14 +8,15 @@ export default function ViewDecision() {
 	const [decisions, setDecisions] = useState([]);
 
 	useEffect(() => {
+		// axios.get()
+
 		setDecisions(['Blah', 'Blahbedyblah', 'Jan Meiii']);
 	}, []);
 
 	return (
 		<StyledPageWrapper paper={paper}>
 			<div>
-				<h3>STORY by AUTHOR</h3>
-				<h2>Name</h2>
+				<h2>STORY</h2>
 				<p>
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
 					veritatis perferendis tenetur pariatur accusamus esse eligendi
@@ -48,16 +49,16 @@ const StyledPageWrapper = styled.div`
 	background-image: ${props => props.paper};
 	background-size: cover;
 
-	h3 {
+	h2 {
 		width: 100%;
 		text-align: left;
 		font-size: 1.4rem;
 		margin-bottom: 2.4rem;
-	}
+		cursor: pointer;
 
-	h2 {
-		font-size: 1.8rem;
-		margin-bottom: 2.4rem;
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 
 	p {

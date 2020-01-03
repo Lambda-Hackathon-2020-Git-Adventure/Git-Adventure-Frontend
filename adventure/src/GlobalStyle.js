@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
   @import url('https://www.fontify.me/wf/7ae0c162d7a54b07d9af0bfbdba6482e');
   @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap');
-  
+
   @font-face {
     font-family: 'Souvenir';
     src: url('./fonts/souvenir/SouvenirLight.otf') format('opentype');
@@ -31,6 +31,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   p {
-    max-width: 65ch;
+    // max-width: 65ch;
   }
 `;
