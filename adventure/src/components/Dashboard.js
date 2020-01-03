@@ -119,12 +119,12 @@ const DashContainer = styled.main`
 const Blurb = styled.p`
   max-width: 100%;
   width: 100%;
-  background-color: #7C6B68;
-  color: white;
+  /* background-color: #7C6B68; */
+  /* color: white; */
   font-size: 1.75rem;
   padding: 1rem;
-  border-top: black 1px solid;
-  border-bottom: black 1px solid;
+  /* border-top: black 1px solid;
+  border-bottom: black 1px solid; */
   text-align: center;
 `;
 
@@ -180,7 +180,7 @@ const NewStory = styled.button`
   border-radius: 2rem;
   border-color: transparent;
   cursor: pointer;
-  box-shadow: 2px 2px 5px #B5646E3f;
+  box-shadow: 2px 2px 3px rgba(150, 0, 40, .5);
   margin: 1rem 0;
   &:hover {
     background-color: black;
