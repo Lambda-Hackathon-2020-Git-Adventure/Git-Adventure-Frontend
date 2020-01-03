@@ -8,7 +8,15 @@ import { team_member_info } from './TeammemberInfo';
 export default function About() {
 	return (
 		<div>
-			<StyledHeader>Meet the team behind Git Your Own Adventure!</StyledHeader>
+			<StyledHeader>
+				Meet the team behind <StyledSpan>Create Your Own Adventure!</StyledSpan>
+			</StyledHeader>
+			<StyledP>
+				From <StyledSpan>6/10th</StyledSpan> of the team that brought you
+				QualityHub + InterviewQ, <StyledSpan>1/13th</StyledSpan> of the team
+				that will bring you Community Calendar, and{' '}
+				<StyledSpan>Faye</StyledSpan>...
+			</StyledP>
 			<StyledWrapper>
 				{team_member_info.map(team_member => (
 					<TeamMemberCard key={team_member.name} team_member={team_member} />
@@ -22,6 +30,17 @@ const StyledHeader = styled.h2`
 	font-size: 3.6rem;
 	width: 96%;
 	margin: 2rem auto 3rem;
+`;
+
+const StyledSpan = styled.span`
+	color: red;
+`;
+
+const StyledP = styled.p`
+	text-align: center;
+	width: 96%;
+	margin: 3rem auto;
+	font-size: 1.8rem;
 `;
 
 const StyledWrapper = styled.div`
