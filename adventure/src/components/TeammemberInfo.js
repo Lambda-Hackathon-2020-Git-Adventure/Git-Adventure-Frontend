@@ -5,7 +5,7 @@ export const team_member_info = [
 		img_path: 'julie.jfif',
 		link_title: 'GitHub',
 		link_url: 'https://github.com/julieantonio',
-		bio: 'BIO',
+		bio: 'Web22 | Labs 18 QualityHub+InterviewQ',
 	},
 	{
 		name: 'Jordan Doan',
@@ -21,7 +21,7 @@ export const team_member_info = [
 		img_path: 'mark.jfif',
 		link_title: 'GitHub',
 		link_url: 'https://github.com/markpkng',
-		bio: 'BIO',
+		bio: 'Web 23 | Labs 19 | Community Calendar',
 	},
 	{
 		name: 'Ryan Ziegenfus',
@@ -29,7 +29,7 @@ export const team_member_info = [
 		img_path: 'ryan.jfif',
 		link_title: 'GitHub',
 		link_url: 'https://github.com/ryanZiegenfus',
-		bio: 'BIO',
+		bio: 'Web22 | Labs 18 QualityHub+InterviewQ',
 	},
 	{
 		name: 'Faye Skeen',
@@ -45,7 +45,7 @@ export const team_member_info = [
 		img_path: 'jonathan.jfif',
 		link_title: 'LinkedIn',
 		link_url: 'https://www.linkedin.com/in/jonathan-y-ho/',
-		bio: 'BIO',
+		bio: 'Web22 | Labs 18 QualityHub+InterviewQ',
 	},
 	{
 		name: 'Krishan Nattar',
@@ -61,7 +61,7 @@ export const team_member_info = [
 		img_path: 'nick.jfif',
 		link_title: 'GitHub',
 		link_url: 'https://github.com/NickGonzalez04',
-		bio: 'BIO',
+		bio: 'Web22 | Labs 18 QualityHub+InterviewQ',
 	},
 	{
 		name: 'Jan Meiiii!',
