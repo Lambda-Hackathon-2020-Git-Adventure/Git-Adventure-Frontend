@@ -14,7 +14,8 @@ export default function StoryCard(props) {
 	const { image, title, creator, description, id, collaborators } = props.story;
 	const { myStories, setMyStories, createInviteModal, collaborator } = props;
 
-	console.log(collaborator);
+	console.log(props);
+	console.log(collaborators);
 
 	const deleteStory = () => {
 		axiosWithAuth()

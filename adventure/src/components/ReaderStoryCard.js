@@ -12,6 +12,8 @@ export default function StoryCard({ story }) {
 	// 	alert('Are you sure you want to delete the story?');
 	// };
 
+	console.log(collaborators);
+
 	return (
 		<Tile>
 			<Button read>

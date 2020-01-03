@@ -109,7 +109,7 @@ export default function StoryTree() {
 				/>
 			)}
 			<Modali.Modal {...nodeModal}>
-				<ModifyDecision mode='edit' nodeId={editNode} />
+				<ModifyDecision mode='edit' nodeId={editNode} toggleNodeModal={toggleNodeModal}/>
 			</Modali.Modal>
 		</>
 	);
