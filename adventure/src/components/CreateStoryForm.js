@@ -5,7 +5,6 @@ import {axiosWithAuth} from './authentication/axiosWithAuth'
 export default function CreateStoryForm (props) {
     const {closeModal} = props;
     const [newStory, setNewStory] = useState({
-        creator: window.localStorage.getItem("id") || 1,
         title: "",
         description: "",
         image: ""
