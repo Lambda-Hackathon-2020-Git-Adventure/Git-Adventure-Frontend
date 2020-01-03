@@ -139,3 +139,7 @@ justify-content: center;
 .sign-up-input:focus{
   outline: 0;
 }
+
+text{
+  font-size: 1.4rem;
+}
