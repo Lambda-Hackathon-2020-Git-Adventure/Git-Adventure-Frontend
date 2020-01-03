@@ -37,6 +37,93 @@
   }
 }
 
+
+/* Navbar Styling */
+
+.navbar-main{
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  height: 50px;
+}
+
+.navbar-main a{
+  text-decoration: none;
+  color:black;
+}
+
+.navbar-sign-in-up a{
+  margin-right: 50px;
+}
+
+.navbar-sign-in-up{
+  display:flex;
+}
+
+.navbar-title{
+  margin-left: 50px;
+}
+
+.landing-page-top{
+  display: flex;
+  justify-content: center;
+}
+
+.landing-page-top h2{
+  font-size: 2.6rem;
+  margin-bottom: 2rem;
+  
+}
+
+.landing-page-image{
+  width: 50rem;
+}
+
+.landing-page-top-text{
+  display: flex;
+padding-left: 2rem;
+align-items: center;
+justify-content: center;
+}
+
+.landing-page-top-text p{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.8rem;
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+.cta-button{
+  animation: App-logo-spin infinite 20s linear;
+  position: relative;
+}
+
+.cta-text{
+  position: absolute;
+  top: 68%;
+  right: 29.75%;
+  color: white;
+  font-size: 2rem;
+}
+
+.landing-page-container h1{
+  margin: 2rem 0;
+    font-size: 3.6rem;
+    color: red;
+}
+
+
+
+.landing-page-hr{
+  width: 85%;
+  margin: 2rem auto;
+  border-top: .3rem solid #F1BD19;
+  border-bottom: .8rem solid #5B88A4;
+}
+/* End Navbar Styling */
 .sign-up-input{
   border: 5px solid #f43518;
 	font-weight: 600;
