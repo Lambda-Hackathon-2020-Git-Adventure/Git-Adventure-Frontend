@@ -97,13 +97,14 @@ justify-content: center;
 }
 
 .cta-button{
+  animation: App-logo-spin infinite 20s linear;
   position: relative;
 }
 
 .cta-text{
   position: absolute;
-  top: 38%;
-  right: 41%;
+  top: 68%;
+  right: 29.75%;
   color: white;
   font-size: 2rem;
 }
