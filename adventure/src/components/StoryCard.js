@@ -41,7 +41,7 @@ const Tile = styled.section`
     /* padding: 1rem; */
     margin: 1rem;
     padding-right: 1rem;
-    max-height: 250px;
+    max-height: 300px;
     background-color: rgba(255,255,255,.5);
     border-radius: .25rem;
     box-shadow: 2px 2px 5px #B5646E3f;

@@ -82,6 +82,9 @@ const DashContainer = styled.main`
   flex-flow: row nowrap;
   justify-content: center;
   background-color: #DED4D2;
+  @media (max-width: 900px) {
+      flex-flow row wrap;
+    }
 `;
 
 const Blurb = styled.p`
@@ -113,7 +116,6 @@ const Subheading = styled.h2`
 
 const randomImage = () => {
   const imgArray = [Img1, Img2, Img3, Img4, Img5]
-
   const randomNum = Math.floor(Math.random() * imgArray.length)
   const pick = imgArray[randomNum]
   return pick;
