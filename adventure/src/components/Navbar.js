@@ -9,6 +9,7 @@ export default function NavBar() {
     height: 0.6rem;
     width: 100%;
     `;
+    
 	const StyledRole = styled.div`
 		background-color: red;
 		color: white;
