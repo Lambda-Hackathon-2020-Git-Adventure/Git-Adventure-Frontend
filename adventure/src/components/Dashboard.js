@@ -20,8 +20,6 @@ import curly_arrow from '../images/curly_arrow.png';
 
 import CreateStoryForm from './CreateStoryForm';
 
-
-
 const stories = [
 	{
 		id: 1,
@@ -70,16 +68,15 @@ const stories = [
 ];
 
 export default function Dashboard(props) {
+	const [modalViz, setModalViz] = useState(false);
 
-  const [modalViz, setModalViz] = useState(false);
-
-  const createStoryModal = () => {
-    setModalViz(!modalViz);
-  };
-  const closeModal = e => {
-    // e.stopPropagation()
-    setModalViz(!modalViz);
-  };
+	const createStoryModal = () => {
+		setModalViz(!modalViz);
+	};
+	const closeModal = e => {
+		// e.stopPropagation()
+		setModalViz(!modalViz);
+	};
 	// const [modalViz, setModalViz] = useState(false);
 	// const [data, setData] = useState();
 
