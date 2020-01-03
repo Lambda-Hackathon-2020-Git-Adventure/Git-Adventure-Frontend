@@ -19,8 +19,14 @@ export default function About() {
 					rel='noopener noreferrer'>
 					QualityHub+InterviewQ
 				</a>
-				, <StyledSpan>1/13th</StyledSpan> of the team that will bring you
-				Community Calendar, and <StyledSpan>Faye</StyledSpan>...
+				, <StyledSpan>1/13th</StyledSpan> of the team that will bring you{' '}
+				<a
+					href='https://www.communitycalendar.xyz'
+					target='_blank'
+					rel='noopener noreferrer'>
+					Community Calendar
+				</a>
+				, and <StyledSpan>Faye</StyledSpan>...
 			</StyledP>
 			<StyledWrapper>
 				{team_member_info.map(team_member => (
@@ -49,6 +55,7 @@ const StyledP = styled.p`
 
 	a {
 		color: #5b88a4;
+		text-decoration: none;
 	}
 `;
 

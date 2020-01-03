@@ -16,10 +16,9 @@ export default function StoryCard(props) {
 
 	console.log(props);
 	console.log(collaborators);
-	let str = collaborators && collaborators.reduce(
-		(acc, curr) => acc + curr.username + ', ',
-		'',
-	);
+	let str =
+		collaborators &&
+		collaborators.reduce((acc, curr) => acc + curr.username + ', ', '');
 	str = str && str.substring(0, str.length - 2);
 
 	const deleteStory = () => {
@@ -76,7 +75,9 @@ export default function StoryCard(props) {
 				{image && <img src='' alt=''></img>}
 				<Title>{title}</Title>
 				<Authors>By: {creator}</Authors>
-				<Authors>{collaborators && collaborators.length ? 'with:' : ''} {str}</Authors>
+				<Authors>
+					{collaborators && collaborators.length ? 'with:' : ''} {str}
+				</Authors>
 				<Desc>{description}</Desc>
 				{/*dateEdited && <p>{dateEdited}</p>*/}
 			</StoryInfo>
@@ -120,7 +121,8 @@ const Desc = styled.p`
 	font-size: 1.4rem;
 	padding-top: 1rem;
 	text-align: left;
-	font-family: 'Open Sans', sans-serif;
+	// font-family: 'Open Sans', sans-serif;
+	font-family: 'Libre Baskerville';
 `;
 
 // BUTTONS

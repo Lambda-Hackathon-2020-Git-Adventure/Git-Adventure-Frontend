@@ -7,7 +7,7 @@ import ReadIcon from '../images/book-open-page-variant.png';
 
 export default function StoryCard({ story }) {
 	const { image, title, creator, description, id, collaborators } = story;
-	const [str, setStr] = useState("");
+	const [str, setStr] = useState('');
 	// const deleteStory = () => {
 	// 	alert('Are you sure you want to delete the story?');
 	// };
@@ -16,12 +16,12 @@ export default function StoryCard({ story }) {
 			let newStr = collaborators.reduce(
 				(acc, curr) => acc + curr.username + ', ',
 				'',
-			);	
+			);
 			newStr = newStr.substring(0, newStr.length - 2);
 			setStr(newStr);
 		}
-	}, [story, collaborators])
-	
+	}, [story, collaborators]);
+
 	return (
 		<Tile>
 			<Button read>
@@ -35,7 +35,6 @@ export default function StoryCard({ story }) {
 				<Title>{title}</Title>
 				<Authors>By: {creator}</Authors>
 				<Authors>
-					
 					{collaborators && collaborators.length ? 'with:' : ''} {str}
 				</Authors>
 				<Desc>{description}</Desc>
@@ -81,7 +80,8 @@ const Desc = styled.p`
 	font-size: 1.4rem;
 	padding-top: 1rem;
 	text-align: left;
-	font-family: 'Open Sans', sans-serif;
+	// font-family: 'Open Sans', sans-serif;
+	font-family: 'Libre Baskerville';
 `;
 
 // BUTTONS

@@ -96,7 +96,7 @@ export default function Dashboard(props) {
 
 	useEffect(() => {
 		axiosWithAuth()
-			.get('https://cyahack.herokuapp.com/api/stories/mine')
+			.get('/stories/mine')
 			.then(res => {
 				setMyStories(res.data);
 				// console.log('LSKDFSLKDJF', myStories);
@@ -198,7 +198,8 @@ const Blurb = styled.p`
   	border-bottom: black 1px solid; */
 	text-align: left;
 	margin: 0 auto;
-	font-family: 'Open Sans', sans-serif;
+	// font-family: 'Open Sans', sans-serif;
+	font-family: 'Libre Baskerville';
 `;
 const StoryColumn = styled.section`
 	/* border: 1px solid blue; */
