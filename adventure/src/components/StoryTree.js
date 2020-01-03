@@ -20,15 +20,23 @@ export default function StoryTree() {
 	const [first, setFirst] = useState(false);
 
 	// let mode = 'create';
-
+// let restart;
 	const myConfig = {
 		directed: true,
 		nodeHighlightBehavior: true,
 		node: {
 			labelProperty: 'name',
 			color: 'lightgreen',
-			size: 120,
+			size: 220,
 			highlightStrokeColor: 'blue',
+			// fontSize: 190
+		},
+		// label: {
+		// 	// fontSize: 100
+		// },
+		d3: {
+			linkLength: 150,
+			// fontSize: 100
 		},
 		link: {
 			highlightColor: 'lightblue',
@@ -43,6 +51,7 @@ export default function StoryTree() {
 		setEditNode(nodeId);
 		// toggleNodeModal();
 		toggleQuestionModal();
+		
 	};
 
 
@@ -62,6 +71,7 @@ export default function StoryTree() {
 					color: 'red',
 					symbolType: 'cross',
 				});
+				someLinks.push({source: res.data.story.id, target: res.data.story.id})
 				setData({
 					nodes: someData,
 					links: someLinks,
@@ -81,7 +91,34 @@ export default function StoryTree() {
 				if (res.data.length < 1) {
 					noNodes();
 					return;
+				} else if(res.data.length ==1){
+					res.data.forEach(item => {
+						let color = 'blue';
+						let symbol = 'circle';
+						if (item.nodeParents.length < 1) {
+							color = 'red';
+							symbol = 'star';
+						}
+						someData.push({
+							name: item.specifiedNode.name,
+							id: item.specifiedNode.id,
+							color: color,
+							symbolType: symbol,
+						});
+						// someData.push({id: item.specifiedNode.id});
+						someLinks.push({ source: item.specifiedNode.id, target: item.specifiedNode.id });
+					});
+					// res.data.forEach(item => {
+					// 	item.nodeChildren.forEach(child => {
+						// });
+					// });
+					setData({
+						nodes: someData,
+						links: someLinks,
+					});
+					return;
 				}
+				console.log("MEOWWW")
 				setStoryId(res.data[0].specifiedNode.story_id);
 				setFirst(false);
 				//Sets the nodes
@@ -152,6 +189,7 @@ export default function StoryTree() {
 					toggleNodeModal={toggleAddModal}
 					first={first}
 					story_id={story_id}
+					// restart={Graph.restart}
 				/>
 			</Modali.Modal>
 			<Modali.Modal {...nodeModal}>
@@ -161,6 +199,7 @@ export default function StoryTree() {
 					toggleNodeModal={toggleNodeModal}
 					first={first}
 					story_id={story_id}
+					// restart={Graph.restart}
 				/>
 			</Modali.Modal>
 		</>

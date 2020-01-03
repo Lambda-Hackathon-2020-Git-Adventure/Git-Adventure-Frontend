@@ -8,7 +8,6 @@ import ModifyDecisionImage from './ModifyDecisionImage';
 import ModifyDecisionVideo from './ModifyDecisionVideo';
 
 export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, story_id }) {
-
 	const [decision, setDecision] = useState();
 
 	const [updatedDec, setUpdatedDec] = useState({});
@@ -54,12 +53,16 @@ export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, s
 		e.preventDefault();
 		if (mode === 'edit') {
 			axiosWithAuth().put(`https://cyahack.herokuapp.com/api/nodes/${nodeId}`, {node: updatedDec})
-			.then(res => console.log(res), toggleNodeModal())
+			.then(res => {
+				toggleNodeModal();
+				window.location.reload();
+			})
 			.catch(err => console.log(err))
 		} else if (first === true) {
 			axiosWithAuth().post(`https://cyahack.herokuapp.com/api/nodes/`, {node: {...updatedDec, first: true, video: "", image: ""}})
 			.then(res => {
 				toggleNodeModal();
+				window.location.reload();
 			})
 			.catch(err => console.log(err))
 		}else if (mode === 'create') {
@@ -67,6 +70,7 @@ export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, s
 			`, {node: updatedDec})
 			.then(res => {
 				toggleNodeModal();
+				window.location.reload();
 			})
 			.catch(err => console.log(err))
 		}
@@ -82,7 +86,7 @@ export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, s
 					id='decision-name'
 					name='name'
 					type='text'
-					placeholder={updatedDec && mode === 'edit' ? updatedDec.name :'Write the name of the decision here!'}
+					placeholder={updatedDec && mode === 'edit' ? updatedDec.name : first ? 'Write the title of your first chapter' :'Write the name of the decision here!'}
 					value={updatedDec && updatedDec.name}
 					onChange={handleChange}
 				/>
