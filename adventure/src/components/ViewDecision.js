@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 
 import { axiosWithAuth } from './authentication/axiosWithAuth';
 
 export default function ViewDecision() {
 	const paper = `url('/photos/paper-texture-3.jpg')`;
+	const { id } = useParams();
 	const [data, setData] = useState({});
 	const [storyId, setStoryId] = useState();
 	const [story, setStory] = useState({});
-
-	const id = 1;
 
 	useEffect(() => {
 		axiosWithAuth()
