@@ -9,28 +9,19 @@ import EditStoryDescription from './EditStoryDescription';
 export default function StoryTree() {
 	const params = useParams();
 
-	console.log(params.id);
-
-	// console.log(props);
 	const [modalViz, setModalViz] = useState(false);
 	const [data, setData] = useState();
 	const [nodeModal, toggleNodeModal] = useModali();
-  const [editNode, setEditNode] = useState();
-  const [mode, setMode] = useState('edit');
-  const [story_id, setStoryId] = useState();
-  const [first, setFirst] = useState(false);
+	const [editNode, setEditNode] = useState();
+	const [mode, setMode] = useState('edit');
+	const [story_id, setStoryId] = useState();
+	const [first, setFirst] = useState(false);
 
-  // let mode = 'create';
+	// let mode = 'create';
 
 	const myConfig = {
 		directed: true,
 		nodeHighlightBehavior: true,
-		// d3: {
-    //   alphaTarget: 0.05,
-    //   gravity: -200,
-    //   linkLength: 100,
-    //   linkStrength: 1,
-    // },
 		node: {
 			labelProperty: 'name',
 			color: 'lightgreen',
@@ -47,7 +38,6 @@ export default function StoryTree() {
 	};
 
 	const onClickNode = function(nodeId) {
-		console.log(nodeId);
 		setEditNode(nodeId);
 		toggleNodeModal();
 	};
@@ -58,20 +48,19 @@ export default function StoryTree() {
 	// const closeModal = e => {
 	// 	// e.stopPropagation()
 	// 	setModalViz(!modalViz);
-  // };
-  
-  const noNodes = () =>{
-    let someData = [];
+	// };
+
+	const noNodes = () => {
+		let someData = [];
 		let someLinks = [];
 		axiosWithAuth()
 			.get(`https://cyahack.herokuapp.com/api/stories/${params.id}`)
 			.then(res => {
-        console.log(res.data.story);
-        setMode('create');
-		setFirst(true);
-		setStoryId(res.data.story.id);
-        
-        // mode = 'create';
+				setMode('create');
+				setFirst(true);
+				setStoryId(res.data.story.id);
+
+				// mode = 'create';
 				// if (res.data.length < 1) {
 				// 	return;
 				// }
@@ -83,19 +72,19 @@ export default function StoryTree() {
 				// 		color = 'red';
 				// 		symbol = 'star';
 				// 	}
-					someData.push({
-						name: res.data.story.title,
-						id: res.data.story.id,
-						color: "red",
-						symbolType: "cross",
-					});
-					// someData.push({id: item.specifiedNode.id});
+				someData.push({
+					name: res.data.story.title,
+					id: res.data.story.id,
+					color: 'red',
+					symbolType: 'cross',
+				});
+				// someData.push({id: item.specifiedNode.id});
 				// });
 
 				//sets the links sources to targets
 				// res.data.forEach(item => {
 				// 	item.nodeChildren.forEach(child => {
-						// someLinks.push({ source: item.specifiedNode.id, target: child.id });
+				// someLinks.push({ source: item.specifiedNode.id, target: child.id });
 				// 	});
 				// });
 				setData({
@@ -106,7 +95,7 @@ export default function StoryTree() {
 			.catch(err => {
 				console.log(err);
 			});
-  }
+	};
 
 	useEffect(() => {
 		let someData = [];
@@ -114,14 +103,12 @@ export default function StoryTree() {
 		axiosWithAuth()
 			.get(`https://cyahack.herokuapp.com/api/nodes/story/${params.id}`)
 			.then(res => {
-				console.log(res);
 				if (res.data.length < 1) {
-          noNodes();
+					noNodes();
 					return;
-		}
-		// console.log(res);
-		setStoryId(res.data[0].specifiedNode.story_id);
-        setFirst(false);
+				}
+				setStoryId(res.data[0].specifiedNode.story_id);
+				setFirst(false);
 				//Sets the nodes
 				res.data.forEach(item => {
 					let color = 'blue';
@@ -162,15 +149,21 @@ export default function StoryTree() {
 			</div>
 			{data && (
 				<Graph
-        className = "graph-class"
-					id='graph-id' // id is mandatory, if no id is defined rd3g will throw an error
+					className="graph-class"
+					id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
 					data={data}
 					config={myConfig}
 					onClickNode={onClickNode}
 				/>
 			)}
 			<Modali.Modal {...nodeModal}>
-				<ModifyDecision mode={mode} nodeId={editNode} toggleNodeModal={toggleNodeModal} first={first} story_id={story_id} />
+				<ModifyDecision
+					mode={mode}
+					nodeId={editNode}
+					toggleNodeModal={toggleNodeModal}
+					first={first}
+					story_id={story_id}
+				/>
 			</Modali.Modal>
 		</>
 	);

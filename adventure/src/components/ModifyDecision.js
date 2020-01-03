@@ -8,8 +8,12 @@ import ModifyDecisionImage from './ModifyDecisionImage';
 import ModifyDecisionVideo from './ModifyDecisionVideo';
 
 export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, story_id }) {
+	// console.log( mode, nodeId, toggleNodeModal, first, story_id);
+	console.log(mode);
+	console.log(nodeId);
+	console.log(first);
+	console.log(story_id)
 
-	console.log(nodeId)
 	const [decision, setDecision] = useState();
 
 	const [updatedDec, setUpdatedDec] = useState({});
