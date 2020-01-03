@@ -53,14 +53,14 @@ const SignIn = props => {
 	const handleSubmit = e => {
 		e.preventDefault();
 		axiosWithAuth()
-			.post('endpoint needed for BE', user)
+			.post('https://cyahack.herokuapp.com/api/auth/login', user)
 			.then(res => {
-				localStorage.setItem('token', res.data.payload);
+				localStorage.setItem('token', res.data.token);
 				props.history.push('/dashboard');
 				window.location.reload();
 			})
 			.catch(err => {
-				console.log(err);
+				console.log(err.data);
 			});
 	};
 
