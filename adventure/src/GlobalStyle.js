@@ -18,7 +18,4 @@ export const GlobalStyle = createGlobalStyle`
     font-family: font77490;
   }
 
-  p {
-    max-width: 65ch;
-  }
 `;

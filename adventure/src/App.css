@@ -65,4 +65,50 @@
   margin-left: 50px;
 }
 
+.landing-page-top{
+  display: flex;
+  justify-content: center;
+}
+
+.landing-page-top h2{
+  font-size: 2.6rem;
+  margin-bottom: 1rem;
+  
+}
+
+.landing-page-image{
+  width: 50rem;
+}
+
+.landing-page-top-text{
+  display: flex;
+padding-left: 2rem;
+align-items: center;
+justify-content: center;
+}
+
+.landing-page-top-text p{
+  font-family: 'Open Sans', sans-serif;
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+.cta-button{  
+  clip-path: polygon(130px 67px,227px 179px,6px 163px,198px 223px,7px 281px,225px 266px,131px 378px,292px 295px,333px 414px,374px 294px,534px 377px,438px 266px,659px 282px,464px 223px,655px 162px,439px 178px,532px 68px,371px 151px,331px 32px,292px 153px);
+  border: 1px solid black;
+}
+
+.landing-page-container h1{
+  margin: 2rem 0;
+    font-size: 3.6rem;
+}
+
+.landing-page-hr{
+  width: 85%;
+  margin: 2rem auto;
+  border-top: .6rem solid #F1BD19;
+  border-bottom: 1.6rem solid #5B88A4;
+}
 /* End Navbar Styling */
