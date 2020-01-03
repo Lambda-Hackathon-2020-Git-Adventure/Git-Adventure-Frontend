@@ -44,8 +44,8 @@ const SignIn = props => {
 	};
 
 	const handleSubmit = e => {
-    e.preventDefault();
-    console.log(user);
+		e.preventDefault();
+		console.log(user);
 		axiosWithAuth()
 			.post('endpoint needed for BE', user)
 			.then(res => {
@@ -70,7 +70,7 @@ const SignIn = props => {
 					value={user.username}
 					onChange={handleChange}
 					id="email"
-					placeholder="UserName"
+					placeholder="Username"
 				/>
 				<br />
 				{/* <label htmlFor='password'> Password</label> */}
@@ -82,8 +82,8 @@ const SignIn = props => {
 					id="password"
 					placeholder="Password"
 				/>
-        <br /> <br />
-			<StyledButton onClick={handleSubmit}>Sign In</StyledButton>
+				<br /> <br />
+				<StyledButton onClick={handleSubmit}>Sign In</StyledButton>
 			</StyledForm>
 			{/* </form> */}
 			<br />

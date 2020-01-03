@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.sign-up-input{
+  border: 5px solid #f43518;
+			font-weight: 600;
+			padding-left: 2px;
+}
