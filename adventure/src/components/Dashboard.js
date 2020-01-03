@@ -8,6 +8,9 @@ import Img2 from '../images/headers/img2.jpg'
 import Img3 from '../images/headers/img3.jpg'
 import Img4 from '../images/headers/img4.jpg'
 import Img5 from '../images/headers/img5.jpg'
+import left_arrow from '../images/left_arrow.png'
+import right_arrow from '../images/right_arrow.png'
+import curly_arrow from '../images/curly_arrow.png'
 import CreateStoryForm from './CreateStoryForm';
 
 const stories = [
@@ -68,7 +71,15 @@ export default function Dashboard(props) {
       <Blurb>
         Here you'll find all the interactive stories that you've created or collaborated on. To get started, create a new story.
       </Blurb>
-      <NewStory onClick={createStoryModal}>Create new story (not yet styled)</NewStory>
+      <CreateContainer>
+      <img src={curly_arrow}></img>
+        <NewStory onClick={createStoryModal}>Create new story (not yet styled)</NewStory>
+        <div>
+          <img src={left_arrow}></img>
+          <h2>...or work on one you've already started!</h2>
+          <img src={right_arrow}></img>
+        </div>
+      </CreateContainer>
       {modalViz && <CreateStoryForm closeModal={closeModal}/> }
       <DashContainer>
         <StoryColumn>
@@ -93,7 +104,7 @@ export default function Dashboard(props) {
 }
 
 const DashBG = styled.div`
-  background-color: #DED4D2;
+  background-color: #D6D0CE;
 `;
 
 const DashContainer = styled.main`
@@ -159,12 +170,15 @@ const Header = styled.header`
 `;
 
 const NewStory = styled.button`
-  background-color: transparent;
-  color: maroon;
+  background-color: red;
+  height: 3rem;
+  color: white;
   font-size: 2rem;
-  padding: 1.5rem;
-  border-radius: 1rem;
-  border: 2px solid maroon;
+  font-family: font77490;
+  text-transform: uppercase;
+  padding: 0 4rem;
+  border-radius: 2rem;
+  border-color: transparent;
   cursor: pointer;
   box-shadow: 2px 2px 5px #B5646E3f;
   margin: 1rem 0;
@@ -172,5 +186,23 @@ const NewStory = styled.button`
     background-color: black;
     color: white;
     border-color: black;
+  }
+`;
+
+const CreateContainer = styled.div`
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  align-items: center;
+  img {
+    transform: scale(.7);
+    display: inline-block;
+  }
+  div {
+    display: flex;
+    align-items: flex-start;
+  }
+  h2 {
+    padding-top: 1rem;
   }
 `;

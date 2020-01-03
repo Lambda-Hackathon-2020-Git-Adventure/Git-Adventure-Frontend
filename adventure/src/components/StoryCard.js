@@ -43,8 +43,10 @@ const Tile = styled.section`
     padding-right: 1rem;
     max-height: 300px;
     background-color: rgba(255,255,255,.5);
+    background-image: url('/photos/paper-texture-2.jpg');
+    background-blend-mode: luminosity;
     border-radius: .25rem;
-    box-shadow: 2px 2px 5px #B5646E3f;
+    box-shadow: 2px 2px 5px tan;
     max-width: 90%;
     display: flex;
     flex-flow: row nowrap;
@@ -67,6 +69,7 @@ const Authors = styled.h4`
 const Desc = styled.p`
     font-size: 1.4rem;
     padding-top: 1rem;
+    text-align: left;
 `;
 
 // BUTTONS
@@ -83,7 +86,7 @@ const ButtonBar = styled.nav`
 const Button = styled.button`
     width: 5rem;
     height: 100%;
-    background-color: ${props => props.read ? "green" : props.edit ? "teal" : props.share ? "palevioletred" : "maroon"};
+    background-color: ${props => props.read ? '#5b88a4' : props.edit ? "goldenrod" : props.share ? "#D95947" : "grey"};
     border: none;
     color: white;
     font-size: 10px;
