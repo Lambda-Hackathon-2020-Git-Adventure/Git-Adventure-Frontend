@@ -92,6 +92,7 @@ export default function StoryTree() {
 					noNodes();
 					return;
 				} else if(res.data.length ==1){
+					setStoryId(res.data[0].specifiedNode.story_id);
 					res.data.forEach(item => {
 						let color = 'blue';
 						let symbol = 'circle';
@@ -118,7 +119,6 @@ export default function StoryTree() {
 					});
 					return;
 				}
-				console.log("MEOWWW")
 				setStoryId(res.data[0].specifiedNode.story_id);
 				setFirst(false);
 				//Sets the nodes
@@ -168,6 +168,9 @@ export default function StoryTree() {
 		<>
 			<div>
 				<EditStoryDescription nodeId={params.id} />
+			</div>
+			<div>
+				<p className='edit-instructions'>Click on a node below to edit, delete, or add decision paths</p>
 			</div>
 			{data && (
 				<Graph

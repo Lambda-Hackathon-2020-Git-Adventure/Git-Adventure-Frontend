@@ -155,6 +155,11 @@
 text {
 	font-size: 1.4rem;
 }
+
 .navbar-links-hovered:hover {
 	color: #f43518;
+}
+
+.edit-instructions{
+  font-size: 1.75rem;
 }
