@@ -5,7 +5,7 @@ export const team_member_info = [
 		img_path: 'julie.jfif',
 		link_title: 'GitHub',
 		link_url: 'https://github.com/julieantonio',
-		bio: 'Web22 | Labs 18 QualityHub+InterviewQ',
+		bio: 'Web22 | Labs18 QualityHub+InterviewQ',
 	},
 	{
 		name: 'Jordan Doan',
@@ -21,7 +21,7 @@ export const team_member_info = [
 		img_path: 'mark.jfif',
 		link_title: 'GitHub',
 		link_url: 'https://github.com/markpkng',
-		bio: 'Web 23 | Labs 19 | Community Calendar',
+		bio: 'Web 23 | Labs19 | Community Calendar',
 	},
 	{
 		name: 'Ryan Ziegenfus',
@@ -29,7 +29,7 @@ export const team_member_info = [
 		img_path: 'ryan.jfif',
 		link_title: 'GitHub',
 		link_url: 'https://github.com/ryanZiegenfus',
-		bio: 'Web22 | Labs 18 QualityHub+InterviewQ',
+		bio: 'Web22 | Labs18 QualityHub+InterviewQ',
 	},
 	{
 		name: 'Faye Skeen',
@@ -37,7 +37,7 @@ export const team_member_info = [
 		img_path: 'faye.jfif',
 		link_title: 'GitHub',
 		link_url: 'https://github.com/fskeen',
-		bio: 'BIO',
+		bio: 'Web21 | Web25 TL',
 	},
 	{
 		name: 'Jonathan Ho',
@@ -45,7 +45,7 @@ export const team_member_info = [
 		img_path: 'jonathan.jfif',
 		link_title: 'LinkedIn',
 		link_url: 'https://www.linkedin.com/in/jonathan-y-ho/',
-		bio: 'Web22 | Labs 18 QualityHub+InterviewQ',
+		bio: 'Web22 | Labs18 QualityHub+InterviewQ',
 	},
 	{
 		name: 'Krishan Nattar',
@@ -61,7 +61,7 @@ export const team_member_info = [
 		img_path: 'nick.jfif',
 		link_title: 'GitHub',
 		link_url: 'https://github.com/NickGonzalez04',
-		bio: 'Web22 | Labs 18 QualityHub+InterviewQ',
+		bio: 'Web22 | Labs18 QualityHub+InterviewQ',
 	},
 	{
 		name: 'Jan Meiiii!',
