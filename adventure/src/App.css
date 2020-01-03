@@ -36,33 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-
-/* Navbar Styling */
-
-.navbar-main{
-  display:flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid black;
-  height: 50px;
-}
-
-.navbar-main a{
-  text-decoration: none;
-  color:black;
-}
-
-.navbar-sign-in-up a{
-  margin-right: 50px;
-}
-
-.navbar-sign-in-up{
-  display:flex;
-}
-
-.navbar-title{
-  margin-left: 50px;
-}
-
-/* End Navbar Styling */
