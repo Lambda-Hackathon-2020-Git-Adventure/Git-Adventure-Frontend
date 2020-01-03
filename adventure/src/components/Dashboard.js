@@ -66,9 +66,9 @@ export default function Dashboard(props) {
         <h2>Your Stories</h2>
       </Header>
       <Blurb>
-        Here you'll find all the interactive stories that you've created or collaborated on. To get started, create a new.
+        Here you'll find all the interactive stories that you've created or collaborated on. To get started, create a new story.
       </Blurb>
-      <NewStory onClick={createStoryModal}>Create new story</NewStory>
+      <NewStory onClick={createStoryModal}>Create new story (not yet styled)</NewStory>
       {modalViz && <CreateStoryForm closeModal={closeModal}/> }
       <DashContainer>
         <StoryColumn>
