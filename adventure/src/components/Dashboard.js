@@ -65,7 +65,7 @@ const stories = [
 export default function Dashboard(props) {
   const [storyModalViz, setStoryModalViz] = useState(false)
   const [inviteModalViz, setInviteModalViz] = useState(false)
-  const [myStories, setMyStories] = useState([])
+  const [myStories, setMyStories] = useState({createdStories: [], collaboratingOn: []})
 
   const createStoryModal = () => {
     setStoryModalViz(!storyModalViz)
@@ -86,14 +86,14 @@ export default function Dashboard(props) {
   useEffect(()=>{
     axiosWithAuth().get('https://cyahack.herokuapp.com/api/stories/mine')
     .then(res=>{
-      // console.log(res.data);
+      console.log(res.data);
       setMyStories(res.data);
       console.log("LSKDFSLKDJF", myStories)
     })
     .catch(err=>{
       console.log(err);
     })
-  },[])
+  },[myStories.createdStories && myStories.createdStories.length, myStories.collaboratingOn && myStories.collaboratingOn.length])
 
   return (
     <DashBG>
@@ -112,13 +112,16 @@ export default function Dashboard(props) {
           <img src={right_arrow}></img>
         </div>
       </CreateContainer>
-      {storyModalViz && <CreateStoryForm closeModal={closeModal}/> }
+
+      {storyModalViz && <CreateStoryForm closeModal={closeModal} myStories={myStories} setMyStories={setMyStories}/> }
       {inviteModalViz && <InviteForm closeModal={closeModal}/> }
+
       <DashContainer>
         <StoryColumn>
           <Subheading>Created by you</Subheading>
           {console.log("My stories state", myStories.createdStories)}
           {myStories.createdStories && myStories.createdStories.map((story, index) => {
+            console.log(story)
             return (
               <StoryCard key={index} story={story} myStories={myStories} setMyStories={setMyStories} createInviteModal={createInviteModal} />
               )
@@ -138,7 +141,8 @@ export default function Dashboard(props) {
 }
 
 const DashBG = styled.div`
-	background-color: whitesmoke;
+  background-color: whitesmoke;
+  height: 100%;
 `;
 
 const DashContainer = styled.main`

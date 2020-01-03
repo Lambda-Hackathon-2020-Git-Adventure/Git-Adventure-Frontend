@@ -61,7 +61,7 @@ const Tile = styled.section`
     background-blend-mode: luminosity;
     border-radius: .25rem;
     box-shadow: 2px 2px 5px #938782;
-    max-width: 90%;
+    width: 90%;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -137,6 +137,7 @@ const Button = styled.button`
 
 const StoryInfo = styled.div`
     padding: 1rem;
+    width: 100%;
 `;
 
 
