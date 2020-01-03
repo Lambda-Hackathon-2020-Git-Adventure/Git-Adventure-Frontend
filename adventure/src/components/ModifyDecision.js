@@ -131,8 +131,8 @@ const StyledForm = styled.form`
 	max-width: 90rem;
 	margin: 2rem auto;
 	padding: 2rem 2%;
-	border: 1px solid silver;
-	border-radius: 0.5rem;
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 0.25rem;
 
 	h2 {
 		align-self: center;
