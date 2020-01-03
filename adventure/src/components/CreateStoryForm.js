@@ -14,7 +14,7 @@ export default function CreateStoryForm (props) {
     const createStory = (e) => {
         e.preventDefault()
         axios
-            .post(`URL`, newStory)
+            .post(`https://77560026.ngrok.io/api/stories`, newStory)
             .then(res => console.log(res))
             .catch(err => console.log(err))
         setNewStory({

@@ -17,7 +17,7 @@ export default function StoryCard ({story}) {
      return (
         <Tile>
             <ButtonBar>
-                <Button read><img src={ReadIcon}/>Play story</Button>
+                <Button read><Link to={`/story/${id}`}><img src={ReadIcon}/>Play story</Link></Button>
                 <Button edit><Link to={`/storytree/${id}`}><img src={EditIcon}/>Edit story</Link></Button>
                 <Button share><Link to={`/storytree/${id}/invite`}><img src={InviteIcon}/>Share & invite</Link></Button>
                 <Button onClick={deleteStory}> <img src={DeleteIcon}/> Delete story</Button>
