@@ -14,7 +14,6 @@ import StoryTree from './components/StoryTree';
 import ViewDecision from './components/ViewDecision';
 import StoriesList from './components/StoriesList';
 import ViewStory from './components/ViewStory';
-import Footer from './components/Footer';
 
 function App() {
 	const [token, setToken] = useState(localStorage.getItem('token'));
@@ -35,7 +34,6 @@ function App() {
 			<Route path='/storytree/:id' component={StoryTree} />
 			<Route path='/node/:id' component={ViewDecision} />
       <Route path='/story/:id' component={ViewStory} />
-      <Footer />
 		</div>
 	);
 }
