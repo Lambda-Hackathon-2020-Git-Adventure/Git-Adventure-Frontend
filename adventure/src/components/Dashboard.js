@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 //local imports
 import StoryCard from './StoryCard'
@@ -58,11 +59,11 @@ export default function Dashboard(props) {
     setModalViz(!modalViz)
   }
   const closeModal = (e) => {
-    e.stopPropagation()
+    // e.stopPropagation()
     setModalViz(!modalViz)
   }
 
-
+  console.log(axios.get("https://cyahack.herokuapp.com/api/stories/1"))
   return (
     <DashBG>
       <Header>
@@ -119,13 +120,14 @@ const DashContainer = styled.main`
 const Blurb = styled.p`
   max-width: 100%;
   width: 100%;
-  /* background-color: #7C6B68; */
-  /* color: white; */
+  background-color: #7C6B68;
+  color: white;
   font-size: 1.75rem;
   padding: 1rem;
-  /* border-top: black 1px solid;
-  border-bottom: black 1px solid; */
+  border-top: black 1px solid;
+  border-bottom: black 1px solid;
   text-align: center;
+  font-family: 'Open Sans', sans-serif;
 `;
 
 const StoryColumn = styled.section`
