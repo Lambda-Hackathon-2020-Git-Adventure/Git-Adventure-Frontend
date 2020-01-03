@@ -65,11 +65,16 @@ export default function ModifyDecision({ mode, nodeId, toggleNodeModal, first, s
 		} else if (first === true) {
 			console.log({node: {...updatedDec, first: true, video: "", image: ""}});
 			axiosWithAuth().post(`https://cyahack.herokuapp.com/api/nodes/`, {node: {...updatedDec, first: true, video: "", image: ""}})
-			.then(res => console.log(res))
+			.then(res => {
+				toggleNodeModal();
+			})
 			.catch(err => console.log(err))
 		}else if (mode === 'create') {
-			axiosWithAuth().post(`https://cyahack.herokuapp.com/api/nodes/${nodeId}`, {node: updatedDec})
-			.then(res => console.log(res))
+			axiosWithAuth().post(`https://cyahack.herokuapp.com/api/nodes/${nodeId}/createandconnect
+			`, {node: updatedDec})
+			.then(res => {
+				toggleNodeModal();
+			})
 			.catch(err => console.log(err))
 		}
 	};

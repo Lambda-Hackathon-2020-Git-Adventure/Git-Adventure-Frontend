@@ -13,6 +13,7 @@ export default function StoryTree() {
 	const [data, setData] = useState();
 	const [nodeModal, toggleNodeModal] = useModali();
 	const [questionModal, toggleQuestionModal] = useModali();
+	const [addModal, toggleAddModal] = useModali();
 	const [editNode, setEditNode] = useState();
 	const [mode, setMode] = useState('edit');
 	const [story_id, setStoryId] = useState();
@@ -121,6 +122,11 @@ export default function StoryTree() {
 		toggleNodeModal();
 	}
 
+	const selectAdd = () =>{
+		toggleQuestionModal();
+		toggleAddModal();
+	}
+
 	return (
 		<>
 			<div>
@@ -137,7 +143,16 @@ export default function StoryTree() {
 			)}
 			<Modali.Modal {...questionModal}>
 				<button onClick={selectEdit}>Edit Node</button>
-				{/* <button onClick={toggleAddModal}>Attach Decision</button> */}
+				<button onClick={selectAdd}>Add Node</button>
+			</Modali.Modal>
+			<Modali.Modal {...addModal}>
+			<ModifyDecision
+					mode='create'
+					nodeId={editNode}
+					toggleNodeModal={toggleAddModal}
+					// first={first}
+					story_id={story_id}
+				/>
 			</Modali.Modal>
 			<Modali.Modal {...nodeModal}>
 				<ModifyDecision
