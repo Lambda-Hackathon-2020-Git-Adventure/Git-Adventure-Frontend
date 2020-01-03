@@ -47,11 +47,12 @@ export default function Dashboard(props) {
   return (
     <React.Fragment>
       <Header>
-        <h2>Story shelf</h2>
+        <h2>Your Stories</h2>
       </Header>
+        <Blurb>Here you'll find all the interactive stories that you've created or collaborated on. To get started, add a story.</Blurb>
       <DashContainer>
         <StoryColumn>
-          <Subheading>Your stories</Subheading>
+          <Subheading>Created by you</Subheading>
           {stories.map((story, index) => {
             return (
               <StoryCard key={index} story={story} />
@@ -75,30 +76,58 @@ const DashContainer = styled.main`
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+  background-color: #DED4D2;
+`;
+
+const Blurb = styled.p`
+  max-width: 100%;
+  width: 100%;
+  background-color: #7C6B68;
+  color: white;
+  font-size: 1.75rem;
+  padding: 1rem;
+  border-top: black 1px solid;
+  border-bottom: black 1px solid;
 `;
 
 const StoryColumn = styled.section`
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   display: flex;
   flex-flow: row wrap;
-  max-width: 500px;
+  max-width: 90%;
+  justify-content: center;
 `;
 
 const Subheading = styled.h2`
   width: 100%;
   font-size: 1.5rem;
+  text-align: center;
+  padding: 1rem;
 `;
 
 const randomImage = () => {
   const imgArray = [Img1, Img2, Img3, Img4, Img5]
 
-      const randomNum = Math.floor(Math.random() * imgArray.length)
-      const pick = imgArray[randomNum]
-      return pick;
+  const randomNum = Math.floor(Math.random() * imgArray.length)
+  const pick = imgArray[randomNum]
+  return pick;
 }
 
 const Header = styled.header`
-  background-image: url('${() => randomImage()}');
+  background-image: url(${Img3});
+  background-color: #DED4D2;
+  background-blend-mode: multiply;
   background-size: cover;
   height: 200px;
+  font-size: 4rem;
+  color: white;
+  text-shadow: 2px 2px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-attachment: fixed; */
+
+  h2 {
+    margin-top: 8rem;
+  }
 `;

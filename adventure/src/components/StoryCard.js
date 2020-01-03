@@ -5,23 +5,28 @@ import EditIcon from '../images/lead-pencil.png'
 import InviteIcon from '../images/account-plus.png'
 import DeleteIcon from '../images/delete-forever.png'
 
+//font
+
 export default function StoryCard ({story}) {
     const {image, title, authors, description, dateEdited} = story;    return (
         <Tile>
-            <StoryInfo>
-                {image && <img src='' alt=''></img>}
-                <Title>{title}</Title>
-                {authors && authors.map((author, index) => <Authors key={index}>{author}</Authors>)}
-                <Desc>{description}</Desc>
-                {dateEdited && <p>{dateEdited}</p>}
-            </StoryInfo>
-            
             <ButtonBar>
-                <Button read><img src={ReadIcon}/>Read story</Button>
+                <Button read><img src={ReadIcon}/>Play story</Button>
                 <Button edit><img src={EditIcon}/>Edit story</Button>
                 <Button share><img src={InviteIcon}/>Share & invite</Button>
                 <Button > <img src={DeleteIcon}/> Delete story</Button>
             </ButtonBar>
+            <StoryInfo>
+                {image && <img src='' alt=''></img>}
+                <Title>{title}</Title>
+                <AuthorDiv>
+                    <h4>By:</h4>
+                    {authors && authors.map((author, index) => <Authors key={index}>{author}</Authors>)}
+                </AuthorDiv>
+                <Desc>{description}</Desc>
+                {dateEdited && <p>{dateEdited}</p>}
+            </StoryInfo>
+            
         </Tile>
     )
 }
@@ -33,41 +38,48 @@ const Tile = styled.section`
     /* padding: 1rem; */
     margin: 1rem;
     max-height: 250px;
-    background-color: #B5646E0f;
+    background-color: rgba(255,255,255,.5);
     border-radius: .25rem;
     box-shadow: 2px 2px 5px #B5646E3f;
-    max-width: 300px;
+    max-width: 90%;
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row nowrap;
     justify-content: space-between;
     &:hover {
         cursor: default;
     }
-    `;
+`;
 
 // TEXT STYLES
 const Title = styled.h3`
     font-size: 2rem;
-    `;
+`;
 
 const Authors = styled.h4`
     font-size: 1rem;
     
-    `;
+`;
+const AuthorDiv = styled.div`
+    display: flex;
+`;
 
 const Desc = styled.p`
     font-size: 1rem;
-    `;
+`;
 
 // BUTTONS
 
 const ButtonBar = styled.nav`
     display: flex;
-    width: 100%;
-    `;
+    /* width: 100%; */
+    flex-flow: column;
+    height: 100%;
+    justify-content: space-between;
+`;
 
 const Button = styled.button`
-    width: 100%;
+    width: 5rem;
+    height: 100%;
     background-color: ${props => props.read ? "green" : props.edit ? "teal" : props.share ? "palevioletred" : "maroon"};
     border: none;
     color: white;
@@ -84,10 +96,10 @@ const Button = styled.button`
     }
     
     &:nth-of-type(1) {
-        border-radius: 0 0 0 .25rem;
+        border-radius: .25rem 0 0 0 ;
     }
     &:nth-of-type(4) {
-        border-radius: 0 0 .25rem 0;
+        border-radius: 0 0 0 .25rem;
     }
     img {
         width: 60%;
