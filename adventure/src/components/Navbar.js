@@ -90,13 +90,13 @@ export default function NavBar({ token, setToken }) {
 			</NavLink>
 			<StyledNavbarMain>
 				<StyledHeader>
-					<NavLink to="/list">View Stories</NavLink>
-					{ token && <NavLink onClick={handleLogOut} to="/">Sign Out</NavLink>}
-					{token && <NavLink to="/dashboard">Dashboard</NavLink>}
+					<NavLink to="/list" className="navbar-links-hovered" >View Stories</NavLink>
+					{ token && <NavLink className="navbar-links-hovered" onClick={handleLogOut} to="/">Sign Out</NavLink>}
+					{token && <NavLink className="navbar-links-hovered" to="/dashboard">Dashboard</NavLink>}
 					{!token && (
 						<>
-							<NavLink to="/signin">Sign In</NavLink>
-							<NavLink to="/signup">Sign Up</NavLink>
+							<NavLink to="/signin" className="navbar-links-hovered" >Sign In</NavLink>
+							<NavLink to="/signup" className="navbar-links-hovered" >Sign Up</NavLink>
 						</>
 					)}
 				</StyledHeader>
