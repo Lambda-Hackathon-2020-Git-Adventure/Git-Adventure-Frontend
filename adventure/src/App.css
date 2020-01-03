@@ -143,3 +143,6 @@ justify-content: center;
 text{
   font-size: 1.4rem;
 }
+.navbar-links-hovered:hover {
+  color: #f43518;
+}
