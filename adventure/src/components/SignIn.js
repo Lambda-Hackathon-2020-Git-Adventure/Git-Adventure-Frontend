@@ -8,6 +8,9 @@ const StyledForm = styled.form`
 		border: 5px solid #f43518;
 		font-weight: 600;
 		padding-left: 2px;
+		:focus {
+			outline: 0;
+		}
 	}
 `;
 
@@ -21,6 +24,9 @@ const StyledButton = styled.button`
 	align-items: center;
 	font-size: 1.2rem;
 	cursor: pointer;
+	:focus{
+		outline: 0;
+	}
 `;
 
 const StyledH1 = styled.p`
@@ -28,6 +34,7 @@ const StyledH1 = styled.p`
 	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
 		1px 1px 0 #000;
 	font-size: 40px;
+	cursor: default;
 `;
 
 const SignIn = props => {
@@ -45,7 +52,6 @@ const SignIn = props => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		console.log(user);
 		axiosWithAuth()
 			.post('endpoint needed for BE', user)
 			.then(res => {
@@ -62,8 +68,6 @@ const SignIn = props => {
 		<div>
 			<StyledH1>SIGN IN!</StyledH1>
 			<StyledForm onSubmit={handleSubmit}>
-				{/* <form onSubmit={handleSubmit}> */}
-				{/* <label htmlFor='username'> UserName </label> */}
 				<br />
 				<input
 					name="username"
@@ -73,7 +77,6 @@ const SignIn = props => {
 					placeholder="Username"
 				/>
 				<br />
-				{/* <label htmlFor='password'> Password</label> */}
 				<br />
 				<input
 					name="password"
@@ -85,9 +88,7 @@ const SignIn = props => {
 				<br /> <br />
 				<StyledButton onClick={handleSubmit}>Sign In</StyledButton>
 			</StyledForm>
-			{/* </form> */}
 			<br />
-			{/* <button type="submit">Sign In</button> */}
 		</div>
 	);
 };
