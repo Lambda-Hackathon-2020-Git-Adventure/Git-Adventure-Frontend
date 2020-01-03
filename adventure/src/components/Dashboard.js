@@ -83,7 +83,7 @@ const DashContainer = styled.main`
   justify-content: center;
   background-color: #DED4D2;
   @media (max-width: 900px) {
-      flex-flow row wrap;
+      flex-flow: row wrap;
     }
 `;
 
