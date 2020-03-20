@@ -1,6 +1,6 @@
 export const team_member_info = [
 	{
-		name: 'Julie Antonio',
+		name: 'Juliette Antoniou',
 		role: 'Project Leader',
 		img_path: 'julie.jfif',
 		link_title: 'GitHub',
