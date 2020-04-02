@@ -51,7 +51,6 @@ const Tile = styled.section`
 	/* padding: 1rem; */
 	margin: 1rem;
 	padding-right: 1rem;
-	// max-height: 300px;
 	background-color: rgba(255, 255, 255, 0.5);
 	background-image: url('/photos/paper-texture-2.jpg');
 	background-blend-mode: luminosity;
@@ -97,7 +96,7 @@ const ButtonBar = styled.nav`
 
 const Button = styled.button`
 	width: 5rem;
-	height: 100%;
+	/* height: 100%; */
 	background-color: ${props =>
 		props.read
 			? '#5b88a4'

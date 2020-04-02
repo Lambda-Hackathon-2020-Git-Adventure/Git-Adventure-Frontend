@@ -33,7 +33,7 @@ function App() {
 			<Route path='/signup' component={SignUp} />
 			<Route path='/storytree/:id' component={StoryTree} />
 			<Route path='/node/:id' component={ViewDecision} />
-			<Route path='/story/:id' component={ViewStory} />
+      <Route path='/story/:id' component={ViewStory} />
 		</div>
 	);
 }
