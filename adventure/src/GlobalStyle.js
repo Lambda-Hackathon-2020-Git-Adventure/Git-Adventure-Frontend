@@ -27,7 +27,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: font77490;
+    /* font-family: font77490; */
+    font-family: 'Playfair Display', serif;
     background-color: whitesmoke;
   }
 `;

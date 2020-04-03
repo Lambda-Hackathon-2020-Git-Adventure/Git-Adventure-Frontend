@@ -42,7 +42,7 @@ export const team_member_info = [
 	{
 		name: 'Jonathan Ho',
 		role: 'Frontend Developer',
-		img_path: 'jonathan.jfif',
+		img_path: 'Jonathan.jpg',
 		link_title: 'LinkedIn',
 		link_url: 'https://www.linkedin.com/in/jonathan-y-ho/',
 		bio: 'Web22 | Labs18 QualityHub+InterviewQ',
