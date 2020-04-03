@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { axiosWithAuth } from './authentication/axiosWithAuth';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -6,7 +6,7 @@ import ReadIcon from '../images/book-open-page-variant.png';
 import EditIcon from '../images/lead-pencil.png';
 import InviteIcon from '../images/account-plus.png';
 import DeleteIcon from '../images/delete-forever.png';
-import InviteForm from './InviteForm';
+// import InviteForm from './InviteForm';
 
 //font
 
@@ -25,13 +25,13 @@ export default function StoryCard(props) {
 			.then(res => {
 				console.log(res);
 				console.log(myStories);
-				if (myStories.createdStories.filter(story => story.id != id)) {
+				if (myStories.createdStories.filter(story => story.id !== id)) {
 					setMyStories(
-						myStories.createdStories.filter(story => story.id != id),
+						myStories.createdStories.filter(story => story.id !== id),
 					);
 				} else {
 					setMyStories(
-						myStories.collaboratingOn.filter(story => story.id != id),
+						myStories.collaboratingOn.filter(story => story.id !== id),
 					);
 				}
 			})
@@ -43,18 +43,18 @@ export default function StoryCard(props) {
 			<ButtonBar>
 				<Button read>
 					<Link to={`/story/${id}`}>
-						<img src={ReadIcon} />
+						<img src={ReadIcon} alt='Read' />
 						Play story
 					</Link>
 				</Button>
 				<Button edit>
 					<Link to={`/storytree/${id}`}>
-						<img src={EditIcon} />
+						<img src={EditIcon} alt='Edit' />
 						Edit story
 					</Link>
 				</Button>
 				<Button share onClick={() => createInviteModal(id)}>
-					<img src={InviteIcon} />
+					<img src={InviteIcon} alt='Invite' />
 					Share & invite
 				</Button>
 				{/* Need to change how we grab the id. Refreshing the edit page will throw an error */}
@@ -65,7 +65,7 @@ export default function StoryCard(props) {
 				{!collaborator && (
 					<Button onClick={deleteStory}>
 						{' '}
-						<img src={DeleteIcon} /> Delete story
+						<img src={DeleteIcon} alt='Delete' /> Delete story
 					</Button>
 				)}
 			</ButtonBar>

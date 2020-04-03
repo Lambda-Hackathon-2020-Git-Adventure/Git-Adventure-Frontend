@@ -26,7 +26,7 @@ export default function StoryCard({ story }) {
 		<Tile>
 			<Button read>
 				<Link to={`/story/${id}`}>
-					<img src={ReadIcon} />
+					<img src={ReadIcon} alt='' />
 					Play story
 				</Link>
 			</Button>
@@ -86,14 +86,14 @@ const Desc = styled.p`
 
 // BUTTONS
 
-const ButtonBar = styled.nav`
-	display: flex;
-	/* width: 100%; */
-	flex-flow: column;
-	height: 100%;
-	justify-content: space-between;
-	margin-right: 1rem;
-`;
+// const ButtonBar = styled.nav`
+// 	display: flex;
+// 	/* width: 100%; */
+// 	flex-flow: column;
+// 	height: 100%;
+// 	justify-content: space-between;
+// 	margin-right: 1rem;
+// `;
 
 const Button = styled.button`
 	width: 5rem;

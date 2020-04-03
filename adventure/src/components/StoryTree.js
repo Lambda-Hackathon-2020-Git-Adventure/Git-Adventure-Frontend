@@ -10,7 +10,7 @@ import styled from 'styled-components';
 export default function StoryTree() {
 	const params = useParams();
 
-	const [modalViz, setModalViz] = useState(false);
+	// const [modalViz, setModalViz] = useState(false);
 	const [data, setData] = useState();
 	const [nodeModal, toggleNodeModal] = useModali();
 	const [questionModal, toggleQuestionModal] = useModali();
@@ -21,7 +21,7 @@ export default function StoryTree() {
 	const [first, setFirst] = useState(false);
 
 	// let mode = 'create';
-// let restart;
+	// let restart;
 	const myConfig = {
 		directed: true,
 		nodeHighlightBehavior: true,
@@ -44,15 +44,14 @@ export default function StoryTree() {
 		},
 	};
 
-	const onClickGraph = function() {
-		window.alert(`Clicked the graph background`);
-	};
+	// const onClickGraph = function() {
+	// 	window.alert(`Clicked the graph background`);
+	// };
 
 	const onClickNode = function(nodeId) {
 		setEditNode(nodeId);
 		// toggleNodeModal();
 		toggleQuestionModal();
-		
 	};
 
 	const noNodes = () => {
@@ -71,7 +70,10 @@ export default function StoryTree() {
 					color: 'red',
 					symbolType: 'cross',
 				});
-				someLinks.push({source: res.data.story.id, target: res.data.story.id})
+				someLinks.push({
+					source: res.data.story.id,
+					target: res.data.story.id,
+				});
 				setData({
 					nodes: someData,
 					links: someLinks,
@@ -91,7 +93,7 @@ export default function StoryTree() {
 				if (res.data.length < 1) {
 					noNodes();
 					return;
-				} else if(res.data.length ==1){
+				} else if (res.data.length === 1) {
 					setStoryId(res.data[0].specifiedNode.story_id);
 					res.data.forEach(item => {
 						let color = 'blue';
@@ -107,11 +109,14 @@ export default function StoryTree() {
 							symbolType: symbol,
 						});
 						// someData.push({id: item.specifiedNode.id});
-						someLinks.push({ source: item.specifiedNode.id, target: item.specifiedNode.id });
+						someLinks.push({
+							source: item.specifiedNode.id,
+							target: item.specifiedNode.id,
+						});
 					});
 					// res.data.forEach(item => {
 					// 	item.nodeChildren.forEach(child => {
-						// });
+					// });
 					// });
 					setData({
 						nodes: someData,
@@ -170,7 +175,9 @@ export default function StoryTree() {
 				<EditStoryDescription nodeId={params.id} />
 			</div>
 			<div>
-				<p className='edit-instructions'>Click on a node below to edit, delete, or add decision paths</p>
+				<p className='edit-instructions'>
+					Click on a node below to edit, delete, or add decision paths
+				</p>
 			</div>
 			{data && (
 				<Graph

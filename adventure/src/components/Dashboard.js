@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 // import axios from 'axios';
-import { Graph } from 'react-d3-graph';
-import Modali, { useModali } from 'modali';
+// import { Graph } from 'react-d3-graph';
+// import Modali, { useModali } from 'modali';
 
 //local imports
 import StoryCard from './StoryCard';
-import ModifyDecision from './ModifyDecision';
-import Img1 from '../images/headers/img1.jpg';
-import Img2 from '../images/headers/img2.jpg';
+// import ModifyDecision from './ModifyDecision';
+// import Img1 from '../images/headers/img1.jpg';
+// import Img2 from '../images/headers/img2.jpg';
 import Img3 from '../images/headers/img3.jpg';
-import Img4 from '../images/headers/img4.jpg';
-import Img5 from '../images/headers/img5.jpg';
+// import Img4 from '../images/headers/img4.jpg';
+// import Img5 from '../images/headers/img5.jpg';
 import left_arrow from '../images/left_arrow.png';
 import right_arrow from '../images/right_arrow.png';
 import curly_arrow from '../images/curly_arrow.png';
@@ -20,52 +20,52 @@ import CreateStoryForm from './CreateStoryForm';
 import InviteForm from './InviteForm';
 import { axiosWithAuth } from './authentication/axiosWithAuth';
 
-const stories = [
-	{
-		id: 1,
-		image: '',
-		title: 'A Cookie to Remember',
-		authors: ['Fozzie Bear', 'Rizzo the Rat'],
-		description: `It's lonely in paradise. Life couldn't be better after Cookie Monster wins the the cookie lottery. Eating cookies was all Cookie Monster ever wanted...wasn't it? Everything changes when a gruff orange hockey monster named Gritty barrels into his cookie shop. Can these two misunderstood monsters find love?`,
-		dateEdited: '10/31/19',
-	},
-	{
-		id: 2,
-		image: '',
-		title: 'A Cookie to Remember',
-		authors: ['Luisa', 'Clarence'],
-		description:
-			'Fruitcake chocolate sugar plum cookie. Marzipan bear claw gingerbread muffin cake. Chupa chups cheesecake tiramisu pie.',
-		dateEdited: '10/31/19',
-	},
-	{
-		id: 3,
-		image: '',
-		title: 'The Telltale Heart',
-		authors: ['Myrtle', 'Dorothy'],
-		description:
-			'Pastry jujubes macaroon caramels cake pudding donut soufflé cake. Fruitcake tootsie roll gingerbread wafer topping soufflé liquorice donut.',
-		dateEdited: '10/31/19',
-	},
-	{
-		id: 4,
-		image: '',
-		title: 'A Tale of Two Cities',
-		authors: ['Luisa', 'Clarence'],
-		description:
-			'Fruitcake chocolate sugar plum cookie. Marzipan bear claw gingerbread muffin cake. Chupa chups cheesecake tiramisu pie.',
-		dateEdited: '10/31/19',
-	},
-	{
-		id: 5,
-		image: '',
-		title: 'Choice of Robots',
-		authors: ['Myrtle', 'Dorothy'],
-		description:
-			'Pastry jujubes macaroon caramels cake pudding donut soufflé cake. Fruitcake tootsie roll gingerbread wafer topping soufflé liquorice donut.',
-		dateEdited: '10/31/19',
-	},
-];
+// const stories = [
+// 	{
+// 		id: 1,
+// 		image: '',
+// 		title: 'A Cookie to Remember',
+// 		authors: ['Fozzie Bear', 'Rizzo the Rat'],
+// 		description: `It's lonely in paradise. Life couldn't be better after Cookie Monster wins the the cookie lottery. Eating cookies was all Cookie Monster ever wanted...wasn't it? Everything changes when a gruff orange hockey monster named Gritty barrels into his cookie shop. Can these two misunderstood monsters find love?`,
+// 		dateEdited: '10/31/19',
+// 	},
+// 	{
+// 		id: 2,
+// 		image: '',
+// 		title: 'A Cookie to Remember',
+// 		authors: ['Luisa', 'Clarence'],
+// 		description:
+// 			'Fruitcake chocolate sugar plum cookie. Marzipan bear claw gingerbread muffin cake. Chupa chups cheesecake tiramisu pie.',
+// 		dateEdited: '10/31/19',
+// 	},
+// 	{
+// 		id: 3,
+// 		image: '',
+// 		title: 'The Telltale Heart',
+// 		authors: ['Myrtle', 'Dorothy'],
+// 		description:
+// 			'Pastry jujubes macaroon caramels cake pudding donut soufflé cake. Fruitcake tootsie roll gingerbread wafer topping soufflé liquorice donut.',
+// 		dateEdited: '10/31/19',
+// 	},
+// 	{
+// 		id: 4,
+// 		image: '',
+// 		title: 'A Tale of Two Cities',
+// 		authors: ['Luisa', 'Clarence'],
+// 		description:
+// 			'Fruitcake chocolate sugar plum cookie. Marzipan bear claw gingerbread muffin cake. Chupa chups cheesecake tiramisu pie.',
+// 		dateEdited: '10/31/19',
+// 	},
+// 	{
+// 		id: 5,
+// 		image: '',
+// 		title: 'Choice of Robots',
+// 		authors: ['Myrtle', 'Dorothy'],
+// 		description:
+// 			'Pastry jujubes macaroon caramels cake pudding donut soufflé cake. Fruitcake tootsie roll gingerbread wafer topping soufflé liquorice donut.',
+// 		dateEdited: '10/31/19',
+// 	},
+// ];
 
 export default function Dashboard(props) {
 	const [storyModalViz, setStoryModalViz] = useState(false);
@@ -122,12 +122,12 @@ export default function Dashboard(props) {
 				collaborated on. To get started, create a new story.
 			</Blurb>
 			<CreateContainer>
-				<img src={curly_arrow}></img>
+				<img src={curly_arrow} alt=''></img>
 				<NewStory onClick={createStoryModal}>Create a new story</NewStory>
 				<div>
-					<img src={left_arrow}></img>
+					<img src={left_arrow} alt=''></img>
 					<h2>...or work on one you've already started!</h2>
-					<img src={right_arrow}></img>
+					<img src={right_arrow} alt=''></img>
 				</div>
 			</CreateContainer>
 
@@ -227,12 +227,12 @@ const Subheading = styled.h2`
 	padding: 1rem;
 `;
 
-const randomImage = () => {
-	const imgArray = [Img1, Img2, Img3, Img4, Img5];
-	const randomNum = Math.floor(Math.random() * imgArray.length);
-	const pick = imgArray[randomNum];
-	return pick;
-};
+// const randomImage = () => {
+// 	const imgArray = [Img1, Img2, Img3, Img4, Img5];
+// 	const randomNum = Math.floor(Math.random() * imgArray.length);
+// 	const pick = imgArray[randomNum];
+// 	return pick;
+// };
 
 const Header = styled.header`
   /* background-image: url(${Img3}); */

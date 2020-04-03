@@ -10,7 +10,7 @@ export default function InviteForm({ closeModal, id }) {
 	const [invites, setInvites] = useState('');
 
 	const handleChange = e => {
-		let temp = e.target.value;
+		// let temp = e.target.value;
 		// console.log(temp);
 		// let newArray = temp.split(',');
 		// setInvites(newArray);

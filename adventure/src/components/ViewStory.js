@@ -46,8 +46,9 @@ const ViewStory = props => {
 			});
 	}, []);
 
-	if (!story) return <StyledPageWrapper paper={paper}>Loading...</StyledPageWrapper>;
-	
+	if (!story)
+		return <StyledPageWrapper paper={paper}>Loading...</StyledPageWrapper>;
+
 	return (
 		<StyledPageWrapper paper={paper}>
 			<div>
@@ -55,21 +56,31 @@ const ViewStory = props => {
 					{story.title}{' '}
 					<Byline>
 						{' '}
-						By {story.creator} {collabs && "with: "} {collabs}
+						By {story.creator} {collabs && 'with: '} {collabs}
 					</Byline>
 				</h2>
-				{history.length == 0 && (
+				{history.length === 0 && (
 					<div>
-						{ current ? <Image src={current.specifiedNode.image}/> : <Image src={story.image}/> }
+						{current ? (
+							<Image src={current.specifiedNode.image} />
+						) : (
+							<Image src={story.image} />
+						)}
 						<p>{story.description}</p>
 						{story && story.start && (
-							<h2 className='button' onClick={handleClick}>Read More!</h2>
+							<h2 className='button' onClick={handleClick}>
+								Read More!
+							</h2>
 						)}
 					</div>
 				)}
 				{current && <p>{current.specifiedNode.text}</p>}
 				<hr />
-				{history.length > 1 && <h2 className='button' onClick={handleBack}>Go Back</h2>}
+				{history.length > 1 && (
+					<h2 className='button' onClick={handleBack}>
+						Go Back
+					</h2>
+				)}
 			</div>
 			<StyledDecisions>
 				{current &&
@@ -133,7 +144,7 @@ const StyledPageWrapper = styled.div`
 
 const Image = styled.img`
 	width: 55%;
-`
+`;
 const Byline = styled.span`
 	font-size: 10px;
 	font-weight: 400;
