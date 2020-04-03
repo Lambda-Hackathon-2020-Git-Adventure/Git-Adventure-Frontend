@@ -1,3 +1,6 @@
+/* @import url('https://www.fontify.me/wf/7ae0c162d7a54b07d9af0bfbdba6482e'); */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Playfair+Display:wght@500;600&display=swap');
+
 .App {
 	text-align: center;
 }
@@ -160,6 +163,6 @@ text {
 	color: #f43518;
 }
 
-.edit-instructions{
-  font-size: 1.75rem;
+.edit-instructions {
+	font-size: 1.75rem;
 }

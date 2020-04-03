@@ -19,6 +19,7 @@ const Landing = () => {
 			<div className='landing-page-top'>
 				<img
 					className='landing-page-image'
+					alt='Landing Page'
 					src={
 						photo === 1
 							? './photos/cyoa1.jpg'

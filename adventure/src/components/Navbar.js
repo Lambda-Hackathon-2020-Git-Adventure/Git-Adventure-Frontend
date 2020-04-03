@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -22,8 +22,6 @@ export default function NavBar({ token, setToken }) {
 	// 		},
 	// 	},
 	// };
-
-
 
 	const StyledBottomBorder = styled.div`
 		background-color: #f1bd19;
@@ -77,26 +75,43 @@ export default function NavBar({ token, setToken }) {
 			color: black;
 		}
 	`;
-	
+
 	const handleLogOut = () => {
 		localStorage.removeItem('token');
 		setToken('');
-	}
+	};
 
 	return (
 		<StyledNavRows>
-			<NavLink to="/">
+			<NavLink to='/'>
 				<StyledRole>CREATE YOUR OWN ADVENTURE!</StyledRole>
 			</NavLink>
 			<StyledNavbarMain>
 				<StyledHeader>
-					<NavLink to="/list" className="navbar-links-hovered" >View Stories</NavLink>
-					{ token && <NavLink className="navbar-links-hovered" onClick={handleLogOut} to="/">Sign Out</NavLink>}
-					{token && <NavLink className="navbar-links-hovered" to="/dashboard">Dashboard</NavLink>}
+					<NavLink to='/list' className='navbar-links-hovered'>
+						View Stories
+					</NavLink>
+					{token && (
+						<NavLink
+							className='navbar-links-hovered'
+							onClick={handleLogOut}
+							to='/'>
+							Sign Out
+						</NavLink>
+					)}
+					{token && (
+						<NavLink className='navbar-links-hovered' to='/dashboard'>
+							Dashboard
+						</NavLink>
+					)}
 					{!token && (
 						<>
-							<NavLink to="/signin" className="navbar-links-hovered" >Sign In</NavLink>
-							<NavLink to="/signup" className="navbar-links-hovered" >Sign Up</NavLink>
+							<NavLink to='/signin' className='navbar-links-hovered'>
+								Sign In
+							</NavLink>
+							<NavLink to='/signup' className='navbar-links-hovered'>
+								Sign Up
+							</NavLink>
 						</>
 					)}
 				</StyledHeader>

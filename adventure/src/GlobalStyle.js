@@ -1,8 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-  @import url('https://www.fontify.me/wf/7ae0c162d7a54b07d9af0bfbdba6482e');
-  @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap');
+  /* @import url('https://www.fontify.me/wf/7ae0c162d7a54b07d9af0bfbdba6482e');
+  @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap'); */
 
   @font-face {
     font-family: 'Souvenir';
@@ -27,7 +27,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: font77490;
+    /* font-family: font77490; */
+    font-family: 'Playfair Display', serif;
     background-color: whitesmoke;
   }
 `;
